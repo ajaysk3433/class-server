@@ -1,0 +1,180 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+
+
+
+// =========================================================================
+// Core Entities
+// =========================================================================
+
+// remove later
+model School {
+  id                    Int                   @id @default(autoincrement())
+  school_name           String                @db.VarChar(255)
+  slug                  String                @unique @db.VarChar(255)
+  status                String                @db.VarChar(50)
+  
+  // Relations
+  class_stream_sections ClassStreamSection[]
+  // school_active_subjects SchoolActiveSubject[]
+  custom_subjects       Subject[]
+
+  @@map("schools")
+}
+
+model Stream {
+  id            Int                  @id @default(autoincrement())
+  stream_name   String               @db.VarChar(255)
+  slug          String               @unique @db.VarChar(255)
+  
+  // Relations
+  class_stream_sections ClassStreamSection[]
+  stream_subjects       StreamSubject[]
+
+  @@map("streams")
+}
+
+model Class {
+  id         Int                  @id @default(autoincrement())
+  class_name String               @db.VarChar(255)
+  slug       String               @unique @db.VarChar(255)
+  
+  // Relations
+  class_stream_sections ClassStreamSection[]
+
+  @@map("classes")
+}
+
+model Section {
+  id           Int                  @id @default(autoincrement())
+  section_name String               @db.VarChar(255)
+  slug         String               @unique @db.VarChar(255)
+  
+  // Relations
+  class_stream_sections ClassStreamSection[]
+
+  @@map("sections")
+}
+
+model Subject {
+  id           Int                   @id @default(autoincrement())
+  school_id    Int?                  // Nullable for global/default subjects
+  subject_name String                @db.VarChar(255)
+  slug         String                @db.VarChar(255)
+  
+  // Relations
+  school       School?               @relation(fields: [school_id], references: [id])
+  stream_subjects StreamSubject[]
+  // school_active_subjects SchoolActiveSubject[]
+  class_subjects ClassSubject[]
+  user_classes   UserClass[]
+
+  @@map("subjects")
+}
+
+model User {
+  id        Int         @id @default(autoincrement())
+  full_name String      @db.VarChar(255)
+  email     String      @unique @db.VarChar(255)
+  role      String      @db.VarChar(50)
+  status    String      @db.VarChar(50)
+  
+  // Relations
+  user_classes UserClass[]
+
+  @@map("users")
+}
+
+// =========================================================================
+// Infrastructure Core / Room Mappings
+// =========================================================================
+
+model ClassStreamSection {
+  id        Int      @id @default(autoincrement())
+  school_id Int
+  class_id  Int
+  stream_id Int?     // Nullable in diagram
+  section_id Int
+  slug      String   @unique @db.VarChar(255)
+
+  // Relations
+  school    School   @relation(fields: [school_id], references: [id])
+  class     Class    @relation(fields: [class_id], references: [id])
+  stream    Stream?  @relation(fields: [stream_id], references: [id])
+  section   Section  @relation(fields: [section_id], references: [id])
+  
+  class_subjects ClassSubject[]
+  user_classes   UserClass[]
+
+  @@map("class_stream_sections")
+}
+
+// =========================================================================
+// Curriculum & Assignment Junction Tables
+// =========================================================================
+
+model StreamSubject {
+  stream_id  Int
+  subject_id Int
+
+  // Relations
+  stream     Stream  @relation(fields: [stream_id], references: [id])
+  subject    Subject @relation(fields: [subject_id], references: [id])
+
+  @@id([stream_id, subject_id])
+  @@map("stream_subjects")
+}
+
+model ClassSubject {
+  class_stream_section_id Int
+  subject_id              Int
+
+  // Relations
+  class_stream_section   ClassStreamSection @relation(fields: [class_stream_section_id], references: [id])
+  subject                Subject            @relation(fields: [subject_id], references: [id])
+
+  @@id([class_stream_section_id, subject_id])
+  @@map("class_subjects")
+}
+
+// model SchoolActiveSubject {
+//   school_id  Int
+//   subject_id Int
+
+//   // Relations
+//   school     School  @relation(fields: [school_id], references: [id])
+//   subject    Subject @relation(fields: [subject_id], references: [id])
+
+//   @@id([school_id, subject_id])
+//   @@map("school_active_subjects")
+// }
+
+
+//remove
+model UserClass {
+  user_id                 Int
+  class_stream_section_id Int
+  subject_id              Int? // Nullable (e.g., Null for students, filled for teachers)
+
+  // Relations
+  user                 User               @relation(fields: [user_id], references: [id])
+  class_stream_section ClassStreamSection @relation(fields: [class_stream_section_id], references: [id])
+  subject              Subject?           @relation(fields: [subject_id], references: [id])
+
+  // Note: Based on your diagram's PK constraints. If a teacher needs to 
+  // teach multiple subjects to the SAME class, change this to @@id([user_id, class_stream_section_id, subject_id])
+  @@id([user_id, class_stream_section_id]) 
+  @@map("user_classes")
+}

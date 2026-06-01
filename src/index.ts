@@ -1,0 +1,191 @@
+import express from 'express';
+import cors from 'cors';
+import { prisma } from "./config/database/db.ts";
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.use(cors());
+app.use(express.json());
+
+/**
+ * @route   GET /api/v1/teachers/:id/dashboard
+ * @desc    Fetch the complete workload configuration payload for a logged-in teacher
+ */
+app.get('/api/v1/teachers/:id/dashboard', async (req, res) => {
+    const teacherId = parseInt(req.params.id, 10);
+    const schoolId = parseInt(req.query.schoolId, 10); 
+
+    if (isNaN(teacherId) || !schoolId) {
+        return res.status(400).json({ 
+            success: false, 
+            error: "Valid Teacher ID parameter and schoolId query parameter are required." 
+        });
+    }
+
+    try {
+        const teacher = await prisma.user.findUnique({
+            where: { id: teacherId }
+        });
+
+        if (!teacher || teacher.role.toLowerCase() !== 'teacher') {
+            return res.status(404).json({ success: false, error: "Teacher profile not found." });
+        }
+
+        // Updated to match schema snake_case relations: class_stream_section instead of room
+        const assignments = await prisma.userClass.findMany({
+            where: {
+                user_id: teacherId,
+                subject_id: { not: null },
+                class_stream_section: {
+                    school_id: schoolId 
+                }
+            },
+            include: {
+                class_stream_section: {
+                    include: {
+                        class: true,
+                        section: true,
+                        stream: true 
+                    }
+                },
+                subject: true
+            }
+        });
+
+        const dashboardPayload = assignments.map(assignment => ({
+            class: assignment.class_stream_section.class.class_name,
+            stream: assignment.class_stream_section.stream ? assignment.class_stream_section.stream.stream_name : "General / No Stream",
+            section: assignment.class_stream_section.section.section_name,
+            subject: assignment.subject?.subject_name || "Unknown", 
+            classRoomSlug: assignment.class_stream_section.slug,
+            subjectSlug: assignment.subject?.slug || null          
+        }));
+
+        return res.status(200).json({
+            success: true,
+            schoolId: schoolId,
+            teacher: {
+                id: teacher.id,
+                name: teacher.full_name,
+                email: teacher.email
+            },
+            workload: dashboardPayload
+        });
+
+    } catch (error) {
+        console.error("Database Error on Teacher Dashboard query:", error);
+        return res.status(500).json({ success: false, error: "Internal Server Error context." });
+    }
+});
+
+/**
+ * @route   GET /api/v1/students/:id/dashboard
+ * @desc    Fetch classroom tracking and complete core + elective subjects for a student
+ */
+app.get('/api/v1/students/:id/dashboard', async (req, res) => {
+    const studentId = parseInt(req.params.id, 10);
+    const schoolId = parseInt(req.query.schoolId, 10); 
+
+    if (isNaN(studentId) || !schoolId) {
+        return res.status(400).json({ 
+            success: false, 
+            error: "Valid Student ID parameter and schoolId query parameter are required." 
+        });
+    }
+
+    try {
+        const student = await prisma.user.findUnique({
+            where: { id: studentId }
+        });
+
+        if (!student || student.role.toLowerCase() !== 'student') {
+            return res.status(404).json({ success: false, error: "Student profile not found." });
+        }
+
+        const primaryClassAssignment = await prisma.userClass.findFirst({
+            where: {
+                user_id: studentId,
+                subject_id: null, 
+                class_stream_section: {
+                    school_id: schoolId 
+                }
+            },
+            include: {
+                class_stream_section: {
+                    include: {
+                        class: true,
+                        section: true,
+                        stream: true
+                    }
+                }
+            }
+        });
+
+        if (!primaryClassAssignment) {
+            return res.status(404).json({ 
+                success: false, 
+                error: "Student is not currently enrolled in an active class room track for this school." 
+            });
+        }
+
+        const activeRoom = primaryClassAssignment.class_stream_section;
+
+        const coreClassSubjects = await prisma.classSubject.findMany({
+            where: { class_stream_section_id: activeRoom.id },
+            include: { subject: true }
+        });
+
+        const individualElectives = await prisma.userClass.findMany({
+            where: {
+                user_id: studentId,
+                class_stream_section_id: activeRoom.id,
+                subject_id: { not: null } 
+            },
+            include: { 
+                subject: true 
+            }
+        });
+
+        const corePayload = coreClassSubjects.map(cs => ({
+            id: cs.subject.id,
+            subjectName: cs.subject.subject_name, 
+            slug: cs.subject.slug,
+            type: "Core"
+        }));
+
+        const electivePayload = individualElectives
+            .filter(ie => ie.subject !== null) 
+            .map(ie => ({
+                id: ie.subject!.id,
+                subjectName: ie.subject!.subject_name,
+                slug: ie.subject!.slug,
+                type: "Elective"
+            }));
+
+        return res.status(200).json({
+            success: true,
+            schoolId: schoolId,
+            student: {
+                id: student.id,
+                name: student.full_name, 
+                email: student.email
+            },
+            classroom: {
+                class: activeRoom.class.class_name, 
+                stream: activeRoom.stream ? activeRoom.stream.stream_name : "General / No Stream", 
+                section: activeRoom.section.section_name, 
+                roomSlug: activeRoom.slug
+            },
+            subjects: [...corePayload, ...electivePayload]
+        });
+
+    } catch (error) {
+        console.error("Database Error on Student Dashboard query:", error);
+        return res.status(500).json({ success: false, error: "Internal Server Error context." });
+    }
+});
+
+app.listen(PORT, () => {
+    console.log(`🚀 Multi-tenant School API Server running natively on port ${PORT}`);
+});
