@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import { prisma } from "./config/database/db.ts";
 
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
