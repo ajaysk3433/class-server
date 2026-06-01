@@ -29,7 +29,7 @@ model School {
   // Relations
   class_stream_sections ClassStreamSection[]
   // school_active_subjects SchoolActiveSubject[]
-  custom_subjects       Subject[]
+  // custom_subjects       Subject[]
 
   @@map("schools")
 }
@@ -44,6 +44,31 @@ model Stream {
   stream_subjects       StreamSubject[]
 
   @@map("streams")
+}
+
+model Board {
+  id         Int            @id @default(autoincrement())
+  board      String         @unique @db.VarChar(255)
+
+  // Relations
+  // 1. Point to the explicit junction table instead of directly to Subject
+  board_subjects BoardSubject[]
+
+  @@map("board")
+}
+
+model BoardSubject {
+  id         Int     @id @default(autoincrement())
+  subject_id Int     @map("subjects") // Named exactly as your diagram/schema references
+  board_id   Int     @map("board")    // Named exactly as your diagram/schema references
+
+  // Foreign Key Relations
+  board   Board   @relation(fields: [board_id], references: [id], onDelete: Cascade)
+  subject Subject @relation(fields: [subject_id], references: [id], onDelete: Cascade)
+
+  // Composite unique constraint ensures a subject cannot be linked to the same board twice
+  @@unique([board_id, subject_id])
+  @@map("board_subjects")
 }
 
 model Class {
@@ -69,17 +94,17 @@ model Section {
 }
 
 model Subject {
-  id           Int                   @id @default(autoincrement())
-  school_id    Int?                  // Nullable for global/default subjects
-  subject_name String                @db.VarChar(255)
-  slug         String                @db.VarChar(255)
+  id              Int            @id @default(autoincrement())
+  subject_name    String         @db.VarChar(255)
+  slug            String         @db.VarChar(255)
   
   // Relations
-  school       School?               @relation(fields: [school_id], references: [id])
   stream_subjects StreamSubject[]
-  // school_active_subjects SchoolActiveSubject[]
-  class_subjects ClassSubject[]
-  user_classes   UserClass[]
+  class_subjects  ClassSubject[]
+  user_classes    UserClass[]
+  
+  // 2. Added relation mapping to complete the two-way relationship loop
+  board_subjects  BoardSubject[]
 
   @@map("subjects")
 }

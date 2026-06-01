@@ -234,104 +234,107 @@ WHERE css.slug = 'class-9-a' -- Or pass 'class-11-science-b' interchangeably
 
 ```mermaid
 
-    classDiagram
-    direction LR
-
-    class schools {
-        +int id PK
-        +varchar school_name
-        +varchar slug UNIQUE
-        +varchar status
+ erDiagram
+    SCHOOLS {
+        int id PK
+        varchar school_name
+        varchar slug UK
+        varchar status
     }
 
-    class streams {
-        +int id PK
-        +varchar stream_name
-        +varchar slug UNIQUE
+    STREAMS {
+        int id PK
+        varchar stream_name
+        varchar slug UK
     }
 
-    class classes {
-        +int id PK
-        +varchar class_name
-        +varchar slug UNIQUE
+    CLASSES {
+        int id PK
+        varchar class_name
+        varchar slug UK
     }
 
-    class sections {
-        +int id PK
-        +varchar section_name
-        +varchar slug UNIQUE
+    SECTIONS {
+        int id PK
+        varchar section_name
+        varchar slug UK
     }
 
-    class subjects {
-        +int id PK
-       %% +int school_id FK "NULLABLE"
-        +varchar subject_name
-        +varchar slug
+    SUBJECTS {
+        int id PK
+        int school_id FK "NULLABLE"
+        varchar subject_name
+        varchar slug
+        varchar board
     }
 
-    class users {
-        +int id PK
-        +varchar full_name
-        +varchar email UNIQUE
-        +varchar role
-        +varchar status
+    BOARD {
+        int id PK
+        varchar board
+        varchar slug
     }
 
-    class class_stream_sections {
-        +int id PK
-        +int school_id FK
-        +int class_id FK
-        +int stream_id FK "NULLABLE"
-        +int section_id FK
-        +varchar slug UNIQUE
+    BOARD_SUBJECTS {
+        int id PK
+        int subjects_id FK
+        int board_id FK
     }
 
-    class stream_subjects {
-        +int stream_id PK, FK
-        +int subject_id PK, FK
+    USERS {
+        int id PK
+        varchar full_name
+        varchar email UK
+        varchar role
+        varchar status
     }
 
-    class class_subjects {
-        +int class_stream_section_id PK, FK
-        +int subject_id PK, FK
+    CLASS_STREAM_SECTIONS {
+        int id PK
+        int school_id FK
+        int class_id FK
+        int stream_id FK "NULLABLE"
+        int section_id FK
+        varchar slug UK
     }
 
-  %%  class school_active_subjects {
-        %%+int school_id PK, FK
-      %%  +int subject_id PK, FK
-    %%}
-
-    class user_classes {
-        +int user_id PK, FK
-        +int class_stream_section_id PK, FK
-        +int subject_id FK "NULLABLE"
+    STREAM_SUBJECTS {
+        int stream_id PK, FK
+        int subject_id PK, FK
     }
+
+    CLASS_SUBJECTS {
+        int class_stream_section_id PK, FK
+        int subject_id PK, FK
+    }
+
+    USER_CLASSES {
+        int user_id PK, FK
+        int class_stream_section_id PK, FK
+        int subject_id FK "NULLABLE"
+    }
+
+    %% --- Relationships & Cardinalities ---
 
     %% Multi-Tenant & Infrastructure Core
-    schools "1" -- "0..*" class_stream_sections : operates
-   %% schools "1" -- "0..*" school_active_subjects : activates
-    schools "1" -- "0..*" subjects : registers custom
+    SCHOOLS ||--o{ CLASS_STREAM_SECTIONS : "operates"
+    SCHOOLS ||--o{ SUBJECTS : "registers custom"
     
-    classes "1" -- "0..*" class_stream_sections : has
-    streams "0..1" -- "0..*" class_stream_sections : applies to
-    sections "1" -- "0..*" class_stream_sections : has
+    CLASSES ||--o{ CLASS_STREAM_SECTIONS : "has"
+    STREAMS |o--o{ CLASS_STREAM_SECTIONS : "applies to"
+    SECTIONS ||--o{ CLASS_STREAM_SECTIONS : "has"
 
     %% Curriculum Structures
-    streams "1" -- "0..*" stream_subjects : defines
-    subjects "1" -- "0..*" stream_subjects : belongs to
-   %% subjects "1" -- "0..*" school_active_subjects : made available to
+    STREAMS ||--o{ STREAM_SUBJECTS : "defines"
+    SUBJECTS ||--o{ STREAM_SUBJECTS : "belongs to"
 
-    class_stream_sections "1" -- "0..*" class_subjects : maps curriculum
-    subjects "1" -- "0..*" class_subjects : assigned to room
+    CLASS_STREAM_SECTIONS ||--o{ CLASS_SUBJECTS : "maps curriculum"
+    SUBJECTS ||--o{ CLASS_SUBJECTS : "assigned to room"
+
+    %% Board Management
+    BOARD ||--o{ BOARD_SUBJECTS : "defines"
+    SUBJECTS ||--o{ BOARD_SUBJECTS : "included_in"
 
     %% Users & Multi-Class/Subject Assignments
-    users "1" -- "0..*" user_classes : fulfills roster
-    class_stream_sections "1" -- "0..*" user_classes : allocated to
-    subjects "0..1" -- "0..*" user_classes : restricts workload to
-
-    ```
-
-
-    
-
-    
+    USERS ||--o{ USER_CLASSES : "fulfills roster"
+    CLASS_STREAM_SECTIONS ||--o{ USER_CLASSES : "allocated to"
+    SUBJECTS |o--o{ USER_CLASSES : "restricts workload to"
