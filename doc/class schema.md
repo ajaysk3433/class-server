@@ -82,14 +82,14 @@ CREATE TABLE stream_subjects (
     FOREIGN KEY (subject_id) REFERENCES subjects(id) ON DELETE CASCADE
 );
 
--- Tenant activation rulebook for global subjects
-CREATE TABLE school_active_subjects (
-    school_id INT,
-    subject_id INT,
-    PRIMARY KEY (school_id, subject_id),
-    FOREIGN KEY (school_id) REFERENCES schools(id) ON DELETE CASCADE,
-    FOREIGN KEY (subject_id) REFERENCES subjects(id) ON DELETE CASCADE
-);
+-- -- Tenant activation rulebook for global subjects
+-- CREATE TABLE school_active_subjects (
+--     school_id INT,
+--     subject_id INT,
+--     PRIMARY KEY (school_id, subject_id),
+--     FOREIGN KEY (school_id) REFERENCES schools(id) ON DELETE CASCADE,
+--     FOREIGN KEY (subject_id) REFERENCES subjects(id) ON DELETE CASCADE
+-- );
 
 -- Central Hub: Maps Class + Stream (Optional) + Section inside a unique School
 CREATE TABLE class_stream_sections (
@@ -264,7 +264,7 @@ WHERE css.slug = 'class-9-a' -- Or pass 'class-11-science-b' interchangeably
 
     class subjects {
         +int id PK
-        +int school_id FK "NULLABLE"
+       %% +int school_id FK "NULLABLE"
         +varchar subject_name
         +varchar slug
     }
@@ -296,10 +296,10 @@ WHERE css.slug = 'class-9-a' -- Or pass 'class-11-science-b' interchangeably
         +int subject_id PK, FK
     }
 
-    class school_active_subjects {
-        +int school_id PK, FK
-        +int subject_id PK, FK
-    }
+  %%  class school_active_subjects {
+        %%+int school_id PK, FK
+      %%  +int subject_id PK, FK
+    %%}
 
     class user_classes {
         +int user_id PK, FK
@@ -309,7 +309,7 @@ WHERE css.slug = 'class-9-a' -- Or pass 'class-11-science-b' interchangeably
 
     %% Multi-Tenant & Infrastructure Core
     schools "1" -- "0..*" class_stream_sections : operates
-    schools "1" -- "0..*" school_active_subjects : activates
+   %% schools "1" -- "0..*" school_active_subjects : activates
     schools "1" -- "0..*" subjects : registers custom
     
     classes "1" -- "0..*" class_stream_sections : has
@@ -319,7 +319,7 @@ WHERE css.slug = 'class-9-a' -- Or pass 'class-11-science-b' interchangeably
     %% Curriculum Structures
     streams "1" -- "0..*" stream_subjects : defines
     subjects "1" -- "0..*" stream_subjects : belongs to
-    subjects "1" -- "0..*" school_active_subjects : made available to
+   %% subjects "1" -- "0..*" school_active_subjects : made available to
 
     class_stream_sections "1" -- "0..*" class_subjects : maps curriculum
     subjects "1" -- "0..*" class_subjects : assigned to room
