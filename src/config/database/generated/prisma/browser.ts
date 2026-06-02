@@ -53,11 +53,6 @@ export type User = Prisma.UserModel
  */
 export type ClassStreamSection = Prisma.ClassStreamSectionModel
 /**
- * Model StreamSubject
- * 
- */
-export type StreamSubject = Prisma.StreamSubjectModel
-/**
  * Model ClassSubject
  * 
  */

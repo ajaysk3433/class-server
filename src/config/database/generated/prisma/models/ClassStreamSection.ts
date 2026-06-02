@@ -244,7 +244,6 @@ export type ClassStreamSectionWhereInput = {
   class?: Prisma.XOR<Prisma.ClassScalarRelationFilter, Prisma.ClassWhereInput>
   stream?: Prisma.XOR<Prisma.StreamNullableScalarRelationFilter, Prisma.StreamWhereInput> | null
   section?: Prisma.XOR<Prisma.SectionScalarRelationFilter, Prisma.SectionWhereInput>
-  class_subjects?: Prisma.ClassSubjectListRelationFilter
   user_classes?: Prisma.UserClassListRelationFilter
 }
 
@@ -259,7 +258,6 @@ export type ClassStreamSectionOrderByWithRelationInput = {
   class?: Prisma.ClassOrderByWithRelationInput
   stream?: Prisma.StreamOrderByWithRelationInput
   section?: Prisma.SectionOrderByWithRelationInput
-  class_subjects?: Prisma.ClassSubjectOrderByRelationAggregateInput
   user_classes?: Prisma.UserClassOrderByRelationAggregateInput
   _relevance?: Prisma.ClassStreamSectionOrderByRelevanceInput
 }
@@ -278,7 +276,6 @@ export type ClassStreamSectionWhereUniqueInput = Prisma.AtLeast<{
   class?: Prisma.XOR<Prisma.ClassScalarRelationFilter, Prisma.ClassWhereInput>
   stream?: Prisma.XOR<Prisma.StreamNullableScalarRelationFilter, Prisma.StreamWhereInput> | null
   section?: Prisma.XOR<Prisma.SectionScalarRelationFilter, Prisma.SectionWhereInput>
-  class_subjects?: Prisma.ClassSubjectListRelationFilter
   user_classes?: Prisma.UserClassListRelationFilter
 }, "id" | "slug">
 
@@ -314,7 +311,6 @@ export type ClassStreamSectionCreateInput = {
   class: Prisma.ClassCreateNestedOneWithoutClass_stream_sectionsInput
   stream?: Prisma.StreamCreateNestedOneWithoutClass_stream_sectionsInput
   section: Prisma.SectionCreateNestedOneWithoutClass_stream_sectionsInput
-  class_subjects?: Prisma.ClassSubjectCreateNestedManyWithoutClass_stream_sectionInput
   user_classes?: Prisma.UserClassCreateNestedManyWithoutClass_stream_sectionInput
 }
 
@@ -325,7 +321,6 @@ export type ClassStreamSectionUncheckedCreateInput = {
   stream_id?: number | null
   section_id: number
   slug: string
-  class_subjects?: Prisma.ClassSubjectUncheckedCreateNestedManyWithoutClass_stream_sectionInput
   user_classes?: Prisma.UserClassUncheckedCreateNestedManyWithoutClass_stream_sectionInput
 }
 
@@ -335,7 +330,6 @@ export type ClassStreamSectionUpdateInput = {
   class?: Prisma.ClassUpdateOneRequiredWithoutClass_stream_sectionsNestedInput
   stream?: Prisma.StreamUpdateOneWithoutClass_stream_sectionsNestedInput
   section?: Prisma.SectionUpdateOneRequiredWithoutClass_stream_sectionsNestedInput
-  class_subjects?: Prisma.ClassSubjectUpdateManyWithoutClass_stream_sectionNestedInput
   user_classes?: Prisma.UserClassUpdateManyWithoutClass_stream_sectionNestedInput
 }
 
@@ -346,7 +340,6 @@ export type ClassStreamSectionUncheckedUpdateInput = {
   stream_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   section_id?: Prisma.IntFieldUpdateOperationsInput | number
   slug?: Prisma.StringFieldUpdateOperationsInput | string
-  class_subjects?: Prisma.ClassSubjectUncheckedUpdateManyWithoutClass_stream_sectionNestedInput
   user_classes?: Prisma.UserClassUncheckedUpdateManyWithoutClass_stream_sectionNestedInput
 }
 
@@ -604,18 +597,12 @@ export type ClassStreamSectionUncheckedUpdateManyWithoutSectionNestedInput = {
   deleteMany?: Prisma.ClassStreamSectionScalarWhereInput | Prisma.ClassStreamSectionScalarWhereInput[]
 }
 
-export type ClassStreamSectionCreateNestedOneWithoutClass_subjectsInput = {
-  create?: Prisma.XOR<Prisma.ClassStreamSectionCreateWithoutClass_subjectsInput, Prisma.ClassStreamSectionUncheckedCreateWithoutClass_subjectsInput>
-  connectOrCreate?: Prisma.ClassStreamSectionCreateOrConnectWithoutClass_subjectsInput
-  connect?: Prisma.ClassStreamSectionWhereUniqueInput
-}
-
-export type ClassStreamSectionUpdateOneRequiredWithoutClass_subjectsNestedInput = {
-  create?: Prisma.XOR<Prisma.ClassStreamSectionCreateWithoutClass_subjectsInput, Prisma.ClassStreamSectionUncheckedCreateWithoutClass_subjectsInput>
-  connectOrCreate?: Prisma.ClassStreamSectionCreateOrConnectWithoutClass_subjectsInput
-  upsert?: Prisma.ClassStreamSectionUpsertWithoutClass_subjectsInput
-  connect?: Prisma.ClassStreamSectionWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ClassStreamSectionUpdateToOneWithWhereWithoutClass_subjectsInput, Prisma.ClassStreamSectionUpdateWithoutClass_subjectsInput>, Prisma.ClassStreamSectionUncheckedUpdateWithoutClass_subjectsInput>
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type ClassStreamSectionCreateNestedOneWithoutUser_classesInput = {
@@ -637,7 +624,6 @@ export type ClassStreamSectionCreateWithoutSchoolInput = {
   class: Prisma.ClassCreateNestedOneWithoutClass_stream_sectionsInput
   stream?: Prisma.StreamCreateNestedOneWithoutClass_stream_sectionsInput
   section: Prisma.SectionCreateNestedOneWithoutClass_stream_sectionsInput
-  class_subjects?: Prisma.ClassSubjectCreateNestedManyWithoutClass_stream_sectionInput
   user_classes?: Prisma.UserClassCreateNestedManyWithoutClass_stream_sectionInput
 }
 
@@ -647,7 +633,6 @@ export type ClassStreamSectionUncheckedCreateWithoutSchoolInput = {
   stream_id?: number | null
   section_id: number
   slug: string
-  class_subjects?: Prisma.ClassSubjectUncheckedCreateNestedManyWithoutClass_stream_sectionInput
   user_classes?: Prisma.UserClassUncheckedCreateNestedManyWithoutClass_stream_sectionInput
 }
 
@@ -694,7 +679,6 @@ export type ClassStreamSectionCreateWithoutStreamInput = {
   school: Prisma.SchoolCreateNestedOneWithoutClass_stream_sectionsInput
   class: Prisma.ClassCreateNestedOneWithoutClass_stream_sectionsInput
   section: Prisma.SectionCreateNestedOneWithoutClass_stream_sectionsInput
-  class_subjects?: Prisma.ClassSubjectCreateNestedManyWithoutClass_stream_sectionInput
   user_classes?: Prisma.UserClassCreateNestedManyWithoutClass_stream_sectionInput
 }
 
@@ -704,7 +688,6 @@ export type ClassStreamSectionUncheckedCreateWithoutStreamInput = {
   class_id: number
   section_id: number
   slug: string
-  class_subjects?: Prisma.ClassSubjectUncheckedCreateNestedManyWithoutClass_stream_sectionInput
   user_classes?: Prisma.UserClassUncheckedCreateNestedManyWithoutClass_stream_sectionInput
 }
 
@@ -739,7 +722,6 @@ export type ClassStreamSectionCreateWithoutClassInput = {
   school: Prisma.SchoolCreateNestedOneWithoutClass_stream_sectionsInput
   stream?: Prisma.StreamCreateNestedOneWithoutClass_stream_sectionsInput
   section: Prisma.SectionCreateNestedOneWithoutClass_stream_sectionsInput
-  class_subjects?: Prisma.ClassSubjectCreateNestedManyWithoutClass_stream_sectionInput
   user_classes?: Prisma.UserClassCreateNestedManyWithoutClass_stream_sectionInput
 }
 
@@ -749,7 +731,6 @@ export type ClassStreamSectionUncheckedCreateWithoutClassInput = {
   stream_id?: number | null
   section_id: number
   slug: string
-  class_subjects?: Prisma.ClassSubjectUncheckedCreateNestedManyWithoutClass_stream_sectionInput
   user_classes?: Prisma.UserClassUncheckedCreateNestedManyWithoutClass_stream_sectionInput
 }
 
@@ -784,7 +765,6 @@ export type ClassStreamSectionCreateWithoutSectionInput = {
   school: Prisma.SchoolCreateNestedOneWithoutClass_stream_sectionsInput
   class: Prisma.ClassCreateNestedOneWithoutClass_stream_sectionsInput
   stream?: Prisma.StreamCreateNestedOneWithoutClass_stream_sectionsInput
-  class_subjects?: Prisma.ClassSubjectCreateNestedManyWithoutClass_stream_sectionInput
   user_classes?: Prisma.UserClassCreateNestedManyWithoutClass_stream_sectionInput
 }
 
@@ -794,7 +774,6 @@ export type ClassStreamSectionUncheckedCreateWithoutSectionInput = {
   class_id: number
   stream_id?: number | null
   slug: string
-  class_subjects?: Prisma.ClassSubjectUncheckedCreateNestedManyWithoutClass_stream_sectionInput
   user_classes?: Prisma.UserClassUncheckedCreateNestedManyWithoutClass_stream_sectionInput
 }
 
@@ -824,67 +803,12 @@ export type ClassStreamSectionUpdateManyWithWhereWithoutSectionInput = {
   data: Prisma.XOR<Prisma.ClassStreamSectionUpdateManyMutationInput, Prisma.ClassStreamSectionUncheckedUpdateManyWithoutSectionInput>
 }
 
-export type ClassStreamSectionCreateWithoutClass_subjectsInput = {
-  slug: string
-  school: Prisma.SchoolCreateNestedOneWithoutClass_stream_sectionsInput
-  class: Prisma.ClassCreateNestedOneWithoutClass_stream_sectionsInput
-  stream?: Prisma.StreamCreateNestedOneWithoutClass_stream_sectionsInput
-  section: Prisma.SectionCreateNestedOneWithoutClass_stream_sectionsInput
-  user_classes?: Prisma.UserClassCreateNestedManyWithoutClass_stream_sectionInput
-}
-
-export type ClassStreamSectionUncheckedCreateWithoutClass_subjectsInput = {
-  id?: number
-  school_id: number
-  class_id: number
-  stream_id?: number | null
-  section_id: number
-  slug: string
-  user_classes?: Prisma.UserClassUncheckedCreateNestedManyWithoutClass_stream_sectionInput
-}
-
-export type ClassStreamSectionCreateOrConnectWithoutClass_subjectsInput = {
-  where: Prisma.ClassStreamSectionWhereUniqueInput
-  create: Prisma.XOR<Prisma.ClassStreamSectionCreateWithoutClass_subjectsInput, Prisma.ClassStreamSectionUncheckedCreateWithoutClass_subjectsInput>
-}
-
-export type ClassStreamSectionUpsertWithoutClass_subjectsInput = {
-  update: Prisma.XOR<Prisma.ClassStreamSectionUpdateWithoutClass_subjectsInput, Prisma.ClassStreamSectionUncheckedUpdateWithoutClass_subjectsInput>
-  create: Prisma.XOR<Prisma.ClassStreamSectionCreateWithoutClass_subjectsInput, Prisma.ClassStreamSectionUncheckedCreateWithoutClass_subjectsInput>
-  where?: Prisma.ClassStreamSectionWhereInput
-}
-
-export type ClassStreamSectionUpdateToOneWithWhereWithoutClass_subjectsInput = {
-  where?: Prisma.ClassStreamSectionWhereInput
-  data: Prisma.XOR<Prisma.ClassStreamSectionUpdateWithoutClass_subjectsInput, Prisma.ClassStreamSectionUncheckedUpdateWithoutClass_subjectsInput>
-}
-
-export type ClassStreamSectionUpdateWithoutClass_subjectsInput = {
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  school?: Prisma.SchoolUpdateOneRequiredWithoutClass_stream_sectionsNestedInput
-  class?: Prisma.ClassUpdateOneRequiredWithoutClass_stream_sectionsNestedInput
-  stream?: Prisma.StreamUpdateOneWithoutClass_stream_sectionsNestedInput
-  section?: Prisma.SectionUpdateOneRequiredWithoutClass_stream_sectionsNestedInput
-  user_classes?: Prisma.UserClassUpdateManyWithoutClass_stream_sectionNestedInput
-}
-
-export type ClassStreamSectionUncheckedUpdateWithoutClass_subjectsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  school_id?: Prisma.IntFieldUpdateOperationsInput | number
-  class_id?: Prisma.IntFieldUpdateOperationsInput | number
-  stream_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  section_id?: Prisma.IntFieldUpdateOperationsInput | number
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  user_classes?: Prisma.UserClassUncheckedUpdateManyWithoutClass_stream_sectionNestedInput
-}
-
 export type ClassStreamSectionCreateWithoutUser_classesInput = {
   slug: string
   school: Prisma.SchoolCreateNestedOneWithoutClass_stream_sectionsInput
   class: Prisma.ClassCreateNestedOneWithoutClass_stream_sectionsInput
   stream?: Prisma.StreamCreateNestedOneWithoutClass_stream_sectionsInput
   section: Prisma.SectionCreateNestedOneWithoutClass_stream_sectionsInput
-  class_subjects?: Prisma.ClassSubjectCreateNestedManyWithoutClass_stream_sectionInput
 }
 
 export type ClassStreamSectionUncheckedCreateWithoutUser_classesInput = {
@@ -894,7 +818,6 @@ export type ClassStreamSectionUncheckedCreateWithoutUser_classesInput = {
   stream_id?: number | null
   section_id: number
   slug: string
-  class_subjects?: Prisma.ClassSubjectUncheckedCreateNestedManyWithoutClass_stream_sectionInput
 }
 
 export type ClassStreamSectionCreateOrConnectWithoutUser_classesInput = {
@@ -919,7 +842,6 @@ export type ClassStreamSectionUpdateWithoutUser_classesInput = {
   class?: Prisma.ClassUpdateOneRequiredWithoutClass_stream_sectionsNestedInput
   stream?: Prisma.StreamUpdateOneWithoutClass_stream_sectionsNestedInput
   section?: Prisma.SectionUpdateOneRequiredWithoutClass_stream_sectionsNestedInput
-  class_subjects?: Prisma.ClassSubjectUpdateManyWithoutClass_stream_sectionNestedInput
 }
 
 export type ClassStreamSectionUncheckedUpdateWithoutUser_classesInput = {
@@ -929,7 +851,6 @@ export type ClassStreamSectionUncheckedUpdateWithoutUser_classesInput = {
   stream_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   section_id?: Prisma.IntFieldUpdateOperationsInput | number
   slug?: Prisma.StringFieldUpdateOperationsInput | string
-  class_subjects?: Prisma.ClassSubjectUncheckedUpdateManyWithoutClass_stream_sectionNestedInput
 }
 
 export type ClassStreamSectionCreateManySchoolInput = {
@@ -945,7 +866,6 @@ export type ClassStreamSectionUpdateWithoutSchoolInput = {
   class?: Prisma.ClassUpdateOneRequiredWithoutClass_stream_sectionsNestedInput
   stream?: Prisma.StreamUpdateOneWithoutClass_stream_sectionsNestedInput
   section?: Prisma.SectionUpdateOneRequiredWithoutClass_stream_sectionsNestedInput
-  class_subjects?: Prisma.ClassSubjectUpdateManyWithoutClass_stream_sectionNestedInput
   user_classes?: Prisma.UserClassUpdateManyWithoutClass_stream_sectionNestedInput
 }
 
@@ -955,7 +875,6 @@ export type ClassStreamSectionUncheckedUpdateWithoutSchoolInput = {
   stream_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   section_id?: Prisma.IntFieldUpdateOperationsInput | number
   slug?: Prisma.StringFieldUpdateOperationsInput | string
-  class_subjects?: Prisma.ClassSubjectUncheckedUpdateManyWithoutClass_stream_sectionNestedInput
   user_classes?: Prisma.UserClassUncheckedUpdateManyWithoutClass_stream_sectionNestedInput
 }
 
@@ -980,7 +899,6 @@ export type ClassStreamSectionUpdateWithoutStreamInput = {
   school?: Prisma.SchoolUpdateOneRequiredWithoutClass_stream_sectionsNestedInput
   class?: Prisma.ClassUpdateOneRequiredWithoutClass_stream_sectionsNestedInput
   section?: Prisma.SectionUpdateOneRequiredWithoutClass_stream_sectionsNestedInput
-  class_subjects?: Prisma.ClassSubjectUpdateManyWithoutClass_stream_sectionNestedInput
   user_classes?: Prisma.UserClassUpdateManyWithoutClass_stream_sectionNestedInput
 }
 
@@ -990,7 +908,6 @@ export type ClassStreamSectionUncheckedUpdateWithoutStreamInput = {
   class_id?: Prisma.IntFieldUpdateOperationsInput | number
   section_id?: Prisma.IntFieldUpdateOperationsInput | number
   slug?: Prisma.StringFieldUpdateOperationsInput | string
-  class_subjects?: Prisma.ClassSubjectUncheckedUpdateManyWithoutClass_stream_sectionNestedInput
   user_classes?: Prisma.UserClassUncheckedUpdateManyWithoutClass_stream_sectionNestedInput
 }
 
@@ -1015,7 +932,6 @@ export type ClassStreamSectionUpdateWithoutClassInput = {
   school?: Prisma.SchoolUpdateOneRequiredWithoutClass_stream_sectionsNestedInput
   stream?: Prisma.StreamUpdateOneWithoutClass_stream_sectionsNestedInput
   section?: Prisma.SectionUpdateOneRequiredWithoutClass_stream_sectionsNestedInput
-  class_subjects?: Prisma.ClassSubjectUpdateManyWithoutClass_stream_sectionNestedInput
   user_classes?: Prisma.UserClassUpdateManyWithoutClass_stream_sectionNestedInput
 }
 
@@ -1025,7 +941,6 @@ export type ClassStreamSectionUncheckedUpdateWithoutClassInput = {
   stream_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   section_id?: Prisma.IntFieldUpdateOperationsInput | number
   slug?: Prisma.StringFieldUpdateOperationsInput | string
-  class_subjects?: Prisma.ClassSubjectUncheckedUpdateManyWithoutClass_stream_sectionNestedInput
   user_classes?: Prisma.UserClassUncheckedUpdateManyWithoutClass_stream_sectionNestedInput
 }
 
@@ -1050,7 +965,6 @@ export type ClassStreamSectionUpdateWithoutSectionInput = {
   school?: Prisma.SchoolUpdateOneRequiredWithoutClass_stream_sectionsNestedInput
   class?: Prisma.ClassUpdateOneRequiredWithoutClass_stream_sectionsNestedInput
   stream?: Prisma.StreamUpdateOneWithoutClass_stream_sectionsNestedInput
-  class_subjects?: Prisma.ClassSubjectUpdateManyWithoutClass_stream_sectionNestedInput
   user_classes?: Prisma.UserClassUpdateManyWithoutClass_stream_sectionNestedInput
 }
 
@@ -1060,7 +974,6 @@ export type ClassStreamSectionUncheckedUpdateWithoutSectionInput = {
   class_id?: Prisma.IntFieldUpdateOperationsInput | number
   stream_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   slug?: Prisma.StringFieldUpdateOperationsInput | string
-  class_subjects?: Prisma.ClassSubjectUncheckedUpdateManyWithoutClass_stream_sectionNestedInput
   user_classes?: Prisma.UserClassUncheckedUpdateManyWithoutClass_stream_sectionNestedInput
 }
 
@@ -1078,12 +991,10 @@ export type ClassStreamSectionUncheckedUpdateManyWithoutSectionInput = {
  */
 
 export type ClassStreamSectionCountOutputType = {
-  class_subjects: number
   user_classes: number
 }
 
 export type ClassStreamSectionCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  class_subjects?: boolean | ClassStreamSectionCountOutputTypeCountClass_subjectsArgs
   user_classes?: boolean | ClassStreamSectionCountOutputTypeCountUser_classesArgs
 }
 
@@ -1095,13 +1006,6 @@ export type ClassStreamSectionCountOutputTypeDefaultArgs<ExtArgs extends runtime
    * Select specific fields to fetch from the ClassStreamSectionCountOutputType
    */
   select?: Prisma.ClassStreamSectionCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * ClassStreamSectionCountOutputType without action
- */
-export type ClassStreamSectionCountOutputTypeCountClass_subjectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ClassSubjectWhereInput
 }
 
 /**
@@ -1123,7 +1027,6 @@ export type ClassStreamSectionSelect<ExtArgs extends runtime.Types.Extensions.In
   class?: boolean | Prisma.ClassDefaultArgs<ExtArgs>
   stream?: boolean | Prisma.ClassStreamSection$streamArgs<ExtArgs>
   section?: boolean | Prisma.SectionDefaultArgs<ExtArgs>
-  class_subjects?: boolean | Prisma.ClassStreamSection$class_subjectsArgs<ExtArgs>
   user_classes?: boolean | Prisma.ClassStreamSection$user_classesArgs<ExtArgs>
   _count?: boolean | Prisma.ClassStreamSectionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["classStreamSection"]>
@@ -1145,7 +1048,6 @@ export type ClassStreamSectionInclude<ExtArgs extends runtime.Types.Extensions.I
   class?: boolean | Prisma.ClassDefaultArgs<ExtArgs>
   stream?: boolean | Prisma.ClassStreamSection$streamArgs<ExtArgs>
   section?: boolean | Prisma.SectionDefaultArgs<ExtArgs>
-  class_subjects?: boolean | Prisma.ClassStreamSection$class_subjectsArgs<ExtArgs>
   user_classes?: boolean | Prisma.ClassStreamSection$user_classesArgs<ExtArgs>
   _count?: boolean | Prisma.ClassStreamSectionCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -1157,7 +1059,6 @@ export type $ClassStreamSectionPayload<ExtArgs extends runtime.Types.Extensions.
     class: Prisma.$ClassPayload<ExtArgs>
     stream: Prisma.$StreamPayload<ExtArgs> | null
     section: Prisma.$SectionPayload<ExtArgs>
-    class_subjects: Prisma.$ClassSubjectPayload<ExtArgs>[]
     user_classes: Prisma.$UserClassPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1511,7 +1412,6 @@ export interface Prisma__ClassStreamSectionClient<T, Null = never, ExtArgs exten
   class<T extends Prisma.ClassDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClassDefaultArgs<ExtArgs>>): Prisma.Prisma__ClassClient<runtime.Types.Result.GetResult<Prisma.$ClassPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   stream<T extends Prisma.ClassStreamSection$streamArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClassStreamSection$streamArgs<ExtArgs>>): Prisma.Prisma__StreamClient<runtime.Types.Result.GetResult<Prisma.$StreamPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   section<T extends Prisma.SectionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SectionDefaultArgs<ExtArgs>>): Prisma.Prisma__SectionClient<runtime.Types.Result.GetResult<Prisma.$SectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  class_subjects<T extends Prisma.ClassStreamSection$class_subjectsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClassStreamSection$class_subjectsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClassSubjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   user_classes<T extends Prisma.ClassStreamSection$user_classesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClassStreamSection$user_classesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserClassPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1912,30 +1812,6 @@ export type ClassStreamSection$streamArgs<ExtArgs extends runtime.Types.Extensio
    */
   include?: Prisma.StreamInclude<ExtArgs> | null
   where?: Prisma.StreamWhereInput
-}
-
-/**
- * ClassStreamSection.class_subjects
- */
-export type ClassStreamSection$class_subjectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the ClassSubject
-   */
-  select?: Prisma.ClassSubjectSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the ClassSubject
-   */
-  omit?: Prisma.ClassSubjectOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ClassSubjectInclude<ExtArgs> | null
-  where?: Prisma.ClassSubjectWhereInput
-  orderBy?: Prisma.ClassSubjectOrderByWithRelationInput | Prisma.ClassSubjectOrderByWithRelationInput[]
-  cursor?: Prisma.ClassSubjectWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ClassSubjectScalarFieldEnum | Prisma.ClassSubjectScalarFieldEnum[]
 }
 
 /**

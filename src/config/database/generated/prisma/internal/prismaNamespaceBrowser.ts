@@ -58,7 +58,6 @@ export const ModelName = {
   Subject: 'Subject',
   User: 'User',
   ClassStreamSection: 'ClassStreamSection',
-  StreamSubject: 'StreamSubject',
   ClassSubject: 'ClassSubject',
   UserClass: 'UserClass'
 } as const
@@ -118,9 +117,11 @@ export type SectionScalarFieldEnum = (typeof SectionScalarFieldEnum)[keyof typeo
 
 export const SubjectScalarFieldEnum = {
   id: 'id',
-  school_id: 'school_id',
   subject_name: 'subject_name',
-  slug: 'slug'
+  slug: 'slug',
+  board: 'board',
+  language: 'language',
+  stream_id: 'stream_id'
 } as const
 
 export type SubjectScalarFieldEnum = (typeof SubjectScalarFieldEnum)[keyof typeof SubjectScalarFieldEnum]
@@ -149,16 +150,8 @@ export const ClassStreamSectionScalarFieldEnum = {
 export type ClassStreamSectionScalarFieldEnum = (typeof ClassStreamSectionScalarFieldEnum)[keyof typeof ClassStreamSectionScalarFieldEnum]
 
 
-export const StreamSubjectScalarFieldEnum = {
-  stream_id: 'stream_id',
-  subject_id: 'subject_id'
-} as const
-
-export type StreamSubjectScalarFieldEnum = (typeof StreamSubjectScalarFieldEnum)[keyof typeof StreamSubjectScalarFieldEnum]
-
-
 export const ClassSubjectScalarFieldEnum = {
-  class_stream_section_id: 'class_stream_section_id',
+  class_id: 'class_id',
   subject_id: 'subject_id'
 } as const
 
@@ -215,17 +208,11 @@ export const SectionOrderByRelevanceFieldEnum = {
 export type SectionOrderByRelevanceFieldEnum = (typeof SectionOrderByRelevanceFieldEnum)[keyof typeof SectionOrderByRelevanceFieldEnum]
 
 
-export const NullsOrder = {
-  first: 'first',
-  last: 'last'
-} as const
-
-export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
-
-
 export const SubjectOrderByRelevanceFieldEnum = {
   subject_name: 'subject_name',
-  slug: 'slug'
+  slug: 'slug',
+  board: 'board',
+  language: 'language'
 } as const
 
 export type SubjectOrderByRelevanceFieldEnum = (typeof SubjectOrderByRelevanceFieldEnum)[keyof typeof SubjectOrderByRelevanceFieldEnum]
@@ -239,6 +226,14 @@ export const UserOrderByRelevanceFieldEnum = {
 } as const
 
 export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
 export const ClassStreamSectionOrderByRelevanceFieldEnum = {

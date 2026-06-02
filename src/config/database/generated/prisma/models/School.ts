@@ -209,7 +209,6 @@ export type SchoolWhereInput = {
   slug?: Prisma.StringFilter<"School"> | string
   status?: Prisma.StringFilter<"School"> | string
   class_stream_sections?: Prisma.ClassStreamSectionListRelationFilter
-  custom_subjects?: Prisma.SubjectListRelationFilter
 }
 
 export type SchoolOrderByWithRelationInput = {
@@ -218,7 +217,6 @@ export type SchoolOrderByWithRelationInput = {
   slug?: Prisma.SortOrder
   status?: Prisma.SortOrder
   class_stream_sections?: Prisma.ClassStreamSectionOrderByRelationAggregateInput
-  custom_subjects?: Prisma.SubjectOrderByRelationAggregateInput
   _relevance?: Prisma.SchoolOrderByRelevanceInput
 }
 
@@ -231,7 +229,6 @@ export type SchoolWhereUniqueInput = Prisma.AtLeast<{
   school_name?: Prisma.StringFilter<"School"> | string
   status?: Prisma.StringFilter<"School"> | string
   class_stream_sections?: Prisma.ClassStreamSectionListRelationFilter
-  custom_subjects?: Prisma.SubjectListRelationFilter
 }, "id" | "slug">
 
 export type SchoolOrderByWithAggregationInput = {
@@ -261,7 +258,6 @@ export type SchoolCreateInput = {
   slug: string
   status: string
   class_stream_sections?: Prisma.ClassStreamSectionCreateNestedManyWithoutSchoolInput
-  custom_subjects?: Prisma.SubjectCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolUncheckedCreateInput = {
@@ -270,7 +266,6 @@ export type SchoolUncheckedCreateInput = {
   slug: string
   status: string
   class_stream_sections?: Prisma.ClassStreamSectionUncheckedCreateNestedManyWithoutSchoolInput
-  custom_subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolUpdateInput = {
@@ -278,7 +273,6 @@ export type SchoolUpdateInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   class_stream_sections?: Prisma.ClassStreamSectionUpdateManyWithoutSchoolNestedInput
-  custom_subjects?: Prisma.SubjectUpdateManyWithoutSchoolNestedInput
 }
 
 export type SchoolUncheckedUpdateInput = {
@@ -287,7 +281,6 @@ export type SchoolUncheckedUpdateInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   class_stream_sections?: Prisma.ClassStreamSectionUncheckedUpdateManyWithoutSchoolNestedInput
-  custom_subjects?: Prisma.SubjectUncheckedUpdateManyWithoutSchoolNestedInput
 }
 
 export type SchoolCreateManyInput = {
@@ -345,11 +338,6 @@ export type SchoolSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
 }
 
-export type SchoolNullableScalarRelationFilter = {
-  is?: Prisma.SchoolWhereInput | null
-  isNot?: Prisma.SchoolWhereInput | null
-}
-
 export type SchoolScalarRelationFilter = {
   is?: Prisma.SchoolWhereInput
   isNot?: Prisma.SchoolWhereInput
@@ -367,22 +355,6 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type SchoolCreateNestedOneWithoutCustom_subjectsInput = {
-  create?: Prisma.XOR<Prisma.SchoolCreateWithoutCustom_subjectsInput, Prisma.SchoolUncheckedCreateWithoutCustom_subjectsInput>
-  connectOrCreate?: Prisma.SchoolCreateOrConnectWithoutCustom_subjectsInput
-  connect?: Prisma.SchoolWhereUniqueInput
-}
-
-export type SchoolUpdateOneWithoutCustom_subjectsNestedInput = {
-  create?: Prisma.XOR<Prisma.SchoolCreateWithoutCustom_subjectsInput, Prisma.SchoolUncheckedCreateWithoutCustom_subjectsInput>
-  connectOrCreate?: Prisma.SchoolCreateOrConnectWithoutCustom_subjectsInput
-  upsert?: Prisma.SchoolUpsertWithoutCustom_subjectsInput
-  disconnect?: Prisma.SchoolWhereInput | boolean
-  delete?: Prisma.SchoolWhereInput | boolean
-  connect?: Prisma.SchoolWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.SchoolUpdateToOneWithWhereWithoutCustom_subjectsInput, Prisma.SchoolUpdateWithoutCustom_subjectsInput>, Prisma.SchoolUncheckedUpdateWithoutCustom_subjectsInput>
-}
-
 export type SchoolCreateNestedOneWithoutClass_stream_sectionsInput = {
   create?: Prisma.XOR<Prisma.SchoolCreateWithoutClass_stream_sectionsInput, Prisma.SchoolUncheckedCreateWithoutClass_stream_sectionsInput>
   connectOrCreate?: Prisma.SchoolCreateOrConnectWithoutClass_stream_sectionsInput
@@ -397,57 +369,10 @@ export type SchoolUpdateOneRequiredWithoutClass_stream_sectionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.SchoolUpdateToOneWithWhereWithoutClass_stream_sectionsInput, Prisma.SchoolUpdateWithoutClass_stream_sectionsInput>, Prisma.SchoolUncheckedUpdateWithoutClass_stream_sectionsInput>
 }
 
-export type SchoolCreateWithoutCustom_subjectsInput = {
-  school_name: string
-  slug: string
-  status: string
-  class_stream_sections?: Prisma.ClassStreamSectionCreateNestedManyWithoutSchoolInput
-}
-
-export type SchoolUncheckedCreateWithoutCustom_subjectsInput = {
-  id?: number
-  school_name: string
-  slug: string
-  status: string
-  class_stream_sections?: Prisma.ClassStreamSectionUncheckedCreateNestedManyWithoutSchoolInput
-}
-
-export type SchoolCreateOrConnectWithoutCustom_subjectsInput = {
-  where: Prisma.SchoolWhereUniqueInput
-  create: Prisma.XOR<Prisma.SchoolCreateWithoutCustom_subjectsInput, Prisma.SchoolUncheckedCreateWithoutCustom_subjectsInput>
-}
-
-export type SchoolUpsertWithoutCustom_subjectsInput = {
-  update: Prisma.XOR<Prisma.SchoolUpdateWithoutCustom_subjectsInput, Prisma.SchoolUncheckedUpdateWithoutCustom_subjectsInput>
-  create: Prisma.XOR<Prisma.SchoolCreateWithoutCustom_subjectsInput, Prisma.SchoolUncheckedCreateWithoutCustom_subjectsInput>
-  where?: Prisma.SchoolWhereInput
-}
-
-export type SchoolUpdateToOneWithWhereWithoutCustom_subjectsInput = {
-  where?: Prisma.SchoolWhereInput
-  data: Prisma.XOR<Prisma.SchoolUpdateWithoutCustom_subjectsInput, Prisma.SchoolUncheckedUpdateWithoutCustom_subjectsInput>
-}
-
-export type SchoolUpdateWithoutCustom_subjectsInput = {
-  school_name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  class_stream_sections?: Prisma.ClassStreamSectionUpdateManyWithoutSchoolNestedInput
-}
-
-export type SchoolUncheckedUpdateWithoutCustom_subjectsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  school_name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  class_stream_sections?: Prisma.ClassStreamSectionUncheckedUpdateManyWithoutSchoolNestedInput
-}
-
 export type SchoolCreateWithoutClass_stream_sectionsInput = {
   school_name: string
   slug: string
   status: string
-  custom_subjects?: Prisma.SubjectCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolUncheckedCreateWithoutClass_stream_sectionsInput = {
@@ -455,7 +380,6 @@ export type SchoolUncheckedCreateWithoutClass_stream_sectionsInput = {
   school_name: string
   slug: string
   status: string
-  custom_subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolCreateOrConnectWithoutClass_stream_sectionsInput = {
@@ -478,7 +402,6 @@ export type SchoolUpdateWithoutClass_stream_sectionsInput = {
   school_name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
-  custom_subjects?: Prisma.SubjectUpdateManyWithoutSchoolNestedInput
 }
 
 export type SchoolUncheckedUpdateWithoutClass_stream_sectionsInput = {
@@ -486,7 +409,6 @@ export type SchoolUncheckedUpdateWithoutClass_stream_sectionsInput = {
   school_name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
-  custom_subjects?: Prisma.SubjectUncheckedUpdateManyWithoutSchoolNestedInput
 }
 
 
@@ -496,12 +418,10 @@ export type SchoolUncheckedUpdateWithoutClass_stream_sectionsInput = {
 
 export type SchoolCountOutputType = {
   class_stream_sections: number
-  custom_subjects: number
 }
 
 export type SchoolCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   class_stream_sections?: boolean | SchoolCountOutputTypeCountClass_stream_sectionsArgs
-  custom_subjects?: boolean | SchoolCountOutputTypeCountCustom_subjectsArgs
 }
 
 /**
@@ -521,13 +441,6 @@ export type SchoolCountOutputTypeCountClass_stream_sectionsArgs<ExtArgs extends 
   where?: Prisma.ClassStreamSectionWhereInput
 }
 
-/**
- * SchoolCountOutputType without action
- */
-export type SchoolCountOutputTypeCountCustom_subjectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SubjectWhereInput
-}
-
 
 export type SchoolSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -535,7 +448,6 @@ export type SchoolSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   slug?: boolean
   status?: boolean
   class_stream_sections?: boolean | Prisma.School$class_stream_sectionsArgs<ExtArgs>
-  custom_subjects?: boolean | Prisma.School$custom_subjectsArgs<ExtArgs>
   _count?: boolean | Prisma.SchoolCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["school"]>
 
@@ -551,7 +463,6 @@ export type SchoolSelectScalar = {
 export type SchoolOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "school_name" | "slug" | "status", ExtArgs["result"]["school"]>
 export type SchoolInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   class_stream_sections?: boolean | Prisma.School$class_stream_sectionsArgs<ExtArgs>
-  custom_subjects?: boolean | Prisma.School$custom_subjectsArgs<ExtArgs>
   _count?: boolean | Prisma.SchoolCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -559,7 +470,6 @@ export type $SchoolPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   name: "School"
   objects: {
     class_stream_sections: Prisma.$ClassStreamSectionPayload<ExtArgs>[]
-    custom_subjects: Prisma.$SubjectPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -907,7 +817,6 @@ readonly fields: SchoolFieldRefs;
 export interface Prisma__SchoolClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   class_stream_sections<T extends Prisma.School$class_stream_sectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.School$class_stream_sectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClassStreamSectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  custom_subjects<T extends Prisma.School$custom_subjectsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.School$custom_subjectsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1310,30 +1219,6 @@ export type School$class_stream_sectionsArgs<ExtArgs extends runtime.Types.Exten
   take?: number
   skip?: number
   distinct?: Prisma.ClassStreamSectionScalarFieldEnum | Prisma.ClassStreamSectionScalarFieldEnum[]
-}
-
-/**
- * School.custom_subjects
- */
-export type School$custom_subjectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Subject
-   */
-  select?: Prisma.SubjectSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Subject
-   */
-  omit?: Prisma.SubjectOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.SubjectInclude<ExtArgs> | null
-  where?: Prisma.SubjectWhereInput
-  orderBy?: Prisma.SubjectOrderByWithRelationInput | Prisma.SubjectOrderByWithRelationInput[]
-  cursor?: Prisma.SubjectWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.SubjectScalarFieldEnum | Prisma.SubjectScalarFieldEnum[]
 }
 
 /**

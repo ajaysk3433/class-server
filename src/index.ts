@@ -13,65 +13,35 @@ app.use(express.json());
  * @route   GET /api/v1/teachers/:id/dashboard
  * @desc    Fetch the complete workload configuration payload for a logged-in teacher
  */
-app.get('/api/v1/teachers/:id/dashboard', async (req, res) => {
-    const teacherId = parseInt(req.params.id, 10);
-    const schoolId = parseInt(req.query.schoolId, 10); 
+app.get('/api/v1/class-and-subject/all', async (req, res) => {
 
-    if (isNaN(teacherId) || !schoolId) {
-        return res.status(400).json({ 
-            success: false, 
-            error: "Valid Teacher ID parameter and schoolId query parameter are required." 
-        });
-    }
 
     try {
-        const teacher = await prisma.user.findUnique({
-            where: { id: teacherId }
-        });
 
-        if (!teacher || teacher.role.toLowerCase() !== 'teacher') {
-            return res.status(404).json({ success: false, error: "Teacher profile not found." });
-        }
-
-        // Updated to match schema snake_case relations: class_stream_section instead of room
-        const assignments = await prisma.userClass.findMany({
-            where: {
-                user_id: teacherId,
-                subject_id: { not: null },
-                class_stream_section: {
-                    school_id: schoolId 
-                }
-            },
+        const classes = await prisma.classSubject.findMany({
             include: {
-                class_stream_section: {
+                class: true,
+                subject: {
                     include: {
-                        class: true,
-                        section: true,
-                        stream: true 
+                        stream: {
+                            select: {
+                                stream_name: true // Only fetches the stream_name field
+                            }
+                        }
                     }
-                },
-                subject: true
+                }
             }
         });
+        // const subject = await prisma.subject.findMany()
+        // const stream = await prisma.stream.findMany();
+        console.dir(classes)
 
-        const dashboardPayload = assignments.map(assignment => ({
-            class: assignment.class_stream_section.class.class_name,
-            stream: assignment.class_stream_section.stream ? assignment.class_stream_section.stream.stream_name : "General / No Stream",
-            section: assignment.class_stream_section.section.section_name,
-            subject: assignment.subject?.subject_name || "Unknown", 
-            classRoomSlug: assignment.class_stream_section.slug,
-            subjectSlug: assignment.subject?.slug || null          
-        }));
+
 
         return res.status(200).json({
             success: true,
-            schoolId: schoolId,
-            teacher: {
-                id: teacher.id,
-                name: teacher.full_name,
-                email: teacher.email
-            },
-            workload: dashboardPayload
+            classes,
+            workload: "testing"
         });
 
     } catch (error) {
@@ -86,12 +56,12 @@ app.get('/api/v1/teachers/:id/dashboard', async (req, res) => {
  */
 app.get('/api/v1/students/:id/dashboard', async (req, res) => {
     const studentId = parseInt(req.params.id, 10);
-    const schoolId = parseInt(req.query.schoolId, 10); 
+    const schoolId = parseInt(req.query.schoolId, 10);
 
     if (isNaN(studentId) || !schoolId) {
-        return res.status(400).json({ 
-            success: false, 
-            error: "Valid Student ID parameter and schoolId query parameter are required." 
+        return res.status(400).json({
+            success: false,
+            error: "Valid Student ID parameter and schoolId query parameter are required."
         });
     }
 
@@ -107,9 +77,9 @@ app.get('/api/v1/students/:id/dashboard', async (req, res) => {
         const primaryClassAssignment = await prisma.userClass.findFirst({
             where: {
                 user_id: studentId,
-                subject_id: null, 
+                subject_id: null,
                 class_stream_section: {
-                    school_id: schoolId 
+                    school_id: schoolId
                 }
             },
             include: {
@@ -124,9 +94,9 @@ app.get('/api/v1/students/:id/dashboard', async (req, res) => {
         });
 
         if (!primaryClassAssignment) {
-            return res.status(404).json({ 
-                success: false, 
-                error: "Student is not currently enrolled in an active class room track for this school." 
+            return res.status(404).json({
+                success: false,
+                error: "Student is not currently enrolled in an active class room track for this school."
             });
         }
 
@@ -141,22 +111,22 @@ app.get('/api/v1/students/:id/dashboard', async (req, res) => {
             where: {
                 user_id: studentId,
                 class_stream_section_id: activeRoom.id,
-                subject_id: { not: null } 
+                subject_id: { not: null }
             },
-            include: { 
-                subject: true 
+            include: {
+                subject: true
             }
         });
 
         const corePayload = coreClassSubjects.map(cs => ({
             id: cs.subject.id,
-            subjectName: cs.subject.subject_name, 
+            subjectName: cs.subject.subject_name,
             slug: cs.subject.slug,
             type: "Core"
         }));
 
         const electivePayload = individualElectives
-            .filter(ie => ie.subject !== null) 
+            .filter(ie => ie.subject !== null)
             .map(ie => ({
                 id: ie.subject!.id,
                 subjectName: ie.subject!.subject_name,
@@ -169,13 +139,13 @@ app.get('/api/v1/students/:id/dashboard', async (req, res) => {
             schoolId: schoolId,
             student: {
                 id: student.id,
-                name: student.full_name, 
+                name: student.full_name,
                 email: student.email
             },
             classroom: {
-                class: activeRoom.class.class_name, 
-                stream: activeRoom.stream ? activeRoom.stream.stream_name : "General / No Stream", 
-                section: activeRoom.section.section_name, 
+                class: activeRoom.class.class_name,
+                stream: activeRoom.stream ? activeRoom.stream.stream_name : "General / No Stream",
+                section: activeRoom.section.section_name,
                 roomSlug: activeRoom.slug
             },
             subjects: [...corePayload, ...electivePayload]

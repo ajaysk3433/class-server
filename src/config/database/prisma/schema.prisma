@@ -12,20 +12,17 @@ datasource db {
   provider = "mysql"
 }
 
-
-
-
 // =========================================================================
 // Core Entities
 // =========================================================================
 
 // remove later
 model School {
-  id                    Int                   @id @default(autoincrement())
-  school_name           String                @db.VarChar(255)
-  slug                  String                @unique @db.VarChar(255)
-  status                String                @db.VarChar(50)
-  
+  id          Int    @id @default(autoincrement())
+  school_name String @db.VarChar(255)
+  slug        String @unique @db.VarChar(255)
+  status      String @db.VarChar(50)
+
   // Relations
   class_stream_sections ClassStreamSection[]
   // school_active_subjects SchoolActiveSubject[]
@@ -35,58 +32,35 @@ model School {
 }
 
 model Stream {
-  id            Int                  @id @default(autoincrement())
-  stream_name   String               @db.VarChar(255)
-  slug          String               @unique @db.VarChar(255)
-  
+  id          Int    @id @default(autoincrement())
+  stream_name String @db.VarChar(255)
+  slug        String @unique @db.VarChar(255)
+
   // Relations
   class_stream_sections ClassStreamSection[]
-  stream_subjects       StreamSubject[]
+  // stream_subjects       StreamSubject[]
+  subjects              Subject[]
 
   @@map("streams")
 }
 
-model Board {
-  id         Int            @id @default(autoincrement())
-  board      String         @unique @db.VarChar(255)
-
-  // Relations
-  // 1. Point to the explicit junction table instead of directly to Subject
-  board_subjects BoardSubject[]
-
-  @@map("board")
-}
-
-model BoardSubject {
-  id         Int     @id @default(autoincrement())
-  subject_id Int     @map("subjects") // Named exactly as your diagram/schema references
-  board_id   Int     @map("board")    // Named exactly as your diagram/schema references
-
-  // Foreign Key Relations
-  board   Board   @relation(fields: [board_id], references: [id], onDelete: Cascade)
-  subject Subject @relation(fields: [subject_id], references: [id], onDelete: Cascade)
-
-  // Composite unique constraint ensures a subject cannot be linked to the same board twice
-  @@unique([board_id, subject_id])
-  @@map("board_subjects")
-}
-
 model Class {
-  id         Int                  @id @default(autoincrement())
-  class_name String               @db.VarChar(255)
-  slug       String               @unique @db.VarChar(255)
-  
+  id         Int    @id @default(autoincrement())
+  class_name String @db.VarChar(255)
+  slug       String @unique @db.VarChar(255)
+
   // Relations
   class_stream_sections ClassStreamSection[]
+  classSubjects         ClassSubject[]
 
   @@map("classes")
 }
 
 model Section {
-  id           Int                  @id @default(autoincrement())
-  section_name String               @db.VarChar(255)
-  slug         String               @unique @db.VarChar(255)
-  
+  id           Int    @id @default(autoincrement())
+  section_name String @db.VarChar(255)
+  slug         String @unique @db.VarChar(255)
+
   // Relations
   class_stream_sections ClassStreamSection[]
 
@@ -94,28 +68,29 @@ model Section {
 }
 
 model Subject {
-  id              Int            @id @default(autoincrement())
-  subject_name    String         @db.VarChar(255)
-  slug            String         @db.VarChar(255)
-  
+  id           Int    @id @default(autoincrement())
+  subject_name String @db.VarChar(255)
+  slug         String @db.VarChar(255)
+  board        String @db.VarChar(255)
+  language     String @db.VarChar(255)
+  stream_id    Int
+
   // Relations
-  stream_subjects StreamSubject[]
-  class_subjects  ClassSubject[]
-  user_classes    UserClass[]
-  
-  // 2. Added relation mapping to complete the two-way relationship loop
-  board_subjects  BoardSubject[]
+  stream Stream @relation(fields: [stream_id], references: [id])
+
+  class_subjects ClassSubject[]
+  user_classes   UserClass[]
 
   @@map("subjects")
 }
 
 model User {
-  id        Int         @id @default(autoincrement())
-  full_name String      @db.VarChar(255)
-  email     String      @unique @db.VarChar(255)
-  role      String      @db.VarChar(50)
-  status    String      @db.VarChar(50)
-  
+  id        Int    @id @default(autoincrement())
+  full_name String @db.VarChar(255)
+  email     String @unique @db.VarChar(255)
+  role      String @db.VarChar(50)
+  status    String @db.VarChar(50)
+
   // Relations
   user_classes UserClass[]
 
@@ -127,64 +102,38 @@ model User {
 // =========================================================================
 
 model ClassStreamSection {
-  id        Int      @id @default(autoincrement())
-  school_id Int
-  class_id  Int
-  stream_id Int?     // Nullable in diagram
+  id         Int    @id @default(autoincrement())
+  school_id  Int
+  class_id   Int
+  stream_id  Int? // Nullable in diagram
   section_id Int
-  slug      String   @unique @db.VarChar(255)
+  slug       String @unique @db.VarChar(255)
 
   // Relations
-  school    School   @relation(fields: [school_id], references: [id])
-  class     Class    @relation(fields: [class_id], references: [id])
-  stream    Stream?  @relation(fields: [stream_id], references: [id])
-  section   Section  @relation(fields: [section_id], references: [id])
-  
-  class_subjects ClassSubject[]
-  user_classes   UserClass[]
+  school  School  @relation(fields: [school_id], references: [id])
+  class   Class   @relation(fields: [class_id], references: [id])
+  stream  Stream? @relation(fields: [stream_id], references: [id])
+  section Section @relation(fields: [section_id], references: [id])
+
+  user_classes UserClass[]
 
   @@map("class_stream_sections")
 }
 
-// =========================================================================
-// Curriculum & Assignment Junction Tables
-// =========================================================================
 
-model StreamSubject {
-  stream_id  Int
+
+model ClassSubject {
+  class_id   Int
   subject_id Int
 
   // Relations
-  stream     Stream  @relation(fields: [stream_id], references: [id])
-  subject    Subject @relation(fields: [subject_id], references: [id])
+  class   Class   @relation(fields: [class_id], references: [id])
+  subject Subject @relation(fields: [subject_id], references: [id])
 
-  @@id([stream_id, subject_id])
-  @@map("stream_subjects")
-}
-
-model ClassSubject {
-  class_stream_section_id Int
-  subject_id              Int
-
-  // Relations
-  class_stream_section   ClassStreamSection @relation(fields: [class_stream_section_id], references: [id])
-  subject                Subject            @relation(fields: [subject_id], references: [id])
-
-  @@id([class_stream_section_id, subject_id])
+  @@id([class_id, subject_id])
   @@map("class_subjects")
 }
 
-// model SchoolActiveSubject {
-//   school_id  Int
-//   subject_id Int
-
-//   // Relations
-//   school     School  @relation(fields: [school_id], references: [id])
-//   subject    Subject @relation(fields: [subject_id], references: [id])
-
-//   @@id([school_id, subject_id])
-//   @@map("school_active_subjects")
-// }
 
 
 //remove
@@ -200,6 +149,6 @@ model UserClass {
 
   // Note: Based on your diagram's PK constraints. If a teacher needs to 
   // teach multiple subjects to the SAME class, change this to @@id([user_id, class_stream_section_id, subject_id])
-  @@id([user_id, class_stream_section_id]) 
+  @@id([user_id, class_stream_section_id])
   @@map("user_classes")
 }

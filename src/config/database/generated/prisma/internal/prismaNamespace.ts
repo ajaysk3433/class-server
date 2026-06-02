@@ -391,7 +391,6 @@ export const ModelName = {
   Subject: 'Subject',
   User: 'User',
   ClassStreamSection: 'ClassStreamSection',
-  StreamSubject: 'StreamSubject',
   ClassSubject: 'ClassSubject',
   UserClass: 'UserClass'
 } as const
@@ -409,7 +408,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "school" | "stream" | "class" | "section" | "subject" | "user" | "classStreamSection" | "streamSubject" | "classSubject" | "userClass"
+    modelProps: "school" | "stream" | "class" | "section" | "subject" | "user" | "classStreamSection" | "classSubject" | "userClass"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -875,72 +874,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    StreamSubject: {
-      payload: Prisma.$StreamSubjectPayload<ExtArgs>
-      fields: Prisma.StreamSubjectFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.StreamSubjectFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StreamSubjectPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.StreamSubjectFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StreamSubjectPayload>
-        }
-        findFirst: {
-          args: Prisma.StreamSubjectFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StreamSubjectPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.StreamSubjectFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StreamSubjectPayload>
-        }
-        findMany: {
-          args: Prisma.StreamSubjectFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StreamSubjectPayload>[]
-        }
-        create: {
-          args: Prisma.StreamSubjectCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StreamSubjectPayload>
-        }
-        createMany: {
-          args: Prisma.StreamSubjectCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        delete: {
-          args: Prisma.StreamSubjectDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StreamSubjectPayload>
-        }
-        update: {
-          args: Prisma.StreamSubjectUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StreamSubjectPayload>
-        }
-        deleteMany: {
-          args: Prisma.StreamSubjectDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.StreamSubjectUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        upsert: {
-          args: Prisma.StreamSubjectUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StreamSubjectPayload>
-        }
-        aggregate: {
-          args: Prisma.StreamSubjectAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateStreamSubject>
-        }
-        groupBy: {
-          args: Prisma.StreamSubjectGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.StreamSubjectGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.StreamSubjectCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.StreamSubjectCountAggregateOutputType> | number
-        }
-      }
-    }
     ClassSubject: {
       payload: Prisma.$ClassSubjectPayload<ExtArgs>
       fields: Prisma.ClassSubjectFieldRefs
@@ -1151,9 +1084,11 @@ export type SectionScalarFieldEnum = (typeof SectionScalarFieldEnum)[keyof typeo
 
 export const SubjectScalarFieldEnum = {
   id: 'id',
-  school_id: 'school_id',
   subject_name: 'subject_name',
-  slug: 'slug'
+  slug: 'slug',
+  board: 'board',
+  language: 'language',
+  stream_id: 'stream_id'
 } as const
 
 export type SubjectScalarFieldEnum = (typeof SubjectScalarFieldEnum)[keyof typeof SubjectScalarFieldEnum]
@@ -1182,16 +1117,8 @@ export const ClassStreamSectionScalarFieldEnum = {
 export type ClassStreamSectionScalarFieldEnum = (typeof ClassStreamSectionScalarFieldEnum)[keyof typeof ClassStreamSectionScalarFieldEnum]
 
 
-export const StreamSubjectScalarFieldEnum = {
-  stream_id: 'stream_id',
-  subject_id: 'subject_id'
-} as const
-
-export type StreamSubjectScalarFieldEnum = (typeof StreamSubjectScalarFieldEnum)[keyof typeof StreamSubjectScalarFieldEnum]
-
-
 export const ClassSubjectScalarFieldEnum = {
-  class_stream_section_id: 'class_stream_section_id',
+  class_id: 'class_id',
   subject_id: 'subject_id'
 } as const
 
@@ -1248,17 +1175,11 @@ export const SectionOrderByRelevanceFieldEnum = {
 export type SectionOrderByRelevanceFieldEnum = (typeof SectionOrderByRelevanceFieldEnum)[keyof typeof SectionOrderByRelevanceFieldEnum]
 
 
-export const NullsOrder = {
-  first: 'first',
-  last: 'last'
-} as const
-
-export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
-
-
 export const SubjectOrderByRelevanceFieldEnum = {
   subject_name: 'subject_name',
-  slug: 'slug'
+  slug: 'slug',
+  board: 'board',
+  language: 'language'
 } as const
 
 export type SubjectOrderByRelevanceFieldEnum = (typeof SubjectOrderByRelevanceFieldEnum)[keyof typeof SubjectOrderByRelevanceFieldEnum]
@@ -1272,6 +1193,14 @@ export const UserOrderByRelevanceFieldEnum = {
 } as const
 
 export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
 export const ClassStreamSectionOrderByRelevanceFieldEnum = {
@@ -1424,7 +1353,6 @@ export type GlobalOmitConfig = {
   subject?: Prisma.SubjectOmit
   user?: Prisma.UserOmit
   classStreamSection?: Prisma.ClassStreamSectionOmit
-  streamSubject?: Prisma.StreamSubjectOmit
   classSubject?: Prisma.ClassSubjectOmit
   userClass?: Prisma.UserClassOmit
 }

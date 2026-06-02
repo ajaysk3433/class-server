@@ -201,7 +201,7 @@ export type StreamWhereInput = {
   stream_name?: Prisma.StringFilter<"Stream"> | string
   slug?: Prisma.StringFilter<"Stream"> | string
   class_stream_sections?: Prisma.ClassStreamSectionListRelationFilter
-  stream_subjects?: Prisma.StreamSubjectListRelationFilter
+  subjects?: Prisma.SubjectListRelationFilter
 }
 
 export type StreamOrderByWithRelationInput = {
@@ -209,7 +209,7 @@ export type StreamOrderByWithRelationInput = {
   stream_name?: Prisma.SortOrder
   slug?: Prisma.SortOrder
   class_stream_sections?: Prisma.ClassStreamSectionOrderByRelationAggregateInput
-  stream_subjects?: Prisma.StreamSubjectOrderByRelationAggregateInput
+  subjects?: Prisma.SubjectOrderByRelationAggregateInput
   _relevance?: Prisma.StreamOrderByRelevanceInput
 }
 
@@ -221,7 +221,7 @@ export type StreamWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.StreamWhereInput | Prisma.StreamWhereInput[]
   stream_name?: Prisma.StringFilter<"Stream"> | string
   class_stream_sections?: Prisma.ClassStreamSectionListRelationFilter
-  stream_subjects?: Prisma.StreamSubjectListRelationFilter
+  subjects?: Prisma.SubjectListRelationFilter
 }, "id" | "slug">
 
 export type StreamOrderByWithAggregationInput = {
@@ -248,7 +248,7 @@ export type StreamCreateInput = {
   stream_name: string
   slug: string
   class_stream_sections?: Prisma.ClassStreamSectionCreateNestedManyWithoutStreamInput
-  stream_subjects?: Prisma.StreamSubjectCreateNestedManyWithoutStreamInput
+  subjects?: Prisma.SubjectCreateNestedManyWithoutStreamInput
 }
 
 export type StreamUncheckedCreateInput = {
@@ -256,14 +256,14 @@ export type StreamUncheckedCreateInput = {
   stream_name: string
   slug: string
   class_stream_sections?: Prisma.ClassStreamSectionUncheckedCreateNestedManyWithoutStreamInput
-  stream_subjects?: Prisma.StreamSubjectUncheckedCreateNestedManyWithoutStreamInput
+  subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutStreamInput
 }
 
 export type StreamUpdateInput = {
   stream_name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   class_stream_sections?: Prisma.ClassStreamSectionUpdateManyWithoutStreamNestedInput
-  stream_subjects?: Prisma.StreamSubjectUpdateManyWithoutStreamNestedInput
+  subjects?: Prisma.SubjectUpdateManyWithoutStreamNestedInput
 }
 
 export type StreamUncheckedUpdateInput = {
@@ -271,7 +271,7 @@ export type StreamUncheckedUpdateInput = {
   stream_name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   class_stream_sections?: Prisma.ClassStreamSectionUncheckedUpdateManyWithoutStreamNestedInput
-  stream_subjects?: Prisma.StreamSubjectUncheckedUpdateManyWithoutStreamNestedInput
+  subjects?: Prisma.SubjectUncheckedUpdateManyWithoutStreamNestedInput
 }
 
 export type StreamCreateManyInput = {
@@ -323,14 +323,28 @@ export type StreamSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
 }
 
+export type StreamScalarRelationFilter = {
+  is?: Prisma.StreamWhereInput
+  isNot?: Prisma.StreamWhereInput
+}
+
 export type StreamNullableScalarRelationFilter = {
   is?: Prisma.StreamWhereInput | null
   isNot?: Prisma.StreamWhereInput | null
 }
 
-export type StreamScalarRelationFilter = {
-  is?: Prisma.StreamWhereInput
-  isNot?: Prisma.StreamWhereInput
+export type StreamCreateNestedOneWithoutSubjectsInput = {
+  create?: Prisma.XOR<Prisma.StreamCreateWithoutSubjectsInput, Prisma.StreamUncheckedCreateWithoutSubjectsInput>
+  connectOrCreate?: Prisma.StreamCreateOrConnectWithoutSubjectsInput
+  connect?: Prisma.StreamWhereUniqueInput
+}
+
+export type StreamUpdateOneRequiredWithoutSubjectsNestedInput = {
+  create?: Prisma.XOR<Prisma.StreamCreateWithoutSubjectsInput, Prisma.StreamUncheckedCreateWithoutSubjectsInput>
+  connectOrCreate?: Prisma.StreamCreateOrConnectWithoutSubjectsInput
+  upsert?: Prisma.StreamUpsertWithoutSubjectsInput
+  connect?: Prisma.StreamWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.StreamUpdateToOneWithWhereWithoutSubjectsInput, Prisma.StreamUpdateWithoutSubjectsInput>, Prisma.StreamUncheckedUpdateWithoutSubjectsInput>
 }
 
 export type StreamCreateNestedOneWithoutClass_stream_sectionsInput = {
@@ -349,31 +363,59 @@ export type StreamUpdateOneWithoutClass_stream_sectionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.StreamUpdateToOneWithWhereWithoutClass_stream_sectionsInput, Prisma.StreamUpdateWithoutClass_stream_sectionsInput>, Prisma.StreamUncheckedUpdateWithoutClass_stream_sectionsInput>
 }
 
-export type StreamCreateNestedOneWithoutStream_subjectsInput = {
-  create?: Prisma.XOR<Prisma.StreamCreateWithoutStream_subjectsInput, Prisma.StreamUncheckedCreateWithoutStream_subjectsInput>
-  connectOrCreate?: Prisma.StreamCreateOrConnectWithoutStream_subjectsInput
-  connect?: Prisma.StreamWhereUniqueInput
+export type StreamCreateWithoutSubjectsInput = {
+  stream_name: string
+  slug: string
+  class_stream_sections?: Prisma.ClassStreamSectionCreateNestedManyWithoutStreamInput
 }
 
-export type StreamUpdateOneRequiredWithoutStream_subjectsNestedInput = {
-  create?: Prisma.XOR<Prisma.StreamCreateWithoutStream_subjectsInput, Prisma.StreamUncheckedCreateWithoutStream_subjectsInput>
-  connectOrCreate?: Prisma.StreamCreateOrConnectWithoutStream_subjectsInput
-  upsert?: Prisma.StreamUpsertWithoutStream_subjectsInput
-  connect?: Prisma.StreamWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.StreamUpdateToOneWithWhereWithoutStream_subjectsInput, Prisma.StreamUpdateWithoutStream_subjectsInput>, Prisma.StreamUncheckedUpdateWithoutStream_subjectsInput>
+export type StreamUncheckedCreateWithoutSubjectsInput = {
+  id?: number
+  stream_name: string
+  slug: string
+  class_stream_sections?: Prisma.ClassStreamSectionUncheckedCreateNestedManyWithoutStreamInput
+}
+
+export type StreamCreateOrConnectWithoutSubjectsInput = {
+  where: Prisma.StreamWhereUniqueInput
+  create: Prisma.XOR<Prisma.StreamCreateWithoutSubjectsInput, Prisma.StreamUncheckedCreateWithoutSubjectsInput>
+}
+
+export type StreamUpsertWithoutSubjectsInput = {
+  update: Prisma.XOR<Prisma.StreamUpdateWithoutSubjectsInput, Prisma.StreamUncheckedUpdateWithoutSubjectsInput>
+  create: Prisma.XOR<Prisma.StreamCreateWithoutSubjectsInput, Prisma.StreamUncheckedCreateWithoutSubjectsInput>
+  where?: Prisma.StreamWhereInput
+}
+
+export type StreamUpdateToOneWithWhereWithoutSubjectsInput = {
+  where?: Prisma.StreamWhereInput
+  data: Prisma.XOR<Prisma.StreamUpdateWithoutSubjectsInput, Prisma.StreamUncheckedUpdateWithoutSubjectsInput>
+}
+
+export type StreamUpdateWithoutSubjectsInput = {
+  stream_name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  class_stream_sections?: Prisma.ClassStreamSectionUpdateManyWithoutStreamNestedInput
+}
+
+export type StreamUncheckedUpdateWithoutSubjectsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  stream_name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  class_stream_sections?: Prisma.ClassStreamSectionUncheckedUpdateManyWithoutStreamNestedInput
 }
 
 export type StreamCreateWithoutClass_stream_sectionsInput = {
   stream_name: string
   slug: string
-  stream_subjects?: Prisma.StreamSubjectCreateNestedManyWithoutStreamInput
+  subjects?: Prisma.SubjectCreateNestedManyWithoutStreamInput
 }
 
 export type StreamUncheckedCreateWithoutClass_stream_sectionsInput = {
   id?: number
   stream_name: string
   slug: string
-  stream_subjects?: Prisma.StreamSubjectUncheckedCreateNestedManyWithoutStreamInput
+  subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutStreamInput
 }
 
 export type StreamCreateOrConnectWithoutClass_stream_sectionsInput = {
@@ -395,56 +437,14 @@ export type StreamUpdateToOneWithWhereWithoutClass_stream_sectionsInput = {
 export type StreamUpdateWithoutClass_stream_sectionsInput = {
   stream_name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
-  stream_subjects?: Prisma.StreamSubjectUpdateManyWithoutStreamNestedInput
+  subjects?: Prisma.SubjectUpdateManyWithoutStreamNestedInput
 }
 
 export type StreamUncheckedUpdateWithoutClass_stream_sectionsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   stream_name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
-  stream_subjects?: Prisma.StreamSubjectUncheckedUpdateManyWithoutStreamNestedInput
-}
-
-export type StreamCreateWithoutStream_subjectsInput = {
-  stream_name: string
-  slug: string
-  class_stream_sections?: Prisma.ClassStreamSectionCreateNestedManyWithoutStreamInput
-}
-
-export type StreamUncheckedCreateWithoutStream_subjectsInput = {
-  id?: number
-  stream_name: string
-  slug: string
-  class_stream_sections?: Prisma.ClassStreamSectionUncheckedCreateNestedManyWithoutStreamInput
-}
-
-export type StreamCreateOrConnectWithoutStream_subjectsInput = {
-  where: Prisma.StreamWhereUniqueInput
-  create: Prisma.XOR<Prisma.StreamCreateWithoutStream_subjectsInput, Prisma.StreamUncheckedCreateWithoutStream_subjectsInput>
-}
-
-export type StreamUpsertWithoutStream_subjectsInput = {
-  update: Prisma.XOR<Prisma.StreamUpdateWithoutStream_subjectsInput, Prisma.StreamUncheckedUpdateWithoutStream_subjectsInput>
-  create: Prisma.XOR<Prisma.StreamCreateWithoutStream_subjectsInput, Prisma.StreamUncheckedCreateWithoutStream_subjectsInput>
-  where?: Prisma.StreamWhereInput
-}
-
-export type StreamUpdateToOneWithWhereWithoutStream_subjectsInput = {
-  where?: Prisma.StreamWhereInput
-  data: Prisma.XOR<Prisma.StreamUpdateWithoutStream_subjectsInput, Prisma.StreamUncheckedUpdateWithoutStream_subjectsInput>
-}
-
-export type StreamUpdateWithoutStream_subjectsInput = {
-  stream_name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  class_stream_sections?: Prisma.ClassStreamSectionUpdateManyWithoutStreamNestedInput
-}
-
-export type StreamUncheckedUpdateWithoutStream_subjectsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  stream_name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  class_stream_sections?: Prisma.ClassStreamSectionUncheckedUpdateManyWithoutStreamNestedInput
+  subjects?: Prisma.SubjectUncheckedUpdateManyWithoutStreamNestedInput
 }
 
 
@@ -454,12 +454,12 @@ export type StreamUncheckedUpdateWithoutStream_subjectsInput = {
 
 export type StreamCountOutputType = {
   class_stream_sections: number
-  stream_subjects: number
+  subjects: number
 }
 
 export type StreamCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   class_stream_sections?: boolean | StreamCountOutputTypeCountClass_stream_sectionsArgs
-  stream_subjects?: boolean | StreamCountOutputTypeCountStream_subjectsArgs
+  subjects?: boolean | StreamCountOutputTypeCountSubjectsArgs
 }
 
 /**
@@ -482,8 +482,8 @@ export type StreamCountOutputTypeCountClass_stream_sectionsArgs<ExtArgs extends 
 /**
  * StreamCountOutputType without action
  */
-export type StreamCountOutputTypeCountStream_subjectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.StreamSubjectWhereInput
+export type StreamCountOutputTypeCountSubjectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SubjectWhereInput
 }
 
 
@@ -492,7 +492,7 @@ export type StreamSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   stream_name?: boolean
   slug?: boolean
   class_stream_sections?: boolean | Prisma.Stream$class_stream_sectionsArgs<ExtArgs>
-  stream_subjects?: boolean | Prisma.Stream$stream_subjectsArgs<ExtArgs>
+  subjects?: boolean | Prisma.Stream$subjectsArgs<ExtArgs>
   _count?: boolean | Prisma.StreamCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["stream"]>
 
@@ -507,7 +507,7 @@ export type StreamSelectScalar = {
 export type StreamOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "stream_name" | "slug", ExtArgs["result"]["stream"]>
 export type StreamInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   class_stream_sections?: boolean | Prisma.Stream$class_stream_sectionsArgs<ExtArgs>
-  stream_subjects?: boolean | Prisma.Stream$stream_subjectsArgs<ExtArgs>
+  subjects?: boolean | Prisma.Stream$subjectsArgs<ExtArgs>
   _count?: boolean | Prisma.StreamCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -515,7 +515,7 @@ export type $StreamPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   name: "Stream"
   objects: {
     class_stream_sections: Prisma.$ClassStreamSectionPayload<ExtArgs>[]
-    stream_subjects: Prisma.$StreamSubjectPayload<ExtArgs>[]
+    subjects: Prisma.$SubjectPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -862,7 +862,7 @@ readonly fields: StreamFieldRefs;
 export interface Prisma__StreamClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   class_stream_sections<T extends Prisma.Stream$class_stream_sectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Stream$class_stream_sectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClassStreamSectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  stream_subjects<T extends Prisma.Stream$stream_subjectsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Stream$stream_subjectsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StreamSubjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  subjects<T extends Prisma.Stream$subjectsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Stream$subjectsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1267,27 +1267,27 @@ export type Stream$class_stream_sectionsArgs<ExtArgs extends runtime.Types.Exten
 }
 
 /**
- * Stream.stream_subjects
+ * Stream.subjects
  */
-export type Stream$stream_subjectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Stream$subjectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the StreamSubject
+   * Select specific fields to fetch from the Subject
    */
-  select?: Prisma.StreamSubjectSelect<ExtArgs> | null
+  select?: Prisma.SubjectSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the StreamSubject
+   * Omit specific fields from the Subject
    */
-  omit?: Prisma.StreamSubjectOmit<ExtArgs> | null
+  omit?: Prisma.SubjectOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.StreamSubjectInclude<ExtArgs> | null
-  where?: Prisma.StreamSubjectWhereInput
-  orderBy?: Prisma.StreamSubjectOrderByWithRelationInput | Prisma.StreamSubjectOrderByWithRelationInput[]
-  cursor?: Prisma.StreamSubjectWhereUniqueInput
+  include?: Prisma.SubjectInclude<ExtArgs> | null
+  where?: Prisma.SubjectWhereInput
+  orderBy?: Prisma.SubjectOrderByWithRelationInput | Prisma.SubjectOrderByWithRelationInput[]
+  cursor?: Prisma.SubjectWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.StreamSubjectScalarFieldEnum | Prisma.StreamSubjectScalarFieldEnum[]
+  distinct?: Prisma.SubjectScalarFieldEnum | Prisma.SubjectScalarFieldEnum[]
 }
 
 /**
