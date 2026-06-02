@@ -52,7 +52,7 @@ app.get('/api/v1/class-and-subject/all', async (req, res) => {
  */
 app.get('/api/v1/students/:id/dashboard', async (req, res) => {
     const studentId = parseInt(req.params.id, 10);
-    const schoolId = parseInt(req.query.schoolId, 10);
+    const schoolId = parseInt(req.query.schoolId as string, 10);
 
     if (isNaN(studentId) || !schoolId) {
         return res.status(400).json({
@@ -103,7 +103,7 @@ app.get('/api/v1/students/:id/dashboard', async (req, res) => {
             where: {
                 class_id: activeRoom.class.id,
                 subject: {
-                    stream_id: activeRoom.stream_id // Filters out the main record if the subject doesn't match
+                    stream_id: activeRoom.stream_id! // Filters out the main record if the subject doesn't match
                 }
             },
             include: {
@@ -111,16 +111,7 @@ app.get('/api/v1/students/:id/dashboard', async (req, res) => {
             }
         });
 
-        // const individualElectives = await prisma.userClass.findMany({
-        //     where: {
-        //         user_id: studentId,
-        //         class_stream_section_id: activeRoom.id,
-        //         subject_id: { not: null }
-        //     },
-        //     include: {
-        //         subject: true
-        //     }
-        // });
+       
 
         const corePayload = coreClassSubjects.map(cs => ({
             id: cs.subject.id,
@@ -129,14 +120,7 @@ app.get('/api/v1/students/:id/dashboard', async (req, res) => {
             type: "Core"
         }));
 
-        // const electivePayload = individualElectives
-        //     .filter(ie => ie.subject !== null)
-        //     .map(ie => ({
-        //         id: ie.subject!.id,
-        //         subjectName: ie.subject!.subject_name,
-        //         slug: ie.subject!.slug,
-        //         type: "Elective"
-        //     }));
+       
 
         return res.status(200).json({
             success: true,
