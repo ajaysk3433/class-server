@@ -16,21 +16,6 @@ datasource db {
 // Core Entities
 // =========================================================================
 
-// remove later
-model School {
-  id          Int    @id @default(autoincrement())
-  school_name String @db.VarChar(255)
-  slug        String @unique @db.VarChar(255)
-  status      String @db.VarChar(50)
-
-  // Relations
-  class_stream_sections ClassStreamSection[]
-  // school_active_subjects SchoolActiveSubject[]
-  // custom_subjects       Subject[]
-
-  @@map("schools")
-}
-
 model Stream {
   id          Int    @id @default(autoincrement())
   stream_name String @db.VarChar(255)
@@ -84,19 +69,6 @@ model Subject {
   @@map("subjects")
 }
 
-model User {
-  id        Int    @id @default(autoincrement())
-  full_name String @db.VarChar(255)
-  email     String @unique @db.VarChar(255)
-  role      String @db.VarChar(50)
-  status    String @db.VarChar(50)
-
-  // Relations
-  user_classes UserClass[]
-
-  @@map("users")
-}
-
 // =========================================================================
 // Infrastructure Core / Room Mappings
 // =========================================================================
@@ -120,8 +92,6 @@ model ClassStreamSection {
   @@map("class_stream_sections")
 }
 
-
-
 model ClassSubject {
   class_id   Int
   subject_id Int
@@ -134,9 +104,6 @@ model ClassSubject {
   @@map("class_subjects")
 }
 
-
-
-//remove
 model UserClass {
   user_id                 Int
   class_stream_section_id Int
@@ -151,4 +118,42 @@ model UserClass {
   // teach multiple subjects to the SAME class, change this to @@id([user_id, class_stream_section_id, subject_id])
   @@id([user_id, class_stream_section_id])
   @@map("user_classes")
+}
+
+// change as per DB schema
+
+model User {
+  id        Int    @id @default(autoincrement()) //@map("user_id")
+  full_name String @db.VarChar(255)
+  email     String @unique @db.VarChar(255)
+  role_id   Int 
+  status    String @db.VarChar(50)
+
+  // Relations
+  role         Role        @relation(fields: [role_id], references: [id])
+  user_classes UserClass[]
+
+  @@map("users")
+}
+
+model School {
+  id          Int    @id @default(autoincrement())
+  school_name String @db.VarChar(255)
+  slug        String @unique @db.VarChar(255)
+  status      String @db.VarChar(50)
+
+  // Relations
+  class_stream_sections ClassStreamSection[]
+  // school_active_subjects SchoolActiveSubject[]
+  // custom_subjects       Subject[]
+
+  @@map("schools")
+}
+
+model Role {
+  id        Int    @id @default(autoincrement())
+  role_name String
+  users     User[]
+
+  @@map("admin_roles")
 }

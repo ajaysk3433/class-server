@@ -10,8 +10,8 @@ app.use(cors());
 app.use(express.json());
 
 /**
- * @route   GET /api/v1/teachers/:id/dashboard
- * @desc    Fetch the complete workload configuration payload for a logged-in teacher
+ * @route   GET /api/v1/class-and-subject/all
+ * @desc    Fetch the all subject and class
  */
 app.get('/api/v1/class-and-subject/all', async (req, res) => {
 
@@ -28,9 +28,7 @@ app.get('/api/v1/class-and-subject/all', async (req, res) => {
                 }
             }
         });
-        // const subject = await prisma.subject.findMany()
-        // const stream = await prisma.stream.findMany();
-        console.dir(classes)
+        
 
 
 
@@ -47,10 +45,10 @@ app.get('/api/v1/class-and-subject/all', async (req, res) => {
 });
 
 /**
- * @route   GET /api/v1/students/:id/dashboard
+ * @route   GET /api/v1/students/:id
  * @desc    Fetch classroom tracking and complete core + elective subjects for a student
  */
-app.get('/api/v1/students/:id/dashboard', async (req, res) => {
+app.get('/api/v1/students/:id', async (req, res) => {
     const studentId = parseInt(req.params.id, 10);
     const schoolId = parseInt(req.query.schoolId as string, 10);
 
@@ -66,9 +64,13 @@ app.get('/api/v1/students/:id/dashboard', async (req, res) => {
             where: { id: studentId }
         });
 
-        if (!student || student.role.toLowerCase() !== 'student') {
+        if(!student){
             return res.status(404).json({ success: false, error: "Student profile not found." });
         }
+
+        // if (!student || student.role.toLowerCase() !== 'student') {
+        //     return res.status(404).json({ success: false, error: "Student profile not found." });
+        // }
 
         const primaryClassAssignment = await prisma.userClass.findFirst({
             where: {

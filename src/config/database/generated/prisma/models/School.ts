@@ -303,6 +303,11 @@ export type SchoolUncheckedUpdateManyInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
+export type SchoolScalarRelationFilter = {
+  is?: Prisma.SchoolWhereInput
+  isNot?: Prisma.SchoolWhereInput
+}
+
 export type SchoolOrderByRelevanceInput = {
   fields: Prisma.SchoolOrderByRelevanceFieldEnum | Prisma.SchoolOrderByRelevanceFieldEnum[]
   sort: Prisma.SortOrder
@@ -336,23 +341,6 @@ export type SchoolMinOrderByAggregateInput = {
 
 export type SchoolSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
-}
-
-export type SchoolScalarRelationFilter = {
-  is?: Prisma.SchoolWhereInput
-  isNot?: Prisma.SchoolWhereInput
-}
-
-export type StringFieldUpdateOperationsInput = {
-  set?: string
-}
-
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
 }
 
 export type SchoolCreateNestedOneWithoutClass_stream_sectionsInput = {

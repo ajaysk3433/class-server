@@ -429,48 +429,6 @@ export type ClassStreamSectionScalarRelationFilter = {
   isNot?: Prisma.ClassStreamSectionWhereInput
 }
 
-export type ClassStreamSectionCreateNestedManyWithoutSchoolInput = {
-  create?: Prisma.XOR<Prisma.ClassStreamSectionCreateWithoutSchoolInput, Prisma.ClassStreamSectionUncheckedCreateWithoutSchoolInput> | Prisma.ClassStreamSectionCreateWithoutSchoolInput[] | Prisma.ClassStreamSectionUncheckedCreateWithoutSchoolInput[]
-  connectOrCreate?: Prisma.ClassStreamSectionCreateOrConnectWithoutSchoolInput | Prisma.ClassStreamSectionCreateOrConnectWithoutSchoolInput[]
-  createMany?: Prisma.ClassStreamSectionCreateManySchoolInputEnvelope
-  connect?: Prisma.ClassStreamSectionWhereUniqueInput | Prisma.ClassStreamSectionWhereUniqueInput[]
-}
-
-export type ClassStreamSectionUncheckedCreateNestedManyWithoutSchoolInput = {
-  create?: Prisma.XOR<Prisma.ClassStreamSectionCreateWithoutSchoolInput, Prisma.ClassStreamSectionUncheckedCreateWithoutSchoolInput> | Prisma.ClassStreamSectionCreateWithoutSchoolInput[] | Prisma.ClassStreamSectionUncheckedCreateWithoutSchoolInput[]
-  connectOrCreate?: Prisma.ClassStreamSectionCreateOrConnectWithoutSchoolInput | Prisma.ClassStreamSectionCreateOrConnectWithoutSchoolInput[]
-  createMany?: Prisma.ClassStreamSectionCreateManySchoolInputEnvelope
-  connect?: Prisma.ClassStreamSectionWhereUniqueInput | Prisma.ClassStreamSectionWhereUniqueInput[]
-}
-
-export type ClassStreamSectionUpdateManyWithoutSchoolNestedInput = {
-  create?: Prisma.XOR<Prisma.ClassStreamSectionCreateWithoutSchoolInput, Prisma.ClassStreamSectionUncheckedCreateWithoutSchoolInput> | Prisma.ClassStreamSectionCreateWithoutSchoolInput[] | Prisma.ClassStreamSectionUncheckedCreateWithoutSchoolInput[]
-  connectOrCreate?: Prisma.ClassStreamSectionCreateOrConnectWithoutSchoolInput | Prisma.ClassStreamSectionCreateOrConnectWithoutSchoolInput[]
-  upsert?: Prisma.ClassStreamSectionUpsertWithWhereUniqueWithoutSchoolInput | Prisma.ClassStreamSectionUpsertWithWhereUniqueWithoutSchoolInput[]
-  createMany?: Prisma.ClassStreamSectionCreateManySchoolInputEnvelope
-  set?: Prisma.ClassStreamSectionWhereUniqueInput | Prisma.ClassStreamSectionWhereUniqueInput[]
-  disconnect?: Prisma.ClassStreamSectionWhereUniqueInput | Prisma.ClassStreamSectionWhereUniqueInput[]
-  delete?: Prisma.ClassStreamSectionWhereUniqueInput | Prisma.ClassStreamSectionWhereUniqueInput[]
-  connect?: Prisma.ClassStreamSectionWhereUniqueInput | Prisma.ClassStreamSectionWhereUniqueInput[]
-  update?: Prisma.ClassStreamSectionUpdateWithWhereUniqueWithoutSchoolInput | Prisma.ClassStreamSectionUpdateWithWhereUniqueWithoutSchoolInput[]
-  updateMany?: Prisma.ClassStreamSectionUpdateManyWithWhereWithoutSchoolInput | Prisma.ClassStreamSectionUpdateManyWithWhereWithoutSchoolInput[]
-  deleteMany?: Prisma.ClassStreamSectionScalarWhereInput | Prisma.ClassStreamSectionScalarWhereInput[]
-}
-
-export type ClassStreamSectionUncheckedUpdateManyWithoutSchoolNestedInput = {
-  create?: Prisma.XOR<Prisma.ClassStreamSectionCreateWithoutSchoolInput, Prisma.ClassStreamSectionUncheckedCreateWithoutSchoolInput> | Prisma.ClassStreamSectionCreateWithoutSchoolInput[] | Prisma.ClassStreamSectionUncheckedCreateWithoutSchoolInput[]
-  connectOrCreate?: Prisma.ClassStreamSectionCreateOrConnectWithoutSchoolInput | Prisma.ClassStreamSectionCreateOrConnectWithoutSchoolInput[]
-  upsert?: Prisma.ClassStreamSectionUpsertWithWhereUniqueWithoutSchoolInput | Prisma.ClassStreamSectionUpsertWithWhereUniqueWithoutSchoolInput[]
-  createMany?: Prisma.ClassStreamSectionCreateManySchoolInputEnvelope
-  set?: Prisma.ClassStreamSectionWhereUniqueInput | Prisma.ClassStreamSectionWhereUniqueInput[]
-  disconnect?: Prisma.ClassStreamSectionWhereUniqueInput | Prisma.ClassStreamSectionWhereUniqueInput[]
-  delete?: Prisma.ClassStreamSectionWhereUniqueInput | Prisma.ClassStreamSectionWhereUniqueInput[]
-  connect?: Prisma.ClassStreamSectionWhereUniqueInput | Prisma.ClassStreamSectionWhereUniqueInput[]
-  update?: Prisma.ClassStreamSectionUpdateWithWhereUniqueWithoutSchoolInput | Prisma.ClassStreamSectionUpdateWithWhereUniqueWithoutSchoolInput[]
-  updateMany?: Prisma.ClassStreamSectionUpdateManyWithWhereWithoutSchoolInput | Prisma.ClassStreamSectionUpdateManyWithWhereWithoutSchoolInput[]
-  deleteMany?: Prisma.ClassStreamSectionScalarWhereInput | Prisma.ClassStreamSectionScalarWhereInput[]
-}
-
 export type ClassStreamSectionCreateNestedManyWithoutStreamInput = {
   create?: Prisma.XOR<Prisma.ClassStreamSectionCreateWithoutStreamInput, Prisma.ClassStreamSectionUncheckedCreateWithoutStreamInput> | Prisma.ClassStreamSectionCreateWithoutStreamInput[] | Prisma.ClassStreamSectionUncheckedCreateWithoutStreamInput[]
   connectOrCreate?: Prisma.ClassStreamSectionCreateOrConnectWithoutStreamInput | Prisma.ClassStreamSectionCreateOrConnectWithoutStreamInput[]
@@ -619,59 +577,46 @@ export type ClassStreamSectionUpdateOneRequiredWithoutUser_classesNestedInput = 
   update?: Prisma.XOR<Prisma.XOR<Prisma.ClassStreamSectionUpdateToOneWithWhereWithoutUser_classesInput, Prisma.ClassStreamSectionUpdateWithoutUser_classesInput>, Prisma.ClassStreamSectionUncheckedUpdateWithoutUser_classesInput>
 }
 
-export type ClassStreamSectionCreateWithoutSchoolInput = {
-  slug: string
-  class: Prisma.ClassCreateNestedOneWithoutClass_stream_sectionsInput
-  stream?: Prisma.StreamCreateNestedOneWithoutClass_stream_sectionsInput
-  section: Prisma.SectionCreateNestedOneWithoutClass_stream_sectionsInput
-  user_classes?: Prisma.UserClassCreateNestedManyWithoutClass_stream_sectionInput
+export type ClassStreamSectionCreateNestedManyWithoutSchoolInput = {
+  create?: Prisma.XOR<Prisma.ClassStreamSectionCreateWithoutSchoolInput, Prisma.ClassStreamSectionUncheckedCreateWithoutSchoolInput> | Prisma.ClassStreamSectionCreateWithoutSchoolInput[] | Prisma.ClassStreamSectionUncheckedCreateWithoutSchoolInput[]
+  connectOrCreate?: Prisma.ClassStreamSectionCreateOrConnectWithoutSchoolInput | Prisma.ClassStreamSectionCreateOrConnectWithoutSchoolInput[]
+  createMany?: Prisma.ClassStreamSectionCreateManySchoolInputEnvelope
+  connect?: Prisma.ClassStreamSectionWhereUniqueInput | Prisma.ClassStreamSectionWhereUniqueInput[]
 }
 
-export type ClassStreamSectionUncheckedCreateWithoutSchoolInput = {
-  id?: number
-  class_id: number
-  stream_id?: number | null
-  section_id: number
-  slug: string
-  user_classes?: Prisma.UserClassUncheckedCreateNestedManyWithoutClass_stream_sectionInput
+export type ClassStreamSectionUncheckedCreateNestedManyWithoutSchoolInput = {
+  create?: Prisma.XOR<Prisma.ClassStreamSectionCreateWithoutSchoolInput, Prisma.ClassStreamSectionUncheckedCreateWithoutSchoolInput> | Prisma.ClassStreamSectionCreateWithoutSchoolInput[] | Prisma.ClassStreamSectionUncheckedCreateWithoutSchoolInput[]
+  connectOrCreate?: Prisma.ClassStreamSectionCreateOrConnectWithoutSchoolInput | Prisma.ClassStreamSectionCreateOrConnectWithoutSchoolInput[]
+  createMany?: Prisma.ClassStreamSectionCreateManySchoolInputEnvelope
+  connect?: Prisma.ClassStreamSectionWhereUniqueInput | Prisma.ClassStreamSectionWhereUniqueInput[]
 }
 
-export type ClassStreamSectionCreateOrConnectWithoutSchoolInput = {
-  where: Prisma.ClassStreamSectionWhereUniqueInput
-  create: Prisma.XOR<Prisma.ClassStreamSectionCreateWithoutSchoolInput, Prisma.ClassStreamSectionUncheckedCreateWithoutSchoolInput>
+export type ClassStreamSectionUpdateManyWithoutSchoolNestedInput = {
+  create?: Prisma.XOR<Prisma.ClassStreamSectionCreateWithoutSchoolInput, Prisma.ClassStreamSectionUncheckedCreateWithoutSchoolInput> | Prisma.ClassStreamSectionCreateWithoutSchoolInput[] | Prisma.ClassStreamSectionUncheckedCreateWithoutSchoolInput[]
+  connectOrCreate?: Prisma.ClassStreamSectionCreateOrConnectWithoutSchoolInput | Prisma.ClassStreamSectionCreateOrConnectWithoutSchoolInput[]
+  upsert?: Prisma.ClassStreamSectionUpsertWithWhereUniqueWithoutSchoolInput | Prisma.ClassStreamSectionUpsertWithWhereUniqueWithoutSchoolInput[]
+  createMany?: Prisma.ClassStreamSectionCreateManySchoolInputEnvelope
+  set?: Prisma.ClassStreamSectionWhereUniqueInput | Prisma.ClassStreamSectionWhereUniqueInput[]
+  disconnect?: Prisma.ClassStreamSectionWhereUniqueInput | Prisma.ClassStreamSectionWhereUniqueInput[]
+  delete?: Prisma.ClassStreamSectionWhereUniqueInput | Prisma.ClassStreamSectionWhereUniqueInput[]
+  connect?: Prisma.ClassStreamSectionWhereUniqueInput | Prisma.ClassStreamSectionWhereUniqueInput[]
+  update?: Prisma.ClassStreamSectionUpdateWithWhereUniqueWithoutSchoolInput | Prisma.ClassStreamSectionUpdateWithWhereUniqueWithoutSchoolInput[]
+  updateMany?: Prisma.ClassStreamSectionUpdateManyWithWhereWithoutSchoolInput | Prisma.ClassStreamSectionUpdateManyWithWhereWithoutSchoolInput[]
+  deleteMany?: Prisma.ClassStreamSectionScalarWhereInput | Prisma.ClassStreamSectionScalarWhereInput[]
 }
 
-export type ClassStreamSectionCreateManySchoolInputEnvelope = {
-  data: Prisma.ClassStreamSectionCreateManySchoolInput | Prisma.ClassStreamSectionCreateManySchoolInput[]
-  skipDuplicates?: boolean
-}
-
-export type ClassStreamSectionUpsertWithWhereUniqueWithoutSchoolInput = {
-  where: Prisma.ClassStreamSectionWhereUniqueInput
-  update: Prisma.XOR<Prisma.ClassStreamSectionUpdateWithoutSchoolInput, Prisma.ClassStreamSectionUncheckedUpdateWithoutSchoolInput>
-  create: Prisma.XOR<Prisma.ClassStreamSectionCreateWithoutSchoolInput, Prisma.ClassStreamSectionUncheckedCreateWithoutSchoolInput>
-}
-
-export type ClassStreamSectionUpdateWithWhereUniqueWithoutSchoolInput = {
-  where: Prisma.ClassStreamSectionWhereUniqueInput
-  data: Prisma.XOR<Prisma.ClassStreamSectionUpdateWithoutSchoolInput, Prisma.ClassStreamSectionUncheckedUpdateWithoutSchoolInput>
-}
-
-export type ClassStreamSectionUpdateManyWithWhereWithoutSchoolInput = {
-  where: Prisma.ClassStreamSectionScalarWhereInput
-  data: Prisma.XOR<Prisma.ClassStreamSectionUpdateManyMutationInput, Prisma.ClassStreamSectionUncheckedUpdateManyWithoutSchoolInput>
-}
-
-export type ClassStreamSectionScalarWhereInput = {
-  AND?: Prisma.ClassStreamSectionScalarWhereInput | Prisma.ClassStreamSectionScalarWhereInput[]
-  OR?: Prisma.ClassStreamSectionScalarWhereInput[]
-  NOT?: Prisma.ClassStreamSectionScalarWhereInput | Prisma.ClassStreamSectionScalarWhereInput[]
-  id?: Prisma.IntFilter<"ClassStreamSection"> | number
-  school_id?: Prisma.IntFilter<"ClassStreamSection"> | number
-  class_id?: Prisma.IntFilter<"ClassStreamSection"> | number
-  stream_id?: Prisma.IntNullableFilter<"ClassStreamSection"> | number | null
-  section_id?: Prisma.IntFilter<"ClassStreamSection"> | number
-  slug?: Prisma.StringFilter<"ClassStreamSection"> | string
+export type ClassStreamSectionUncheckedUpdateManyWithoutSchoolNestedInput = {
+  create?: Prisma.XOR<Prisma.ClassStreamSectionCreateWithoutSchoolInput, Prisma.ClassStreamSectionUncheckedCreateWithoutSchoolInput> | Prisma.ClassStreamSectionCreateWithoutSchoolInput[] | Prisma.ClassStreamSectionUncheckedCreateWithoutSchoolInput[]
+  connectOrCreate?: Prisma.ClassStreamSectionCreateOrConnectWithoutSchoolInput | Prisma.ClassStreamSectionCreateOrConnectWithoutSchoolInput[]
+  upsert?: Prisma.ClassStreamSectionUpsertWithWhereUniqueWithoutSchoolInput | Prisma.ClassStreamSectionUpsertWithWhereUniqueWithoutSchoolInput[]
+  createMany?: Prisma.ClassStreamSectionCreateManySchoolInputEnvelope
+  set?: Prisma.ClassStreamSectionWhereUniqueInput | Prisma.ClassStreamSectionWhereUniqueInput[]
+  disconnect?: Prisma.ClassStreamSectionWhereUniqueInput | Prisma.ClassStreamSectionWhereUniqueInput[]
+  delete?: Prisma.ClassStreamSectionWhereUniqueInput | Prisma.ClassStreamSectionWhereUniqueInput[]
+  connect?: Prisma.ClassStreamSectionWhereUniqueInput | Prisma.ClassStreamSectionWhereUniqueInput[]
+  update?: Prisma.ClassStreamSectionUpdateWithWhereUniqueWithoutSchoolInput | Prisma.ClassStreamSectionUpdateWithWhereUniqueWithoutSchoolInput[]
+  updateMany?: Prisma.ClassStreamSectionUpdateManyWithWhereWithoutSchoolInput | Prisma.ClassStreamSectionUpdateManyWithWhereWithoutSchoolInput[]
+  deleteMany?: Prisma.ClassStreamSectionScalarWhereInput | Prisma.ClassStreamSectionScalarWhereInput[]
 }
 
 export type ClassStreamSectionCreateWithoutStreamInput = {
@@ -715,6 +660,18 @@ export type ClassStreamSectionUpdateWithWhereUniqueWithoutStreamInput = {
 export type ClassStreamSectionUpdateManyWithWhereWithoutStreamInput = {
   where: Prisma.ClassStreamSectionScalarWhereInput
   data: Prisma.XOR<Prisma.ClassStreamSectionUpdateManyMutationInput, Prisma.ClassStreamSectionUncheckedUpdateManyWithoutStreamInput>
+}
+
+export type ClassStreamSectionScalarWhereInput = {
+  AND?: Prisma.ClassStreamSectionScalarWhereInput | Prisma.ClassStreamSectionScalarWhereInput[]
+  OR?: Prisma.ClassStreamSectionScalarWhereInput[]
+  NOT?: Prisma.ClassStreamSectionScalarWhereInput | Prisma.ClassStreamSectionScalarWhereInput[]
+  id?: Prisma.IntFilter<"ClassStreamSection"> | number
+  school_id?: Prisma.IntFilter<"ClassStreamSection"> | number
+  class_id?: Prisma.IntFilter<"ClassStreamSection"> | number
+  stream_id?: Prisma.IntNullableFilter<"ClassStreamSection"> | number | null
+  section_id?: Prisma.IntFilter<"ClassStreamSection"> | number
+  slug?: Prisma.StringFilter<"ClassStreamSection"> | string
 }
 
 export type ClassStreamSectionCreateWithoutClassInput = {
@@ -853,37 +810,47 @@ export type ClassStreamSectionUncheckedUpdateWithoutUser_classesInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
-export type ClassStreamSectionCreateManySchoolInput = {
+export type ClassStreamSectionCreateWithoutSchoolInput = {
+  slug: string
+  class: Prisma.ClassCreateNestedOneWithoutClass_stream_sectionsInput
+  stream?: Prisma.StreamCreateNestedOneWithoutClass_stream_sectionsInput
+  section: Prisma.SectionCreateNestedOneWithoutClass_stream_sectionsInput
+  user_classes?: Prisma.UserClassCreateNestedManyWithoutClass_stream_sectionInput
+}
+
+export type ClassStreamSectionUncheckedCreateWithoutSchoolInput = {
   id?: number
   class_id: number
   stream_id?: number | null
   section_id: number
   slug: string
+  user_classes?: Prisma.UserClassUncheckedCreateNestedManyWithoutClass_stream_sectionInput
 }
 
-export type ClassStreamSectionUpdateWithoutSchoolInput = {
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  class?: Prisma.ClassUpdateOneRequiredWithoutClass_stream_sectionsNestedInput
-  stream?: Prisma.StreamUpdateOneWithoutClass_stream_sectionsNestedInput
-  section?: Prisma.SectionUpdateOneRequiredWithoutClass_stream_sectionsNestedInput
-  user_classes?: Prisma.UserClassUpdateManyWithoutClass_stream_sectionNestedInput
+export type ClassStreamSectionCreateOrConnectWithoutSchoolInput = {
+  where: Prisma.ClassStreamSectionWhereUniqueInput
+  create: Prisma.XOR<Prisma.ClassStreamSectionCreateWithoutSchoolInput, Prisma.ClassStreamSectionUncheckedCreateWithoutSchoolInput>
 }
 
-export type ClassStreamSectionUncheckedUpdateWithoutSchoolInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  class_id?: Prisma.IntFieldUpdateOperationsInput | number
-  stream_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  section_id?: Prisma.IntFieldUpdateOperationsInput | number
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  user_classes?: Prisma.UserClassUncheckedUpdateManyWithoutClass_stream_sectionNestedInput
+export type ClassStreamSectionCreateManySchoolInputEnvelope = {
+  data: Prisma.ClassStreamSectionCreateManySchoolInput | Prisma.ClassStreamSectionCreateManySchoolInput[]
+  skipDuplicates?: boolean
 }
 
-export type ClassStreamSectionUncheckedUpdateManyWithoutSchoolInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  class_id?: Prisma.IntFieldUpdateOperationsInput | number
-  stream_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  section_id?: Prisma.IntFieldUpdateOperationsInput | number
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
+export type ClassStreamSectionUpsertWithWhereUniqueWithoutSchoolInput = {
+  where: Prisma.ClassStreamSectionWhereUniqueInput
+  update: Prisma.XOR<Prisma.ClassStreamSectionUpdateWithoutSchoolInput, Prisma.ClassStreamSectionUncheckedUpdateWithoutSchoolInput>
+  create: Prisma.XOR<Prisma.ClassStreamSectionCreateWithoutSchoolInput, Prisma.ClassStreamSectionUncheckedCreateWithoutSchoolInput>
+}
+
+export type ClassStreamSectionUpdateWithWhereUniqueWithoutSchoolInput = {
+  where: Prisma.ClassStreamSectionWhereUniqueInput
+  data: Prisma.XOR<Prisma.ClassStreamSectionUpdateWithoutSchoolInput, Prisma.ClassStreamSectionUncheckedUpdateWithoutSchoolInput>
+}
+
+export type ClassStreamSectionUpdateManyWithWhereWithoutSchoolInput = {
+  where: Prisma.ClassStreamSectionScalarWhereInput
+  data: Prisma.XOR<Prisma.ClassStreamSectionUpdateManyMutationInput, Prisma.ClassStreamSectionUncheckedUpdateManyWithoutSchoolInput>
 }
 
 export type ClassStreamSectionCreateManyStreamInput = {
@@ -982,6 +949,39 @@ export type ClassStreamSectionUncheckedUpdateManyWithoutSectionInput = {
   school_id?: Prisma.IntFieldUpdateOperationsInput | number
   class_id?: Prisma.IntFieldUpdateOperationsInput | number
   stream_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type ClassStreamSectionCreateManySchoolInput = {
+  id?: number
+  class_id: number
+  stream_id?: number | null
+  section_id: number
+  slug: string
+}
+
+export type ClassStreamSectionUpdateWithoutSchoolInput = {
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  class?: Prisma.ClassUpdateOneRequiredWithoutClass_stream_sectionsNestedInput
+  stream?: Prisma.StreamUpdateOneWithoutClass_stream_sectionsNestedInput
+  section?: Prisma.SectionUpdateOneRequiredWithoutClass_stream_sectionsNestedInput
+  user_classes?: Prisma.UserClassUpdateManyWithoutClass_stream_sectionNestedInput
+}
+
+export type ClassStreamSectionUncheckedUpdateWithoutSchoolInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  class_id?: Prisma.IntFieldUpdateOperationsInput | number
+  stream_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  section_id?: Prisma.IntFieldUpdateOperationsInput | number
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  user_classes?: Prisma.UserClassUncheckedUpdateManyWithoutClass_stream_sectionNestedInput
+}
+
+export type ClassStreamSectionUncheckedUpdateManyWithoutSchoolInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  class_id?: Prisma.IntFieldUpdateOperationsInput | number
+  stream_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  section_id?: Prisma.IntFieldUpdateOperationsInput | number
   slug?: Prisma.StringFieldUpdateOperationsInput | string
 }
 

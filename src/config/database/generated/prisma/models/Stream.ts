@@ -333,6 +333,18 @@ export type StreamNullableScalarRelationFilter = {
   isNot?: Prisma.StreamWhereInput | null
 }
 
+export type StringFieldUpdateOperationsInput = {
+  set?: string
+}
+
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
 export type StreamCreateNestedOneWithoutSubjectsInput = {
   create?: Prisma.XOR<Prisma.StreamCreateWithoutSubjectsInput, Prisma.StreamUncheckedCreateWithoutSubjectsInput>
   connectOrCreate?: Prisma.StreamCreateOrConnectWithoutSubjectsInput

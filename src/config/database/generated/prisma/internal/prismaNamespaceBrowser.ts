@@ -51,15 +51,16 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  School: 'School',
   Stream: 'Stream',
   Class: 'Class',
   Section: 'Section',
   Subject: 'Subject',
-  User: 'User',
   ClassStreamSection: 'ClassStreamSection',
   ClassSubject: 'ClassSubject',
-  UserClass: 'UserClass'
+  UserClass: 'UserClass',
+  User: 'User',
+  School: 'School',
+  Role: 'Role'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -76,16 +77,6 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 } as const)
 
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
-
-
-export const SchoolScalarFieldEnum = {
-  id: 'id',
-  school_name: 'school_name',
-  slug: 'slug',
-  status: 'status'
-} as const
-
-export type SchoolScalarFieldEnum = (typeof SchoolScalarFieldEnum)[keyof typeof SchoolScalarFieldEnum]
 
 
 export const StreamScalarFieldEnum = {
@@ -127,17 +118,6 @@ export const SubjectScalarFieldEnum = {
 export type SubjectScalarFieldEnum = (typeof SubjectScalarFieldEnum)[keyof typeof SubjectScalarFieldEnum]
 
 
-export const UserScalarFieldEnum = {
-  id: 'id',
-  full_name: 'full_name',
-  email: 'email',
-  role: 'role',
-  status: 'status'
-} as const
-
-export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
-
-
 export const ClassStreamSectionScalarFieldEnum = {
   id: 'id',
   school_id: 'school_id',
@@ -166,21 +146,41 @@ export const UserClassScalarFieldEnum = {
 export type UserClassScalarFieldEnum = (typeof UserClassScalarFieldEnum)[keyof typeof UserClassScalarFieldEnum]
 
 
+export const UserScalarFieldEnum = {
+  id: 'id',
+  full_name: 'full_name',
+  email: 'email',
+  role_id: 'role_id',
+  status: 'status'
+} as const
+
+export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const SchoolScalarFieldEnum = {
+  id: 'id',
+  school_name: 'school_name',
+  slug: 'slug',
+  status: 'status'
+} as const
+
+export type SchoolScalarFieldEnum = (typeof SchoolScalarFieldEnum)[keyof typeof SchoolScalarFieldEnum]
+
+
+export const RoleScalarFieldEnum = {
+  id: 'id',
+  role_name: 'role_name'
+} as const
+
+export type RoleScalarFieldEnum = (typeof RoleScalarFieldEnum)[keyof typeof RoleScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
-
-
-export const SchoolOrderByRelevanceFieldEnum = {
-  school_name: 'school_name',
-  slug: 'slug',
-  status: 'status'
-} as const
-
-export type SchoolOrderByRelevanceFieldEnum = (typeof SchoolOrderByRelevanceFieldEnum)[keyof typeof SchoolOrderByRelevanceFieldEnum]
 
 
 export const StreamOrderByRelevanceFieldEnum = {
@@ -217,16 +217,6 @@ export const SubjectOrderByRelevanceFieldEnum = {
 export type SubjectOrderByRelevanceFieldEnum = (typeof SubjectOrderByRelevanceFieldEnum)[keyof typeof SubjectOrderByRelevanceFieldEnum]
 
 
-export const UserOrderByRelevanceFieldEnum = {
-  full_name: 'full_name',
-  email: 'email',
-  role: 'role',
-  status: 'status'
-} as const
-
-export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
-
-
 export const NullsOrder = {
   first: 'first',
   last: 'last'
@@ -240,4 +230,29 @@ export const ClassStreamSectionOrderByRelevanceFieldEnum = {
 } as const
 
 export type ClassStreamSectionOrderByRelevanceFieldEnum = (typeof ClassStreamSectionOrderByRelevanceFieldEnum)[keyof typeof ClassStreamSectionOrderByRelevanceFieldEnum]
+
+
+export const UserOrderByRelevanceFieldEnum = {
+  full_name: 'full_name',
+  email: 'email',
+  status: 'status'
+} as const
+
+export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
+
+
+export const SchoolOrderByRelevanceFieldEnum = {
+  school_name: 'school_name',
+  slug: 'slug',
+  status: 'status'
+} as const
+
+export type SchoolOrderByRelevanceFieldEnum = (typeof SchoolOrderByRelevanceFieldEnum)[keyof typeof SchoolOrderByRelevanceFieldEnum]
+
+
+export const RoleOrderByRelevanceFieldEnum = {
+  role_name: 'role_name'
+} as const
+
+export type RoleOrderByRelevanceFieldEnum = (typeof RoleOrderByRelevanceFieldEnum)[keyof typeof RoleOrderByRelevanceFieldEnum]
 

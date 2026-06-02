@@ -31,8 +31,8 @@ export * from "./enums.ts"
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more Schools
- * const schools = await prisma.school.findMany()
+ * // Fetch zero or more Streams
+ * const streams = await prisma.stream.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -41,11 +41,6 @@ export const PrismaClient = $Class.getPrismaClientClass()
 export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts extends Prisma.PrismaClientOptions["omit"] = Prisma.PrismaClientOptions["omit"], ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = $Class.PrismaClient<LogOpts, OmitOpts, ExtArgs>
 export { Prisma }
 
-/**
- * Model School
- * 
- */
-export type School = Prisma.SchoolModel
 /**
  * Model Stream
  * 
@@ -67,11 +62,6 @@ export type Section = Prisma.SectionModel
  */
 export type Subject = Prisma.SubjectModel
 /**
- * Model User
- * 
- */
-export type User = Prisma.UserModel
-/**
  * Model ClassStreamSection
  * 
  */
@@ -86,3 +76,18 @@ export type ClassSubject = Prisma.ClassSubjectModel
  * 
  */
 export type UserClass = Prisma.UserClassModel
+/**
+ * Model User
+ * 
+ */
+export type User = Prisma.UserModel
+/**
+ * Model School
+ * 
+ */
+export type School = Prisma.SchoolModel
+/**
+ * Model Role
+ * 
+ */
+export type Role = Prisma.RoleModel

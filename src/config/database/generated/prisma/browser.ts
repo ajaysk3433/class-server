@@ -18,11 +18,6 @@ export { Prisma }
 export * as $Enums from './enums.ts'
 export * from './enums.ts';
 /**
- * Model School
- * 
- */
-export type School = Prisma.SchoolModel
-/**
  * Model Stream
  * 
  */
@@ -43,11 +38,6 @@ export type Section = Prisma.SectionModel
  */
 export type Subject = Prisma.SubjectModel
 /**
- * Model User
- * 
- */
-export type User = Prisma.UserModel
-/**
  * Model ClassStreamSection
  * 
  */
@@ -62,3 +52,18 @@ export type ClassSubject = Prisma.ClassSubjectModel
  * 
  */
 export type UserClass = Prisma.UserClassModel
+/**
+ * Model User
+ * 
+ */
+export type User = Prisma.UserModel
+/**
+ * Model School
+ * 
+ */
+export type School = Prisma.SchoolModel
+/**
+ * Model Role
+ * 
+ */
+export type Role = Prisma.RoleModel
