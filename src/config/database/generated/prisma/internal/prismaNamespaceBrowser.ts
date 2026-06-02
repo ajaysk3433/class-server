@@ -160,8 +160,7 @@ export type ClassSubjectScalarFieldEnum = (typeof ClassSubjectScalarFieldEnum)[k
 
 export const UserClassScalarFieldEnum = {
   user_id: 'user_id',
-  class_stream_section_id: 'class_stream_section_id',
-  subject_id: 'subject_id'
+  class_stream_section_id: 'class_stream_section_id'
 } as const
 
 export type UserClassScalarFieldEnum = (typeof UserClassScalarFieldEnum)[keyof typeof UserClassScalarFieldEnum]

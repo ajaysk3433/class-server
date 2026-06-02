@@ -79,7 +79,7 @@ model Subject {
   stream Stream @relation(fields: [stream_id], references: [id])
 
   class_subjects ClassSubject[]
-  user_classes   UserClass[]
+  // user_classes   UserClass[]
 
   @@map("subjects")
 }
@@ -140,12 +140,12 @@ model ClassSubject {
 model UserClass {
   user_id                 Int
   class_stream_section_id Int
-  subject_id              Int? // Nullable (e.g., Null for students, filled for teachers)
+  // subject_id              Int? // Nullable (e.g., Null for students, filled for teachers)
 
   // Relations
   user                 User               @relation(fields: [user_id], references: [id])
   class_stream_section ClassStreamSection @relation(fields: [class_stream_section_id], references: [id])
-  subject              Subject?           @relation(fields: [subject_id], references: [id])
+  // subject              Subject?           @relation(fields: [subject_id], references: [id])
 
   // Note: Based on your diagram's PK constraints. If a teacher needs to 
   // teach multiple subjects to the SAME class, change this to @@id([user_id, class_stream_section_id, subject_id])
