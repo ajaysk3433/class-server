@@ -23,11 +23,7 @@ app.get('/api/v1/class-and-subject/all', async (req, res) => {
                 class: true,
                 subject: {
                     include: {
-                        stream: {
-                            select: {
-                                stream_name: true // Only fetches the stream_name field
-                            }
-                        }
+                        stream: true
                     }
                 }
             }
@@ -93,6 +89,7 @@ app.get('/api/v1/students/:id/dashboard', async (req, res) => {
             }
         });
 
+
         if (!primaryClassAssignment) {
             return res.status(404).json({
                 success: false,
@@ -103,8 +100,15 @@ app.get('/api/v1/students/:id/dashboard', async (req, res) => {
         const activeRoom = primaryClassAssignment.class_stream_section;
 
         const coreClassSubjects = await prisma.classSubject.findMany({
-            where: { class_stream_section_id: activeRoom.id },
-            include: { subject: true }
+            where: {
+                class_id: activeRoom.class.id,
+                subject: {
+                    stream_id: activeRoom.stream_id // Filters out the main record if the subject doesn't match
+                }
+            },
+            include: {
+                subject: true // Pulls in the subject data for the matching records
+            }
         });
 
         const individualElectives = await prisma.userClass.findMany({
