@@ -1,0 +1,1082 @@
+import type * as runtime from "@prisma/client/runtime/client";
+import type * as Prisma from "../internal/prismaNamespace.ts";
+/**
+ * Model UserClass
+ *
+ */
+export type UserClassModel = runtime.Types.Result.DefaultSelection<Prisma.$UserClassPayload>;
+export type AggregateUserClass = {
+    _count: UserClassCountAggregateOutputType | null;
+    _avg: UserClassAvgAggregateOutputType | null;
+    _sum: UserClassSumAggregateOutputType | null;
+    _min: UserClassMinAggregateOutputType | null;
+    _max: UserClassMaxAggregateOutputType | null;
+};
+export type UserClassAvgAggregateOutputType = {
+    user_id: number | null;
+    class_stream_section_id: number | null;
+};
+export type UserClassSumAggregateOutputType = {
+    user_id: number | null;
+    class_stream_section_id: number | null;
+};
+export type UserClassMinAggregateOutputType = {
+    user_id: number | null;
+    class_stream_section_id: number | null;
+};
+export type UserClassMaxAggregateOutputType = {
+    user_id: number | null;
+    class_stream_section_id: number | null;
+};
+export type UserClassCountAggregateOutputType = {
+    user_id: number;
+    class_stream_section_id: number;
+    _all: number;
+};
+export type UserClassAvgAggregateInputType = {
+    user_id?: true;
+    class_stream_section_id?: true;
+};
+export type UserClassSumAggregateInputType = {
+    user_id?: true;
+    class_stream_section_id?: true;
+};
+export type UserClassMinAggregateInputType = {
+    user_id?: true;
+    class_stream_section_id?: true;
+};
+export type UserClassMaxAggregateInputType = {
+    user_id?: true;
+    class_stream_section_id?: true;
+};
+export type UserClassCountAggregateInputType = {
+    user_id?: true;
+    class_stream_section_id?: true;
+    _all?: true;
+};
+export type UserClassAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserClass to aggregate.
+     */
+    where?: Prisma.UserClassWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of UserClasses to fetch.
+     */
+    orderBy?: Prisma.UserClassOrderByWithRelationInput | Prisma.UserClassOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the start position
+     */
+    cursor?: Prisma.UserClassWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` UserClasses from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` UserClasses.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Count returned UserClasses
+    **/
+    _count?: true | UserClassCountAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to average
+    **/
+    _avg?: UserClassAvgAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to sum
+    **/
+    _sum?: UserClassSumAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the minimum value
+    **/
+    _min?: UserClassMinAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the maximum value
+    **/
+    _max?: UserClassMaxAggregateInputType;
+};
+export type GetUserClassAggregateType<T extends UserClassAggregateArgs> = {
+    [P in keyof T & keyof AggregateUserClass]: P extends '_count' | 'count' ? T[P] extends true ? number : Prisma.GetScalarType<T[P], AggregateUserClass[P]> : Prisma.GetScalarType<T[P], AggregateUserClass[P]>;
+};
+export type UserClassGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    where?: Prisma.UserClassWhereInput;
+    orderBy?: Prisma.UserClassOrderByWithAggregationInput | Prisma.UserClassOrderByWithAggregationInput[];
+    by: Prisma.UserClassScalarFieldEnum[] | Prisma.UserClassScalarFieldEnum;
+    having?: Prisma.UserClassScalarWhereWithAggregatesInput;
+    take?: number;
+    skip?: number;
+    _count?: UserClassCountAggregateInputType | true;
+    _avg?: UserClassAvgAggregateInputType;
+    _sum?: UserClassSumAggregateInputType;
+    _min?: UserClassMinAggregateInputType;
+    _max?: UserClassMaxAggregateInputType;
+};
+export type UserClassGroupByOutputType = {
+    user_id: number;
+    class_stream_section_id: number;
+    _count: UserClassCountAggregateOutputType | null;
+    _avg: UserClassAvgAggregateOutputType | null;
+    _sum: UserClassSumAggregateOutputType | null;
+    _min: UserClassMinAggregateOutputType | null;
+    _max: UserClassMaxAggregateOutputType | null;
+};
+export type GetUserClassGroupByPayload<T extends UserClassGroupByArgs> = Prisma.PrismaPromise<Array<Prisma.PickEnumerable<UserClassGroupByOutputType, T['by']> & {
+    [P in ((keyof T) & (keyof UserClassGroupByOutputType))]: P extends '_count' ? T[P] extends boolean ? number : Prisma.GetScalarType<T[P], UserClassGroupByOutputType[P]> : Prisma.GetScalarType<T[P], UserClassGroupByOutputType[P]>;
+}>>;
+export type UserClassWhereInput = {
+    AND?: Prisma.UserClassWhereInput | Prisma.UserClassWhereInput[];
+    OR?: Prisma.UserClassWhereInput[];
+    NOT?: Prisma.UserClassWhereInput | Prisma.UserClassWhereInput[];
+    user_id?: Prisma.IntFilter<"UserClass"> | number;
+    class_stream_section_id?: Prisma.IntFilter<"UserClass"> | number;
+    user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
+    class_stream_section?: Prisma.XOR<Prisma.ClassStreamSectionScalarRelationFilter, Prisma.ClassStreamSectionWhereInput>;
+};
+export type UserClassOrderByWithRelationInput = {
+    user_id?: Prisma.SortOrder;
+    class_stream_section_id?: Prisma.SortOrder;
+    user?: Prisma.UserOrderByWithRelationInput;
+    class_stream_section?: Prisma.ClassStreamSectionOrderByWithRelationInput;
+};
+export type UserClassWhereUniqueInput = Prisma.AtLeast<{
+    user_id_class_stream_section_id?: Prisma.UserClassUser_idClass_stream_section_idCompoundUniqueInput;
+    AND?: Prisma.UserClassWhereInput | Prisma.UserClassWhereInput[];
+    OR?: Prisma.UserClassWhereInput[];
+    NOT?: Prisma.UserClassWhereInput | Prisma.UserClassWhereInput[];
+    user_id?: Prisma.IntFilter<"UserClass"> | number;
+    class_stream_section_id?: Prisma.IntFilter<"UserClass"> | number;
+    user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
+    class_stream_section?: Prisma.XOR<Prisma.ClassStreamSectionScalarRelationFilter, Prisma.ClassStreamSectionWhereInput>;
+}, "user_id_class_stream_section_id">;
+export type UserClassOrderByWithAggregationInput = {
+    user_id?: Prisma.SortOrder;
+    class_stream_section_id?: Prisma.SortOrder;
+    _count?: Prisma.UserClassCountOrderByAggregateInput;
+    _avg?: Prisma.UserClassAvgOrderByAggregateInput;
+    _max?: Prisma.UserClassMaxOrderByAggregateInput;
+    _min?: Prisma.UserClassMinOrderByAggregateInput;
+    _sum?: Prisma.UserClassSumOrderByAggregateInput;
+};
+export type UserClassScalarWhereWithAggregatesInput = {
+    AND?: Prisma.UserClassScalarWhereWithAggregatesInput | Prisma.UserClassScalarWhereWithAggregatesInput[];
+    OR?: Prisma.UserClassScalarWhereWithAggregatesInput[];
+    NOT?: Prisma.UserClassScalarWhereWithAggregatesInput | Prisma.UserClassScalarWhereWithAggregatesInput[];
+    user_id?: Prisma.IntWithAggregatesFilter<"UserClass"> | number;
+    class_stream_section_id?: Prisma.IntWithAggregatesFilter<"UserClass"> | number;
+};
+export type UserClassCreateInput = {
+    user: Prisma.UserCreateNestedOneWithoutUser_classesInput;
+    class_stream_section: Prisma.ClassStreamSectionCreateNestedOneWithoutUser_classesInput;
+};
+export type UserClassUncheckedCreateInput = {
+    user_id: number;
+    class_stream_section_id: number;
+};
+export type UserClassUpdateInput = {
+    user?: Prisma.UserUpdateOneRequiredWithoutUser_classesNestedInput;
+    class_stream_section?: Prisma.ClassStreamSectionUpdateOneRequiredWithoutUser_classesNestedInput;
+};
+export type UserClassUncheckedUpdateInput = {
+    user_id?: Prisma.IntFieldUpdateOperationsInput | number;
+    class_stream_section_id?: Prisma.IntFieldUpdateOperationsInput | number;
+};
+export type UserClassCreateManyInput = {
+    user_id: number;
+    class_stream_section_id: number;
+};
+export type UserClassUpdateManyMutationInput = {};
+export type UserClassUncheckedUpdateManyInput = {
+    user_id?: Prisma.IntFieldUpdateOperationsInput | number;
+    class_stream_section_id?: Prisma.IntFieldUpdateOperationsInput | number;
+};
+export type UserClassListRelationFilter = {
+    every?: Prisma.UserClassWhereInput;
+    some?: Prisma.UserClassWhereInput;
+    none?: Prisma.UserClassWhereInput;
+};
+export type UserClassOrderByRelationAggregateInput = {
+    _count?: Prisma.SortOrder;
+};
+export type UserClassUser_idClass_stream_section_idCompoundUniqueInput = {
+    user_id: number;
+    class_stream_section_id: number;
+};
+export type UserClassCountOrderByAggregateInput = {
+    user_id?: Prisma.SortOrder;
+    class_stream_section_id?: Prisma.SortOrder;
+};
+export type UserClassAvgOrderByAggregateInput = {
+    user_id?: Prisma.SortOrder;
+    class_stream_section_id?: Prisma.SortOrder;
+};
+export type UserClassMaxOrderByAggregateInput = {
+    user_id?: Prisma.SortOrder;
+    class_stream_section_id?: Prisma.SortOrder;
+};
+export type UserClassMinOrderByAggregateInput = {
+    user_id?: Prisma.SortOrder;
+    class_stream_section_id?: Prisma.SortOrder;
+};
+export type UserClassSumOrderByAggregateInput = {
+    user_id?: Prisma.SortOrder;
+    class_stream_section_id?: Prisma.SortOrder;
+};
+export type UserClassCreateNestedManyWithoutClass_stream_sectionInput = {
+    create?: Prisma.XOR<Prisma.UserClassCreateWithoutClass_stream_sectionInput, Prisma.UserClassUncheckedCreateWithoutClass_stream_sectionInput> | Prisma.UserClassCreateWithoutClass_stream_sectionInput[] | Prisma.UserClassUncheckedCreateWithoutClass_stream_sectionInput[];
+    connectOrCreate?: Prisma.UserClassCreateOrConnectWithoutClass_stream_sectionInput | Prisma.UserClassCreateOrConnectWithoutClass_stream_sectionInput[];
+    createMany?: Prisma.UserClassCreateManyClass_stream_sectionInputEnvelope;
+    connect?: Prisma.UserClassWhereUniqueInput | Prisma.UserClassWhereUniqueInput[];
+};
+export type UserClassUncheckedCreateNestedManyWithoutClass_stream_sectionInput = {
+    create?: Prisma.XOR<Prisma.UserClassCreateWithoutClass_stream_sectionInput, Prisma.UserClassUncheckedCreateWithoutClass_stream_sectionInput> | Prisma.UserClassCreateWithoutClass_stream_sectionInput[] | Prisma.UserClassUncheckedCreateWithoutClass_stream_sectionInput[];
+    connectOrCreate?: Prisma.UserClassCreateOrConnectWithoutClass_stream_sectionInput | Prisma.UserClassCreateOrConnectWithoutClass_stream_sectionInput[];
+    createMany?: Prisma.UserClassCreateManyClass_stream_sectionInputEnvelope;
+    connect?: Prisma.UserClassWhereUniqueInput | Prisma.UserClassWhereUniqueInput[];
+};
+export type UserClassUpdateManyWithoutClass_stream_sectionNestedInput = {
+    create?: Prisma.XOR<Prisma.UserClassCreateWithoutClass_stream_sectionInput, Prisma.UserClassUncheckedCreateWithoutClass_stream_sectionInput> | Prisma.UserClassCreateWithoutClass_stream_sectionInput[] | Prisma.UserClassUncheckedCreateWithoutClass_stream_sectionInput[];
+    connectOrCreate?: Prisma.UserClassCreateOrConnectWithoutClass_stream_sectionInput | Prisma.UserClassCreateOrConnectWithoutClass_stream_sectionInput[];
+    upsert?: Prisma.UserClassUpsertWithWhereUniqueWithoutClass_stream_sectionInput | Prisma.UserClassUpsertWithWhereUniqueWithoutClass_stream_sectionInput[];
+    createMany?: Prisma.UserClassCreateManyClass_stream_sectionInputEnvelope;
+    set?: Prisma.UserClassWhereUniqueInput | Prisma.UserClassWhereUniqueInput[];
+    disconnect?: Prisma.UserClassWhereUniqueInput | Prisma.UserClassWhereUniqueInput[];
+    delete?: Prisma.UserClassWhereUniqueInput | Prisma.UserClassWhereUniqueInput[];
+    connect?: Prisma.UserClassWhereUniqueInput | Prisma.UserClassWhereUniqueInput[];
+    update?: Prisma.UserClassUpdateWithWhereUniqueWithoutClass_stream_sectionInput | Prisma.UserClassUpdateWithWhereUniqueWithoutClass_stream_sectionInput[];
+    updateMany?: Prisma.UserClassUpdateManyWithWhereWithoutClass_stream_sectionInput | Prisma.UserClassUpdateManyWithWhereWithoutClass_stream_sectionInput[];
+    deleteMany?: Prisma.UserClassScalarWhereInput | Prisma.UserClassScalarWhereInput[];
+};
+export type UserClassUncheckedUpdateManyWithoutClass_stream_sectionNestedInput = {
+    create?: Prisma.XOR<Prisma.UserClassCreateWithoutClass_stream_sectionInput, Prisma.UserClassUncheckedCreateWithoutClass_stream_sectionInput> | Prisma.UserClassCreateWithoutClass_stream_sectionInput[] | Prisma.UserClassUncheckedCreateWithoutClass_stream_sectionInput[];
+    connectOrCreate?: Prisma.UserClassCreateOrConnectWithoutClass_stream_sectionInput | Prisma.UserClassCreateOrConnectWithoutClass_stream_sectionInput[];
+    upsert?: Prisma.UserClassUpsertWithWhereUniqueWithoutClass_stream_sectionInput | Prisma.UserClassUpsertWithWhereUniqueWithoutClass_stream_sectionInput[];
+    createMany?: Prisma.UserClassCreateManyClass_stream_sectionInputEnvelope;
+    set?: Prisma.UserClassWhereUniqueInput | Prisma.UserClassWhereUniqueInput[];
+    disconnect?: Prisma.UserClassWhereUniqueInput | Prisma.UserClassWhereUniqueInput[];
+    delete?: Prisma.UserClassWhereUniqueInput | Prisma.UserClassWhereUniqueInput[];
+    connect?: Prisma.UserClassWhereUniqueInput | Prisma.UserClassWhereUniqueInput[];
+    update?: Prisma.UserClassUpdateWithWhereUniqueWithoutClass_stream_sectionInput | Prisma.UserClassUpdateWithWhereUniqueWithoutClass_stream_sectionInput[];
+    updateMany?: Prisma.UserClassUpdateManyWithWhereWithoutClass_stream_sectionInput | Prisma.UserClassUpdateManyWithWhereWithoutClass_stream_sectionInput[];
+    deleteMany?: Prisma.UserClassScalarWhereInput | Prisma.UserClassScalarWhereInput[];
+};
+export type UserClassCreateNestedManyWithoutUserInput = {
+    create?: Prisma.XOR<Prisma.UserClassCreateWithoutUserInput, Prisma.UserClassUncheckedCreateWithoutUserInput> | Prisma.UserClassCreateWithoutUserInput[] | Prisma.UserClassUncheckedCreateWithoutUserInput[];
+    connectOrCreate?: Prisma.UserClassCreateOrConnectWithoutUserInput | Prisma.UserClassCreateOrConnectWithoutUserInput[];
+    createMany?: Prisma.UserClassCreateManyUserInputEnvelope;
+    connect?: Prisma.UserClassWhereUniqueInput | Prisma.UserClassWhereUniqueInput[];
+};
+export type UserClassUncheckedCreateNestedManyWithoutUserInput = {
+    create?: Prisma.XOR<Prisma.UserClassCreateWithoutUserInput, Prisma.UserClassUncheckedCreateWithoutUserInput> | Prisma.UserClassCreateWithoutUserInput[] | Prisma.UserClassUncheckedCreateWithoutUserInput[];
+    connectOrCreate?: Prisma.UserClassCreateOrConnectWithoutUserInput | Prisma.UserClassCreateOrConnectWithoutUserInput[];
+    createMany?: Prisma.UserClassCreateManyUserInputEnvelope;
+    connect?: Prisma.UserClassWhereUniqueInput | Prisma.UserClassWhereUniqueInput[];
+};
+export type UserClassUpdateManyWithoutUserNestedInput = {
+    create?: Prisma.XOR<Prisma.UserClassCreateWithoutUserInput, Prisma.UserClassUncheckedCreateWithoutUserInput> | Prisma.UserClassCreateWithoutUserInput[] | Prisma.UserClassUncheckedCreateWithoutUserInput[];
+    connectOrCreate?: Prisma.UserClassCreateOrConnectWithoutUserInput | Prisma.UserClassCreateOrConnectWithoutUserInput[];
+    upsert?: Prisma.UserClassUpsertWithWhereUniqueWithoutUserInput | Prisma.UserClassUpsertWithWhereUniqueWithoutUserInput[];
+    createMany?: Prisma.UserClassCreateManyUserInputEnvelope;
+    set?: Prisma.UserClassWhereUniqueInput | Prisma.UserClassWhereUniqueInput[];
+    disconnect?: Prisma.UserClassWhereUniqueInput | Prisma.UserClassWhereUniqueInput[];
+    delete?: Prisma.UserClassWhereUniqueInput | Prisma.UserClassWhereUniqueInput[];
+    connect?: Prisma.UserClassWhereUniqueInput | Prisma.UserClassWhereUniqueInput[];
+    update?: Prisma.UserClassUpdateWithWhereUniqueWithoutUserInput | Prisma.UserClassUpdateWithWhereUniqueWithoutUserInput[];
+    updateMany?: Prisma.UserClassUpdateManyWithWhereWithoutUserInput | Prisma.UserClassUpdateManyWithWhereWithoutUserInput[];
+    deleteMany?: Prisma.UserClassScalarWhereInput | Prisma.UserClassScalarWhereInput[];
+};
+export type UserClassUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: Prisma.XOR<Prisma.UserClassCreateWithoutUserInput, Prisma.UserClassUncheckedCreateWithoutUserInput> | Prisma.UserClassCreateWithoutUserInput[] | Prisma.UserClassUncheckedCreateWithoutUserInput[];
+    connectOrCreate?: Prisma.UserClassCreateOrConnectWithoutUserInput | Prisma.UserClassCreateOrConnectWithoutUserInput[];
+    upsert?: Prisma.UserClassUpsertWithWhereUniqueWithoutUserInput | Prisma.UserClassUpsertWithWhereUniqueWithoutUserInput[];
+    createMany?: Prisma.UserClassCreateManyUserInputEnvelope;
+    set?: Prisma.UserClassWhereUniqueInput | Prisma.UserClassWhereUniqueInput[];
+    disconnect?: Prisma.UserClassWhereUniqueInput | Prisma.UserClassWhereUniqueInput[];
+    delete?: Prisma.UserClassWhereUniqueInput | Prisma.UserClassWhereUniqueInput[];
+    connect?: Prisma.UserClassWhereUniqueInput | Prisma.UserClassWhereUniqueInput[];
+    update?: Prisma.UserClassUpdateWithWhereUniqueWithoutUserInput | Prisma.UserClassUpdateWithWhereUniqueWithoutUserInput[];
+    updateMany?: Prisma.UserClassUpdateManyWithWhereWithoutUserInput | Prisma.UserClassUpdateManyWithWhereWithoutUserInput[];
+    deleteMany?: Prisma.UserClassScalarWhereInput | Prisma.UserClassScalarWhereInput[];
+};
+export type UserClassCreateWithoutClass_stream_sectionInput = {
+    user: Prisma.UserCreateNestedOneWithoutUser_classesInput;
+};
+export type UserClassUncheckedCreateWithoutClass_stream_sectionInput = {
+    user_id: number;
+};
+export type UserClassCreateOrConnectWithoutClass_stream_sectionInput = {
+    where: Prisma.UserClassWhereUniqueInput;
+    create: Prisma.XOR<Prisma.UserClassCreateWithoutClass_stream_sectionInput, Prisma.UserClassUncheckedCreateWithoutClass_stream_sectionInput>;
+};
+export type UserClassCreateManyClass_stream_sectionInputEnvelope = {
+    data: Prisma.UserClassCreateManyClass_stream_sectionInput | Prisma.UserClassCreateManyClass_stream_sectionInput[];
+    skipDuplicates?: boolean;
+};
+export type UserClassUpsertWithWhereUniqueWithoutClass_stream_sectionInput = {
+    where: Prisma.UserClassWhereUniqueInput;
+    update: Prisma.XOR<Prisma.UserClassUpdateWithoutClass_stream_sectionInput, Prisma.UserClassUncheckedUpdateWithoutClass_stream_sectionInput>;
+    create: Prisma.XOR<Prisma.UserClassCreateWithoutClass_stream_sectionInput, Prisma.UserClassUncheckedCreateWithoutClass_stream_sectionInput>;
+};
+export type UserClassUpdateWithWhereUniqueWithoutClass_stream_sectionInput = {
+    where: Prisma.UserClassWhereUniqueInput;
+    data: Prisma.XOR<Prisma.UserClassUpdateWithoutClass_stream_sectionInput, Prisma.UserClassUncheckedUpdateWithoutClass_stream_sectionInput>;
+};
+export type UserClassUpdateManyWithWhereWithoutClass_stream_sectionInput = {
+    where: Prisma.UserClassScalarWhereInput;
+    data: Prisma.XOR<Prisma.UserClassUpdateManyMutationInput, Prisma.UserClassUncheckedUpdateManyWithoutClass_stream_sectionInput>;
+};
+export type UserClassScalarWhereInput = {
+    AND?: Prisma.UserClassScalarWhereInput | Prisma.UserClassScalarWhereInput[];
+    OR?: Prisma.UserClassScalarWhereInput[];
+    NOT?: Prisma.UserClassScalarWhereInput | Prisma.UserClassScalarWhereInput[];
+    user_id?: Prisma.IntFilter<"UserClass"> | number;
+    class_stream_section_id?: Prisma.IntFilter<"UserClass"> | number;
+};
+export type UserClassCreateWithoutUserInput = {
+    class_stream_section: Prisma.ClassStreamSectionCreateNestedOneWithoutUser_classesInput;
+};
+export type UserClassUncheckedCreateWithoutUserInput = {
+    class_stream_section_id: number;
+};
+export type UserClassCreateOrConnectWithoutUserInput = {
+    where: Prisma.UserClassWhereUniqueInput;
+    create: Prisma.XOR<Prisma.UserClassCreateWithoutUserInput, Prisma.UserClassUncheckedCreateWithoutUserInput>;
+};
+export type UserClassCreateManyUserInputEnvelope = {
+    data: Prisma.UserClassCreateManyUserInput | Prisma.UserClassCreateManyUserInput[];
+    skipDuplicates?: boolean;
+};
+export type UserClassUpsertWithWhereUniqueWithoutUserInput = {
+    where: Prisma.UserClassWhereUniqueInput;
+    update: Prisma.XOR<Prisma.UserClassUpdateWithoutUserInput, Prisma.UserClassUncheckedUpdateWithoutUserInput>;
+    create: Prisma.XOR<Prisma.UserClassCreateWithoutUserInput, Prisma.UserClassUncheckedCreateWithoutUserInput>;
+};
+export type UserClassUpdateWithWhereUniqueWithoutUserInput = {
+    where: Prisma.UserClassWhereUniqueInput;
+    data: Prisma.XOR<Prisma.UserClassUpdateWithoutUserInput, Prisma.UserClassUncheckedUpdateWithoutUserInput>;
+};
+export type UserClassUpdateManyWithWhereWithoutUserInput = {
+    where: Prisma.UserClassScalarWhereInput;
+    data: Prisma.XOR<Prisma.UserClassUpdateManyMutationInput, Prisma.UserClassUncheckedUpdateManyWithoutUserInput>;
+};
+export type UserClassCreateManyClass_stream_sectionInput = {
+    user_id: number;
+};
+export type UserClassUpdateWithoutClass_stream_sectionInput = {
+    user?: Prisma.UserUpdateOneRequiredWithoutUser_classesNestedInput;
+};
+export type UserClassUncheckedUpdateWithoutClass_stream_sectionInput = {
+    user_id?: Prisma.IntFieldUpdateOperationsInput | number;
+};
+export type UserClassUncheckedUpdateManyWithoutClass_stream_sectionInput = {
+    user_id?: Prisma.IntFieldUpdateOperationsInput | number;
+};
+export type UserClassCreateManyUserInput = {
+    class_stream_section_id: number;
+};
+export type UserClassUpdateWithoutUserInput = {
+    class_stream_section?: Prisma.ClassStreamSectionUpdateOneRequiredWithoutUser_classesNestedInput;
+};
+export type UserClassUncheckedUpdateWithoutUserInput = {
+    class_stream_section_id?: Prisma.IntFieldUpdateOperationsInput | number;
+};
+export type UserClassUncheckedUpdateManyWithoutUserInput = {
+    class_stream_section_id?: Prisma.IntFieldUpdateOperationsInput | number;
+};
+export type UserClassSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+    user_id?: boolean;
+    class_stream_section_id?: boolean;
+    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+    class_stream_section?: boolean | Prisma.ClassStreamSectionDefaultArgs<ExtArgs>;
+}, ExtArgs["result"]["userClass"]>;
+export type UserClassSelectScalar = {
+    user_id?: boolean;
+    class_stream_section_id?: boolean;
+};
+export type UserClassOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"user_id" | "class_stream_section_id", ExtArgs["result"]["userClass"]>;
+export type UserClassInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+    class_stream_section?: boolean | Prisma.ClassStreamSectionDefaultArgs<ExtArgs>;
+};
+export type $UserClassPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    name: "UserClass";
+    objects: {
+        user: Prisma.$UserPayload<ExtArgs>;
+        class_stream_section: Prisma.$ClassStreamSectionPayload<ExtArgs>;
+    };
+    scalars: runtime.Types.Extensions.GetPayloadResult<{
+        user_id: number;
+        class_stream_section_id: number;
+    }, ExtArgs["result"]["userClass"]>;
+    composites: {};
+};
+export type UserClassGetPayload<S extends boolean | null | undefined | UserClassDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$UserClassPayload, S>;
+export type UserClassCountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = Omit<UserClassFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+    select?: UserClassCountAggregateInputType | true;
+};
+export interface UserClassDelegate<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: {
+        types: Prisma.TypeMap<ExtArgs>['model']['UserClass'];
+        meta: {
+            name: 'UserClass';
+        };
+    };
+    /**
+     * Find zero or one UserClass that matches the filter.
+     * @param {UserClassFindUniqueArgs} args - Arguments to find a UserClass
+     * @example
+     * // Get one UserClass
+     * const userClass = await prisma.userClass.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UserClassFindUniqueArgs>(args: Prisma.SelectSubset<T, UserClassFindUniqueArgs<ExtArgs>>): Prisma.Prisma__UserClassClient<runtime.Types.Result.GetResult<Prisma.$UserClassPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find one UserClass that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {UserClassFindUniqueOrThrowArgs} args - Arguments to find a UserClass
+     * @example
+     * // Get one UserClass
+     * const userClass = await prisma.userClass.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UserClassFindUniqueOrThrowArgs>(args: Prisma.SelectSubset<T, UserClassFindUniqueOrThrowArgs<ExtArgs>>): Prisma.Prisma__UserClassClient<runtime.Types.Result.GetResult<Prisma.$UserClassPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find the first UserClass that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserClassFindFirstArgs} args - Arguments to find a UserClass
+     * @example
+     * // Get one UserClass
+     * const userClass = await prisma.userClass.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UserClassFindFirstArgs>(args?: Prisma.SelectSubset<T, UserClassFindFirstArgs<ExtArgs>>): Prisma.Prisma__UserClassClient<runtime.Types.Result.GetResult<Prisma.$UserClassPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find the first UserClass that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserClassFindFirstOrThrowArgs} args - Arguments to find a UserClass
+     * @example
+     * // Get one UserClass
+     * const userClass = await prisma.userClass.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UserClassFindFirstOrThrowArgs>(args?: Prisma.SelectSubset<T, UserClassFindFirstOrThrowArgs<ExtArgs>>): Prisma.Prisma__UserClassClient<runtime.Types.Result.GetResult<Prisma.$UserClassPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find zero or more UserClasses that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserClassFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all UserClasses
+     * const userClasses = await prisma.userClass.findMany()
+     *
+     * // Get first 10 UserClasses
+     * const userClasses = await prisma.userClass.findMany({ take: 10 })
+     *
+     * // Only select the `user_id`
+     * const userClassWithUser_idOnly = await prisma.userClass.findMany({ select: { user_id: true } })
+     *
+     */
+    findMany<T extends UserClassFindManyArgs>(args?: Prisma.SelectSubset<T, UserClassFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserClassPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>;
+    /**
+     * Create a UserClass.
+     * @param {UserClassCreateArgs} args - Arguments to create a UserClass.
+     * @example
+     * // Create one UserClass
+     * const UserClass = await prisma.userClass.create({
+     *   data: {
+     *     // ... data to create a UserClass
+     *   }
+     * })
+     *
+     */
+    create<T extends UserClassCreateArgs>(args: Prisma.SelectSubset<T, UserClassCreateArgs<ExtArgs>>): Prisma.Prisma__UserClassClient<runtime.Types.Result.GetResult<Prisma.$UserClassPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Create many UserClasses.
+     * @param {UserClassCreateManyArgs} args - Arguments to create many UserClasses.
+     * @example
+     * // Create many UserClasses
+     * const userClass = await prisma.userClass.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     */
+    createMany<T extends UserClassCreateManyArgs>(args?: Prisma.SelectSubset<T, UserClassCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>;
+    /**
+     * Delete a UserClass.
+     * @param {UserClassDeleteArgs} args - Arguments to delete one UserClass.
+     * @example
+     * // Delete one UserClass
+     * const UserClass = await prisma.userClass.delete({
+     *   where: {
+     *     // ... filter to delete one UserClass
+     *   }
+     * })
+     *
+     */
+    delete<T extends UserClassDeleteArgs>(args: Prisma.SelectSubset<T, UserClassDeleteArgs<ExtArgs>>): Prisma.Prisma__UserClassClient<runtime.Types.Result.GetResult<Prisma.$UserClassPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Update one UserClass.
+     * @param {UserClassUpdateArgs} args - Arguments to update one UserClass.
+     * @example
+     * // Update one UserClass
+     * const userClass = await prisma.userClass.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    update<T extends UserClassUpdateArgs>(args: Prisma.SelectSubset<T, UserClassUpdateArgs<ExtArgs>>): Prisma.Prisma__UserClassClient<runtime.Types.Result.GetResult<Prisma.$UserClassPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Delete zero or more UserClasses.
+     * @param {UserClassDeleteManyArgs} args - Arguments to filter UserClasses to delete.
+     * @example
+     * // Delete a few UserClasses
+     * const { count } = await prisma.userClass.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     *
+     */
+    deleteMany<T extends UserClassDeleteManyArgs>(args?: Prisma.SelectSubset<T, UserClassDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>;
+    /**
+     * Update zero or more UserClasses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserClassUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many UserClasses
+     * const userClass = await prisma.userClass.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    updateMany<T extends UserClassUpdateManyArgs>(args: Prisma.SelectSubset<T, UserClassUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>;
+    /**
+     * Create or update one UserClass.
+     * @param {UserClassUpsertArgs} args - Arguments to update or create a UserClass.
+     * @example
+     * // Update or create a UserClass
+     * const userClass = await prisma.userClass.upsert({
+     *   create: {
+     *     // ... data to create a UserClass
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the UserClass we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UserClassUpsertArgs>(args: Prisma.SelectSubset<T, UserClassUpsertArgs<ExtArgs>>): Prisma.Prisma__UserClassClient<runtime.Types.Result.GetResult<Prisma.$UserClassPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Count the number of UserClasses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserClassCountArgs} args - Arguments to filter UserClasses to count.
+     * @example
+     * // Count the number of UserClasses
+     * const count = await prisma.userClass.count({
+     *   where: {
+     *     // ... the filter for the UserClasses we want to count
+     *   }
+     * })
+    **/
+    count<T extends UserClassCountArgs>(args?: Prisma.Subset<T, UserClassCountArgs>): Prisma.PrismaPromise<T extends runtime.Types.Utils.Record<'select', any> ? T['select'] extends true ? number : Prisma.GetScalarType<T['select'], UserClassCountAggregateOutputType> : number>;
+    /**
+     * Allows you to perform aggregations operations on a UserClass.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserClassAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UserClassAggregateArgs>(args: Prisma.Subset<T, UserClassAggregateArgs>): Prisma.PrismaPromise<GetUserClassAggregateType<T>>;
+    /**
+     * Group by UserClass.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserClassGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     *
+    **/
+    groupBy<T extends UserClassGroupByArgs, HasSelectOrTake extends Prisma.Or<Prisma.Extends<'skip', Prisma.Keys<T>>, Prisma.Extends<'take', Prisma.Keys<T>>>, OrderByArg extends Prisma.True extends HasSelectOrTake ? {
+        orderBy: UserClassGroupByArgs['orderBy'];
+    } : {
+        orderBy?: UserClassGroupByArgs['orderBy'];
+    }, OrderFields extends Prisma.ExcludeUnderscoreKeys<Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>>, ByFields extends Prisma.MaybeTupleToUnion<T['by']>, ByValid extends Prisma.Has<ByFields, OrderFields>, HavingFields extends Prisma.GetHavingFields<T['having']>, HavingValid extends Prisma.Has<ByFields, HavingFields>, ByEmpty extends T['by'] extends never[] ? Prisma.True : Prisma.False, InputErrors extends ByEmpty extends Prisma.True ? `Error: "by" must not be empty.` : HavingValid extends Prisma.False ? {
+        [P in HavingFields]: P extends ByFields ? never : P extends string ? `Error: Field "${P}" used in "having" needs to be provided in "by".` : [
+            Error,
+            'Field ',
+            P,
+            ` in "having" needs to be provided in "by"`
+        ];
+    }[HavingFields] : 'take' extends Prisma.Keys<T> ? 'orderBy' extends Prisma.Keys<T> ? ByValid extends Prisma.True ? {} : {
+        [P in OrderFields]: P extends ByFields ? never : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+    }[OrderFields] : 'Error: If you provide "take", you also need to provide "orderBy"' : 'skip' extends Prisma.Keys<T> ? 'orderBy' extends Prisma.Keys<T> ? ByValid extends Prisma.True ? {} : {
+        [P in OrderFields]: P extends ByFields ? never : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+    }[OrderFields] : 'Error: If you provide "skip", you also need to provide "orderBy"' : ByValid extends Prisma.True ? {} : {
+        [P in OrderFields]: P extends ByFields ? never : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+    }[OrderFields]>(args: Prisma.SubsetIntersection<T, UserClassGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserClassGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>;
+    /**
+     * Fields of the UserClass model
+     */
+    readonly fields: UserClassFieldRefs;
+}
+/**
+ * The delegate class that acts as a "Promise-like" for UserClass.
+ * Why is this prefixed with `Prisma__`?
+ * Because we want to prevent naming conflicts as mentioned in
+ * https://github.com/prisma/prisma-client-js/issues/707
+ */
+export interface Prisma__UserClassClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise";
+    user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
+    class_stream_section<T extends Prisma.ClassStreamSectionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClassStreamSectionDefaultArgs<ExtArgs>>): Prisma.Prisma__ClassStreamSectionClient<runtime.Types.Result.GetResult<Prisma.$ClassStreamSectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): runtime.Types.Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): runtime.Types.Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): runtime.Types.Utils.JsPromise<T>;
+}
+/**
+ * Fields of the UserClass model
+ */
+export interface UserClassFieldRefs {
+    readonly user_id: Prisma.FieldRef<"UserClass", 'Int'>;
+    readonly class_stream_section_id: Prisma.FieldRef<"UserClass", 'Int'>;
+}
+/**
+ * UserClass findUnique
+ */
+export type UserClassFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserClass
+     */
+    select?: Prisma.UserClassSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the UserClass
+     */
+    omit?: Prisma.UserClassOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.UserClassInclude<ExtArgs> | null;
+    /**
+     * Filter, which UserClass to fetch.
+     */
+    where: Prisma.UserClassWhereUniqueInput;
+};
+/**
+ * UserClass findUniqueOrThrow
+ */
+export type UserClassFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserClass
+     */
+    select?: Prisma.UserClassSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the UserClass
+     */
+    omit?: Prisma.UserClassOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.UserClassInclude<ExtArgs> | null;
+    /**
+     * Filter, which UserClass to fetch.
+     */
+    where: Prisma.UserClassWhereUniqueInput;
+};
+/**
+ * UserClass findFirst
+ */
+export type UserClassFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserClass
+     */
+    select?: Prisma.UserClassSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the UserClass
+     */
+    omit?: Prisma.UserClassOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.UserClassInclude<ExtArgs> | null;
+    /**
+     * Filter, which UserClass to fetch.
+     */
+    where?: Prisma.UserClassWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of UserClasses to fetch.
+     */
+    orderBy?: Prisma.UserClassOrderByWithRelationInput | Prisma.UserClassOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for UserClasses.
+     */
+    cursor?: Prisma.UserClassWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` UserClasses from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` UserClasses.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of UserClasses.
+     */
+    distinct?: Prisma.UserClassScalarFieldEnum | Prisma.UserClassScalarFieldEnum[];
+};
+/**
+ * UserClass findFirstOrThrow
+ */
+export type UserClassFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserClass
+     */
+    select?: Prisma.UserClassSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the UserClass
+     */
+    omit?: Prisma.UserClassOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.UserClassInclude<ExtArgs> | null;
+    /**
+     * Filter, which UserClass to fetch.
+     */
+    where?: Prisma.UserClassWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of UserClasses to fetch.
+     */
+    orderBy?: Prisma.UserClassOrderByWithRelationInput | Prisma.UserClassOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for UserClasses.
+     */
+    cursor?: Prisma.UserClassWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` UserClasses from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` UserClasses.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of UserClasses.
+     */
+    distinct?: Prisma.UserClassScalarFieldEnum | Prisma.UserClassScalarFieldEnum[];
+};
+/**
+ * UserClass findMany
+ */
+export type UserClassFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserClass
+     */
+    select?: Prisma.UserClassSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the UserClass
+     */
+    omit?: Prisma.UserClassOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.UserClassInclude<ExtArgs> | null;
+    /**
+     * Filter, which UserClasses to fetch.
+     */
+    where?: Prisma.UserClassWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of UserClasses to fetch.
+     */
+    orderBy?: Prisma.UserClassOrderByWithRelationInput | Prisma.UserClassOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for listing UserClasses.
+     */
+    cursor?: Prisma.UserClassWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` UserClasses from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` UserClasses.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of UserClasses.
+     */
+    distinct?: Prisma.UserClassScalarFieldEnum | Prisma.UserClassScalarFieldEnum[];
+};
+/**
+ * UserClass create
+ */
+export type UserClassCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserClass
+     */
+    select?: Prisma.UserClassSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the UserClass
+     */
+    omit?: Prisma.UserClassOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.UserClassInclude<ExtArgs> | null;
+    /**
+     * The data needed to create a UserClass.
+     */
+    data: Prisma.XOR<Prisma.UserClassCreateInput, Prisma.UserClassUncheckedCreateInput>;
+};
+/**
+ * UserClass createMany
+ */
+export type UserClassCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many UserClasses.
+     */
+    data: Prisma.UserClassCreateManyInput | Prisma.UserClassCreateManyInput[];
+    skipDuplicates?: boolean;
+};
+/**
+ * UserClass update
+ */
+export type UserClassUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserClass
+     */
+    select?: Prisma.UserClassSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the UserClass
+     */
+    omit?: Prisma.UserClassOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.UserClassInclude<ExtArgs> | null;
+    /**
+     * The data needed to update a UserClass.
+     */
+    data: Prisma.XOR<Prisma.UserClassUpdateInput, Prisma.UserClassUncheckedUpdateInput>;
+    /**
+     * Choose, which UserClass to update.
+     */
+    where: Prisma.UserClassWhereUniqueInput;
+};
+/**
+ * UserClass updateMany
+ */
+export type UserClassUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * The data used to update UserClasses.
+     */
+    data: Prisma.XOR<Prisma.UserClassUpdateManyMutationInput, Prisma.UserClassUncheckedUpdateManyInput>;
+    /**
+     * Filter which UserClasses to update
+     */
+    where?: Prisma.UserClassWhereInput;
+    /**
+     * Limit how many UserClasses to update.
+     */
+    limit?: number;
+};
+/**
+ * UserClass upsert
+ */
+export type UserClassUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserClass
+     */
+    select?: Prisma.UserClassSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the UserClass
+     */
+    omit?: Prisma.UserClassOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.UserClassInclude<ExtArgs> | null;
+    /**
+     * The filter to search for the UserClass to update in case it exists.
+     */
+    where: Prisma.UserClassWhereUniqueInput;
+    /**
+     * In case the UserClass found by the `where` argument doesn't exist, create a new UserClass with this data.
+     */
+    create: Prisma.XOR<Prisma.UserClassCreateInput, Prisma.UserClassUncheckedCreateInput>;
+    /**
+     * In case the UserClass was found with the provided `where` argument, update it with this data.
+     */
+    update: Prisma.XOR<Prisma.UserClassUpdateInput, Prisma.UserClassUncheckedUpdateInput>;
+};
+/**
+ * UserClass delete
+ */
+export type UserClassDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserClass
+     */
+    select?: Prisma.UserClassSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the UserClass
+     */
+    omit?: Prisma.UserClassOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.UserClassInclude<ExtArgs> | null;
+    /**
+     * Filter which UserClass to delete.
+     */
+    where: Prisma.UserClassWhereUniqueInput;
+};
+/**
+ * UserClass deleteMany
+ */
+export type UserClassDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserClasses to delete
+     */
+    where?: Prisma.UserClassWhereInput;
+    /**
+     * Limit how many UserClasses to delete.
+     */
+    limit?: number;
+};
+/**
+ * UserClass without action
+ */
+export type UserClassDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserClass
+     */
+    select?: Prisma.UserClassSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the UserClass
+     */
+    omit?: Prisma.UserClassOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.UserClassInclude<ExtArgs> | null;
+};

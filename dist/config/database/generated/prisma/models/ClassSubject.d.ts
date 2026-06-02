@@ -1,0 +1,1082 @@
+import type * as runtime from "@prisma/client/runtime/client";
+import type * as Prisma from "../internal/prismaNamespace.ts";
+/**
+ * Model ClassSubject
+ *
+ */
+export type ClassSubjectModel = runtime.Types.Result.DefaultSelection<Prisma.$ClassSubjectPayload>;
+export type AggregateClassSubject = {
+    _count: ClassSubjectCountAggregateOutputType | null;
+    _avg: ClassSubjectAvgAggregateOutputType | null;
+    _sum: ClassSubjectSumAggregateOutputType | null;
+    _min: ClassSubjectMinAggregateOutputType | null;
+    _max: ClassSubjectMaxAggregateOutputType | null;
+};
+export type ClassSubjectAvgAggregateOutputType = {
+    class_id: number | null;
+    subject_id: number | null;
+};
+export type ClassSubjectSumAggregateOutputType = {
+    class_id: number | null;
+    subject_id: number | null;
+};
+export type ClassSubjectMinAggregateOutputType = {
+    class_id: number | null;
+    subject_id: number | null;
+};
+export type ClassSubjectMaxAggregateOutputType = {
+    class_id: number | null;
+    subject_id: number | null;
+};
+export type ClassSubjectCountAggregateOutputType = {
+    class_id: number;
+    subject_id: number;
+    _all: number;
+};
+export type ClassSubjectAvgAggregateInputType = {
+    class_id?: true;
+    subject_id?: true;
+};
+export type ClassSubjectSumAggregateInputType = {
+    class_id?: true;
+    subject_id?: true;
+};
+export type ClassSubjectMinAggregateInputType = {
+    class_id?: true;
+    subject_id?: true;
+};
+export type ClassSubjectMaxAggregateInputType = {
+    class_id?: true;
+    subject_id?: true;
+};
+export type ClassSubjectCountAggregateInputType = {
+    class_id?: true;
+    subject_id?: true;
+    _all?: true;
+};
+export type ClassSubjectAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Filter which ClassSubject to aggregate.
+     */
+    where?: Prisma.ClassSubjectWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of ClassSubjects to fetch.
+     */
+    orderBy?: Prisma.ClassSubjectOrderByWithRelationInput | Prisma.ClassSubjectOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the start position
+     */
+    cursor?: Prisma.ClassSubjectWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` ClassSubjects from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` ClassSubjects.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Count returned ClassSubjects
+    **/
+    _count?: true | ClassSubjectCountAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to average
+    **/
+    _avg?: ClassSubjectAvgAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to sum
+    **/
+    _sum?: ClassSubjectSumAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the minimum value
+    **/
+    _min?: ClassSubjectMinAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the maximum value
+    **/
+    _max?: ClassSubjectMaxAggregateInputType;
+};
+export type GetClassSubjectAggregateType<T extends ClassSubjectAggregateArgs> = {
+    [P in keyof T & keyof AggregateClassSubject]: P extends '_count' | 'count' ? T[P] extends true ? number : Prisma.GetScalarType<T[P], AggregateClassSubject[P]> : Prisma.GetScalarType<T[P], AggregateClassSubject[P]>;
+};
+export type ClassSubjectGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    where?: Prisma.ClassSubjectWhereInput;
+    orderBy?: Prisma.ClassSubjectOrderByWithAggregationInput | Prisma.ClassSubjectOrderByWithAggregationInput[];
+    by: Prisma.ClassSubjectScalarFieldEnum[] | Prisma.ClassSubjectScalarFieldEnum;
+    having?: Prisma.ClassSubjectScalarWhereWithAggregatesInput;
+    take?: number;
+    skip?: number;
+    _count?: ClassSubjectCountAggregateInputType | true;
+    _avg?: ClassSubjectAvgAggregateInputType;
+    _sum?: ClassSubjectSumAggregateInputType;
+    _min?: ClassSubjectMinAggregateInputType;
+    _max?: ClassSubjectMaxAggregateInputType;
+};
+export type ClassSubjectGroupByOutputType = {
+    class_id: number;
+    subject_id: number;
+    _count: ClassSubjectCountAggregateOutputType | null;
+    _avg: ClassSubjectAvgAggregateOutputType | null;
+    _sum: ClassSubjectSumAggregateOutputType | null;
+    _min: ClassSubjectMinAggregateOutputType | null;
+    _max: ClassSubjectMaxAggregateOutputType | null;
+};
+export type GetClassSubjectGroupByPayload<T extends ClassSubjectGroupByArgs> = Prisma.PrismaPromise<Array<Prisma.PickEnumerable<ClassSubjectGroupByOutputType, T['by']> & {
+    [P in ((keyof T) & (keyof ClassSubjectGroupByOutputType))]: P extends '_count' ? T[P] extends boolean ? number : Prisma.GetScalarType<T[P], ClassSubjectGroupByOutputType[P]> : Prisma.GetScalarType<T[P], ClassSubjectGroupByOutputType[P]>;
+}>>;
+export type ClassSubjectWhereInput = {
+    AND?: Prisma.ClassSubjectWhereInput | Prisma.ClassSubjectWhereInput[];
+    OR?: Prisma.ClassSubjectWhereInput[];
+    NOT?: Prisma.ClassSubjectWhereInput | Prisma.ClassSubjectWhereInput[];
+    class_id?: Prisma.IntFilter<"ClassSubject"> | number;
+    subject_id?: Prisma.IntFilter<"ClassSubject"> | number;
+    class?: Prisma.XOR<Prisma.ClassScalarRelationFilter, Prisma.ClassWhereInput>;
+    subject?: Prisma.XOR<Prisma.SubjectScalarRelationFilter, Prisma.SubjectWhereInput>;
+};
+export type ClassSubjectOrderByWithRelationInput = {
+    class_id?: Prisma.SortOrder;
+    subject_id?: Prisma.SortOrder;
+    class?: Prisma.ClassOrderByWithRelationInput;
+    subject?: Prisma.SubjectOrderByWithRelationInput;
+};
+export type ClassSubjectWhereUniqueInput = Prisma.AtLeast<{
+    class_id_subject_id?: Prisma.ClassSubjectClass_idSubject_idCompoundUniqueInput;
+    AND?: Prisma.ClassSubjectWhereInput | Prisma.ClassSubjectWhereInput[];
+    OR?: Prisma.ClassSubjectWhereInput[];
+    NOT?: Prisma.ClassSubjectWhereInput | Prisma.ClassSubjectWhereInput[];
+    class_id?: Prisma.IntFilter<"ClassSubject"> | number;
+    subject_id?: Prisma.IntFilter<"ClassSubject"> | number;
+    class?: Prisma.XOR<Prisma.ClassScalarRelationFilter, Prisma.ClassWhereInput>;
+    subject?: Prisma.XOR<Prisma.SubjectScalarRelationFilter, Prisma.SubjectWhereInput>;
+}, "class_id_subject_id">;
+export type ClassSubjectOrderByWithAggregationInput = {
+    class_id?: Prisma.SortOrder;
+    subject_id?: Prisma.SortOrder;
+    _count?: Prisma.ClassSubjectCountOrderByAggregateInput;
+    _avg?: Prisma.ClassSubjectAvgOrderByAggregateInput;
+    _max?: Prisma.ClassSubjectMaxOrderByAggregateInput;
+    _min?: Prisma.ClassSubjectMinOrderByAggregateInput;
+    _sum?: Prisma.ClassSubjectSumOrderByAggregateInput;
+};
+export type ClassSubjectScalarWhereWithAggregatesInput = {
+    AND?: Prisma.ClassSubjectScalarWhereWithAggregatesInput | Prisma.ClassSubjectScalarWhereWithAggregatesInput[];
+    OR?: Prisma.ClassSubjectScalarWhereWithAggregatesInput[];
+    NOT?: Prisma.ClassSubjectScalarWhereWithAggregatesInput | Prisma.ClassSubjectScalarWhereWithAggregatesInput[];
+    class_id?: Prisma.IntWithAggregatesFilter<"ClassSubject"> | number;
+    subject_id?: Prisma.IntWithAggregatesFilter<"ClassSubject"> | number;
+};
+export type ClassSubjectCreateInput = {
+    class: Prisma.ClassCreateNestedOneWithoutClassSubjectsInput;
+    subject: Prisma.SubjectCreateNestedOneWithoutClass_subjectsInput;
+};
+export type ClassSubjectUncheckedCreateInput = {
+    class_id: number;
+    subject_id: number;
+};
+export type ClassSubjectUpdateInput = {
+    class?: Prisma.ClassUpdateOneRequiredWithoutClassSubjectsNestedInput;
+    subject?: Prisma.SubjectUpdateOneRequiredWithoutClass_subjectsNestedInput;
+};
+export type ClassSubjectUncheckedUpdateInput = {
+    class_id?: Prisma.IntFieldUpdateOperationsInput | number;
+    subject_id?: Prisma.IntFieldUpdateOperationsInput | number;
+};
+export type ClassSubjectCreateManyInput = {
+    class_id: number;
+    subject_id: number;
+};
+export type ClassSubjectUpdateManyMutationInput = {};
+export type ClassSubjectUncheckedUpdateManyInput = {
+    class_id?: Prisma.IntFieldUpdateOperationsInput | number;
+    subject_id?: Prisma.IntFieldUpdateOperationsInput | number;
+};
+export type ClassSubjectListRelationFilter = {
+    every?: Prisma.ClassSubjectWhereInput;
+    some?: Prisma.ClassSubjectWhereInput;
+    none?: Prisma.ClassSubjectWhereInput;
+};
+export type ClassSubjectOrderByRelationAggregateInput = {
+    _count?: Prisma.SortOrder;
+};
+export type ClassSubjectClass_idSubject_idCompoundUniqueInput = {
+    class_id: number;
+    subject_id: number;
+};
+export type ClassSubjectCountOrderByAggregateInput = {
+    class_id?: Prisma.SortOrder;
+    subject_id?: Prisma.SortOrder;
+};
+export type ClassSubjectAvgOrderByAggregateInput = {
+    class_id?: Prisma.SortOrder;
+    subject_id?: Prisma.SortOrder;
+};
+export type ClassSubjectMaxOrderByAggregateInput = {
+    class_id?: Prisma.SortOrder;
+    subject_id?: Prisma.SortOrder;
+};
+export type ClassSubjectMinOrderByAggregateInput = {
+    class_id?: Prisma.SortOrder;
+    subject_id?: Prisma.SortOrder;
+};
+export type ClassSubjectSumOrderByAggregateInput = {
+    class_id?: Prisma.SortOrder;
+    subject_id?: Prisma.SortOrder;
+};
+export type ClassSubjectCreateNestedManyWithoutClassInput = {
+    create?: Prisma.XOR<Prisma.ClassSubjectCreateWithoutClassInput, Prisma.ClassSubjectUncheckedCreateWithoutClassInput> | Prisma.ClassSubjectCreateWithoutClassInput[] | Prisma.ClassSubjectUncheckedCreateWithoutClassInput[];
+    connectOrCreate?: Prisma.ClassSubjectCreateOrConnectWithoutClassInput | Prisma.ClassSubjectCreateOrConnectWithoutClassInput[];
+    createMany?: Prisma.ClassSubjectCreateManyClassInputEnvelope;
+    connect?: Prisma.ClassSubjectWhereUniqueInput | Prisma.ClassSubjectWhereUniqueInput[];
+};
+export type ClassSubjectUncheckedCreateNestedManyWithoutClassInput = {
+    create?: Prisma.XOR<Prisma.ClassSubjectCreateWithoutClassInput, Prisma.ClassSubjectUncheckedCreateWithoutClassInput> | Prisma.ClassSubjectCreateWithoutClassInput[] | Prisma.ClassSubjectUncheckedCreateWithoutClassInput[];
+    connectOrCreate?: Prisma.ClassSubjectCreateOrConnectWithoutClassInput | Prisma.ClassSubjectCreateOrConnectWithoutClassInput[];
+    createMany?: Prisma.ClassSubjectCreateManyClassInputEnvelope;
+    connect?: Prisma.ClassSubjectWhereUniqueInput | Prisma.ClassSubjectWhereUniqueInput[];
+};
+export type ClassSubjectUpdateManyWithoutClassNestedInput = {
+    create?: Prisma.XOR<Prisma.ClassSubjectCreateWithoutClassInput, Prisma.ClassSubjectUncheckedCreateWithoutClassInput> | Prisma.ClassSubjectCreateWithoutClassInput[] | Prisma.ClassSubjectUncheckedCreateWithoutClassInput[];
+    connectOrCreate?: Prisma.ClassSubjectCreateOrConnectWithoutClassInput | Prisma.ClassSubjectCreateOrConnectWithoutClassInput[];
+    upsert?: Prisma.ClassSubjectUpsertWithWhereUniqueWithoutClassInput | Prisma.ClassSubjectUpsertWithWhereUniqueWithoutClassInput[];
+    createMany?: Prisma.ClassSubjectCreateManyClassInputEnvelope;
+    set?: Prisma.ClassSubjectWhereUniqueInput | Prisma.ClassSubjectWhereUniqueInput[];
+    disconnect?: Prisma.ClassSubjectWhereUniqueInput | Prisma.ClassSubjectWhereUniqueInput[];
+    delete?: Prisma.ClassSubjectWhereUniqueInput | Prisma.ClassSubjectWhereUniqueInput[];
+    connect?: Prisma.ClassSubjectWhereUniqueInput | Prisma.ClassSubjectWhereUniqueInput[];
+    update?: Prisma.ClassSubjectUpdateWithWhereUniqueWithoutClassInput | Prisma.ClassSubjectUpdateWithWhereUniqueWithoutClassInput[];
+    updateMany?: Prisma.ClassSubjectUpdateManyWithWhereWithoutClassInput | Prisma.ClassSubjectUpdateManyWithWhereWithoutClassInput[];
+    deleteMany?: Prisma.ClassSubjectScalarWhereInput | Prisma.ClassSubjectScalarWhereInput[];
+};
+export type ClassSubjectUncheckedUpdateManyWithoutClassNestedInput = {
+    create?: Prisma.XOR<Prisma.ClassSubjectCreateWithoutClassInput, Prisma.ClassSubjectUncheckedCreateWithoutClassInput> | Prisma.ClassSubjectCreateWithoutClassInput[] | Prisma.ClassSubjectUncheckedCreateWithoutClassInput[];
+    connectOrCreate?: Prisma.ClassSubjectCreateOrConnectWithoutClassInput | Prisma.ClassSubjectCreateOrConnectWithoutClassInput[];
+    upsert?: Prisma.ClassSubjectUpsertWithWhereUniqueWithoutClassInput | Prisma.ClassSubjectUpsertWithWhereUniqueWithoutClassInput[];
+    createMany?: Prisma.ClassSubjectCreateManyClassInputEnvelope;
+    set?: Prisma.ClassSubjectWhereUniqueInput | Prisma.ClassSubjectWhereUniqueInput[];
+    disconnect?: Prisma.ClassSubjectWhereUniqueInput | Prisma.ClassSubjectWhereUniqueInput[];
+    delete?: Prisma.ClassSubjectWhereUniqueInput | Prisma.ClassSubjectWhereUniqueInput[];
+    connect?: Prisma.ClassSubjectWhereUniqueInput | Prisma.ClassSubjectWhereUniqueInput[];
+    update?: Prisma.ClassSubjectUpdateWithWhereUniqueWithoutClassInput | Prisma.ClassSubjectUpdateWithWhereUniqueWithoutClassInput[];
+    updateMany?: Prisma.ClassSubjectUpdateManyWithWhereWithoutClassInput | Prisma.ClassSubjectUpdateManyWithWhereWithoutClassInput[];
+    deleteMany?: Prisma.ClassSubjectScalarWhereInput | Prisma.ClassSubjectScalarWhereInput[];
+};
+export type ClassSubjectCreateNestedManyWithoutSubjectInput = {
+    create?: Prisma.XOR<Prisma.ClassSubjectCreateWithoutSubjectInput, Prisma.ClassSubjectUncheckedCreateWithoutSubjectInput> | Prisma.ClassSubjectCreateWithoutSubjectInput[] | Prisma.ClassSubjectUncheckedCreateWithoutSubjectInput[];
+    connectOrCreate?: Prisma.ClassSubjectCreateOrConnectWithoutSubjectInput | Prisma.ClassSubjectCreateOrConnectWithoutSubjectInput[];
+    createMany?: Prisma.ClassSubjectCreateManySubjectInputEnvelope;
+    connect?: Prisma.ClassSubjectWhereUniqueInput | Prisma.ClassSubjectWhereUniqueInput[];
+};
+export type ClassSubjectUncheckedCreateNestedManyWithoutSubjectInput = {
+    create?: Prisma.XOR<Prisma.ClassSubjectCreateWithoutSubjectInput, Prisma.ClassSubjectUncheckedCreateWithoutSubjectInput> | Prisma.ClassSubjectCreateWithoutSubjectInput[] | Prisma.ClassSubjectUncheckedCreateWithoutSubjectInput[];
+    connectOrCreate?: Prisma.ClassSubjectCreateOrConnectWithoutSubjectInput | Prisma.ClassSubjectCreateOrConnectWithoutSubjectInput[];
+    createMany?: Prisma.ClassSubjectCreateManySubjectInputEnvelope;
+    connect?: Prisma.ClassSubjectWhereUniqueInput | Prisma.ClassSubjectWhereUniqueInput[];
+};
+export type ClassSubjectUpdateManyWithoutSubjectNestedInput = {
+    create?: Prisma.XOR<Prisma.ClassSubjectCreateWithoutSubjectInput, Prisma.ClassSubjectUncheckedCreateWithoutSubjectInput> | Prisma.ClassSubjectCreateWithoutSubjectInput[] | Prisma.ClassSubjectUncheckedCreateWithoutSubjectInput[];
+    connectOrCreate?: Prisma.ClassSubjectCreateOrConnectWithoutSubjectInput | Prisma.ClassSubjectCreateOrConnectWithoutSubjectInput[];
+    upsert?: Prisma.ClassSubjectUpsertWithWhereUniqueWithoutSubjectInput | Prisma.ClassSubjectUpsertWithWhereUniqueWithoutSubjectInput[];
+    createMany?: Prisma.ClassSubjectCreateManySubjectInputEnvelope;
+    set?: Prisma.ClassSubjectWhereUniqueInput | Prisma.ClassSubjectWhereUniqueInput[];
+    disconnect?: Prisma.ClassSubjectWhereUniqueInput | Prisma.ClassSubjectWhereUniqueInput[];
+    delete?: Prisma.ClassSubjectWhereUniqueInput | Prisma.ClassSubjectWhereUniqueInput[];
+    connect?: Prisma.ClassSubjectWhereUniqueInput | Prisma.ClassSubjectWhereUniqueInput[];
+    update?: Prisma.ClassSubjectUpdateWithWhereUniqueWithoutSubjectInput | Prisma.ClassSubjectUpdateWithWhereUniqueWithoutSubjectInput[];
+    updateMany?: Prisma.ClassSubjectUpdateManyWithWhereWithoutSubjectInput | Prisma.ClassSubjectUpdateManyWithWhereWithoutSubjectInput[];
+    deleteMany?: Prisma.ClassSubjectScalarWhereInput | Prisma.ClassSubjectScalarWhereInput[];
+};
+export type ClassSubjectUncheckedUpdateManyWithoutSubjectNestedInput = {
+    create?: Prisma.XOR<Prisma.ClassSubjectCreateWithoutSubjectInput, Prisma.ClassSubjectUncheckedCreateWithoutSubjectInput> | Prisma.ClassSubjectCreateWithoutSubjectInput[] | Prisma.ClassSubjectUncheckedCreateWithoutSubjectInput[];
+    connectOrCreate?: Prisma.ClassSubjectCreateOrConnectWithoutSubjectInput | Prisma.ClassSubjectCreateOrConnectWithoutSubjectInput[];
+    upsert?: Prisma.ClassSubjectUpsertWithWhereUniqueWithoutSubjectInput | Prisma.ClassSubjectUpsertWithWhereUniqueWithoutSubjectInput[];
+    createMany?: Prisma.ClassSubjectCreateManySubjectInputEnvelope;
+    set?: Prisma.ClassSubjectWhereUniqueInput | Prisma.ClassSubjectWhereUniqueInput[];
+    disconnect?: Prisma.ClassSubjectWhereUniqueInput | Prisma.ClassSubjectWhereUniqueInput[];
+    delete?: Prisma.ClassSubjectWhereUniqueInput | Prisma.ClassSubjectWhereUniqueInput[];
+    connect?: Prisma.ClassSubjectWhereUniqueInput | Prisma.ClassSubjectWhereUniqueInput[];
+    update?: Prisma.ClassSubjectUpdateWithWhereUniqueWithoutSubjectInput | Prisma.ClassSubjectUpdateWithWhereUniqueWithoutSubjectInput[];
+    updateMany?: Prisma.ClassSubjectUpdateManyWithWhereWithoutSubjectInput | Prisma.ClassSubjectUpdateManyWithWhereWithoutSubjectInput[];
+    deleteMany?: Prisma.ClassSubjectScalarWhereInput | Prisma.ClassSubjectScalarWhereInput[];
+};
+export type ClassSubjectCreateWithoutClassInput = {
+    subject: Prisma.SubjectCreateNestedOneWithoutClass_subjectsInput;
+};
+export type ClassSubjectUncheckedCreateWithoutClassInput = {
+    subject_id: number;
+};
+export type ClassSubjectCreateOrConnectWithoutClassInput = {
+    where: Prisma.ClassSubjectWhereUniqueInput;
+    create: Prisma.XOR<Prisma.ClassSubjectCreateWithoutClassInput, Prisma.ClassSubjectUncheckedCreateWithoutClassInput>;
+};
+export type ClassSubjectCreateManyClassInputEnvelope = {
+    data: Prisma.ClassSubjectCreateManyClassInput | Prisma.ClassSubjectCreateManyClassInput[];
+    skipDuplicates?: boolean;
+};
+export type ClassSubjectUpsertWithWhereUniqueWithoutClassInput = {
+    where: Prisma.ClassSubjectWhereUniqueInput;
+    update: Prisma.XOR<Prisma.ClassSubjectUpdateWithoutClassInput, Prisma.ClassSubjectUncheckedUpdateWithoutClassInput>;
+    create: Prisma.XOR<Prisma.ClassSubjectCreateWithoutClassInput, Prisma.ClassSubjectUncheckedCreateWithoutClassInput>;
+};
+export type ClassSubjectUpdateWithWhereUniqueWithoutClassInput = {
+    where: Prisma.ClassSubjectWhereUniqueInput;
+    data: Prisma.XOR<Prisma.ClassSubjectUpdateWithoutClassInput, Prisma.ClassSubjectUncheckedUpdateWithoutClassInput>;
+};
+export type ClassSubjectUpdateManyWithWhereWithoutClassInput = {
+    where: Prisma.ClassSubjectScalarWhereInput;
+    data: Prisma.XOR<Prisma.ClassSubjectUpdateManyMutationInput, Prisma.ClassSubjectUncheckedUpdateManyWithoutClassInput>;
+};
+export type ClassSubjectScalarWhereInput = {
+    AND?: Prisma.ClassSubjectScalarWhereInput | Prisma.ClassSubjectScalarWhereInput[];
+    OR?: Prisma.ClassSubjectScalarWhereInput[];
+    NOT?: Prisma.ClassSubjectScalarWhereInput | Prisma.ClassSubjectScalarWhereInput[];
+    class_id?: Prisma.IntFilter<"ClassSubject"> | number;
+    subject_id?: Prisma.IntFilter<"ClassSubject"> | number;
+};
+export type ClassSubjectCreateWithoutSubjectInput = {
+    class: Prisma.ClassCreateNestedOneWithoutClassSubjectsInput;
+};
+export type ClassSubjectUncheckedCreateWithoutSubjectInput = {
+    class_id: number;
+};
+export type ClassSubjectCreateOrConnectWithoutSubjectInput = {
+    where: Prisma.ClassSubjectWhereUniqueInput;
+    create: Prisma.XOR<Prisma.ClassSubjectCreateWithoutSubjectInput, Prisma.ClassSubjectUncheckedCreateWithoutSubjectInput>;
+};
+export type ClassSubjectCreateManySubjectInputEnvelope = {
+    data: Prisma.ClassSubjectCreateManySubjectInput | Prisma.ClassSubjectCreateManySubjectInput[];
+    skipDuplicates?: boolean;
+};
+export type ClassSubjectUpsertWithWhereUniqueWithoutSubjectInput = {
+    where: Prisma.ClassSubjectWhereUniqueInput;
+    update: Prisma.XOR<Prisma.ClassSubjectUpdateWithoutSubjectInput, Prisma.ClassSubjectUncheckedUpdateWithoutSubjectInput>;
+    create: Prisma.XOR<Prisma.ClassSubjectCreateWithoutSubjectInput, Prisma.ClassSubjectUncheckedCreateWithoutSubjectInput>;
+};
+export type ClassSubjectUpdateWithWhereUniqueWithoutSubjectInput = {
+    where: Prisma.ClassSubjectWhereUniqueInput;
+    data: Prisma.XOR<Prisma.ClassSubjectUpdateWithoutSubjectInput, Prisma.ClassSubjectUncheckedUpdateWithoutSubjectInput>;
+};
+export type ClassSubjectUpdateManyWithWhereWithoutSubjectInput = {
+    where: Prisma.ClassSubjectScalarWhereInput;
+    data: Prisma.XOR<Prisma.ClassSubjectUpdateManyMutationInput, Prisma.ClassSubjectUncheckedUpdateManyWithoutSubjectInput>;
+};
+export type ClassSubjectCreateManyClassInput = {
+    subject_id: number;
+};
+export type ClassSubjectUpdateWithoutClassInput = {
+    subject?: Prisma.SubjectUpdateOneRequiredWithoutClass_subjectsNestedInput;
+};
+export type ClassSubjectUncheckedUpdateWithoutClassInput = {
+    subject_id?: Prisma.IntFieldUpdateOperationsInput | number;
+};
+export type ClassSubjectUncheckedUpdateManyWithoutClassInput = {
+    subject_id?: Prisma.IntFieldUpdateOperationsInput | number;
+};
+export type ClassSubjectCreateManySubjectInput = {
+    class_id: number;
+};
+export type ClassSubjectUpdateWithoutSubjectInput = {
+    class?: Prisma.ClassUpdateOneRequiredWithoutClassSubjectsNestedInput;
+};
+export type ClassSubjectUncheckedUpdateWithoutSubjectInput = {
+    class_id?: Prisma.IntFieldUpdateOperationsInput | number;
+};
+export type ClassSubjectUncheckedUpdateManyWithoutSubjectInput = {
+    class_id?: Prisma.IntFieldUpdateOperationsInput | number;
+};
+export type ClassSubjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+    class_id?: boolean;
+    subject_id?: boolean;
+    class?: boolean | Prisma.ClassDefaultArgs<ExtArgs>;
+    subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>;
+}, ExtArgs["result"]["classSubject"]>;
+export type ClassSubjectSelectScalar = {
+    class_id?: boolean;
+    subject_id?: boolean;
+};
+export type ClassSubjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"class_id" | "subject_id", ExtArgs["result"]["classSubject"]>;
+export type ClassSubjectInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    class?: boolean | Prisma.ClassDefaultArgs<ExtArgs>;
+    subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>;
+};
+export type $ClassSubjectPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    name: "ClassSubject";
+    objects: {
+        class: Prisma.$ClassPayload<ExtArgs>;
+        subject: Prisma.$SubjectPayload<ExtArgs>;
+    };
+    scalars: runtime.Types.Extensions.GetPayloadResult<{
+        class_id: number;
+        subject_id: number;
+    }, ExtArgs["result"]["classSubject"]>;
+    composites: {};
+};
+export type ClassSubjectGetPayload<S extends boolean | null | undefined | ClassSubjectDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$ClassSubjectPayload, S>;
+export type ClassSubjectCountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = Omit<ClassSubjectFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+    select?: ClassSubjectCountAggregateInputType | true;
+};
+export interface ClassSubjectDelegate<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: {
+        types: Prisma.TypeMap<ExtArgs>['model']['ClassSubject'];
+        meta: {
+            name: 'ClassSubject';
+        };
+    };
+    /**
+     * Find zero or one ClassSubject that matches the filter.
+     * @param {ClassSubjectFindUniqueArgs} args - Arguments to find a ClassSubject
+     * @example
+     * // Get one ClassSubject
+     * const classSubject = await prisma.classSubject.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ClassSubjectFindUniqueArgs>(args: Prisma.SelectSubset<T, ClassSubjectFindUniqueArgs<ExtArgs>>): Prisma.Prisma__ClassSubjectClient<runtime.Types.Result.GetResult<Prisma.$ClassSubjectPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find one ClassSubject that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ClassSubjectFindUniqueOrThrowArgs} args - Arguments to find a ClassSubject
+     * @example
+     * // Get one ClassSubject
+     * const classSubject = await prisma.classSubject.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ClassSubjectFindUniqueOrThrowArgs>(args: Prisma.SelectSubset<T, ClassSubjectFindUniqueOrThrowArgs<ExtArgs>>): Prisma.Prisma__ClassSubjectClient<runtime.Types.Result.GetResult<Prisma.$ClassSubjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find the first ClassSubject that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClassSubjectFindFirstArgs} args - Arguments to find a ClassSubject
+     * @example
+     * // Get one ClassSubject
+     * const classSubject = await prisma.classSubject.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ClassSubjectFindFirstArgs>(args?: Prisma.SelectSubset<T, ClassSubjectFindFirstArgs<ExtArgs>>): Prisma.Prisma__ClassSubjectClient<runtime.Types.Result.GetResult<Prisma.$ClassSubjectPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find the first ClassSubject that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClassSubjectFindFirstOrThrowArgs} args - Arguments to find a ClassSubject
+     * @example
+     * // Get one ClassSubject
+     * const classSubject = await prisma.classSubject.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ClassSubjectFindFirstOrThrowArgs>(args?: Prisma.SelectSubset<T, ClassSubjectFindFirstOrThrowArgs<ExtArgs>>): Prisma.Prisma__ClassSubjectClient<runtime.Types.Result.GetResult<Prisma.$ClassSubjectPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find zero or more ClassSubjects that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClassSubjectFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ClassSubjects
+     * const classSubjects = await prisma.classSubject.findMany()
+     *
+     * // Get first 10 ClassSubjects
+     * const classSubjects = await prisma.classSubject.findMany({ take: 10 })
+     *
+     * // Only select the `class_id`
+     * const classSubjectWithClass_idOnly = await prisma.classSubject.findMany({ select: { class_id: true } })
+     *
+     */
+    findMany<T extends ClassSubjectFindManyArgs>(args?: Prisma.SelectSubset<T, ClassSubjectFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClassSubjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>;
+    /**
+     * Create a ClassSubject.
+     * @param {ClassSubjectCreateArgs} args - Arguments to create a ClassSubject.
+     * @example
+     * // Create one ClassSubject
+     * const ClassSubject = await prisma.classSubject.create({
+     *   data: {
+     *     // ... data to create a ClassSubject
+     *   }
+     * })
+     *
+     */
+    create<T extends ClassSubjectCreateArgs>(args: Prisma.SelectSubset<T, ClassSubjectCreateArgs<ExtArgs>>): Prisma.Prisma__ClassSubjectClient<runtime.Types.Result.GetResult<Prisma.$ClassSubjectPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Create many ClassSubjects.
+     * @param {ClassSubjectCreateManyArgs} args - Arguments to create many ClassSubjects.
+     * @example
+     * // Create many ClassSubjects
+     * const classSubject = await prisma.classSubject.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     */
+    createMany<T extends ClassSubjectCreateManyArgs>(args?: Prisma.SelectSubset<T, ClassSubjectCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>;
+    /**
+     * Delete a ClassSubject.
+     * @param {ClassSubjectDeleteArgs} args - Arguments to delete one ClassSubject.
+     * @example
+     * // Delete one ClassSubject
+     * const ClassSubject = await prisma.classSubject.delete({
+     *   where: {
+     *     // ... filter to delete one ClassSubject
+     *   }
+     * })
+     *
+     */
+    delete<T extends ClassSubjectDeleteArgs>(args: Prisma.SelectSubset<T, ClassSubjectDeleteArgs<ExtArgs>>): Prisma.Prisma__ClassSubjectClient<runtime.Types.Result.GetResult<Prisma.$ClassSubjectPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Update one ClassSubject.
+     * @param {ClassSubjectUpdateArgs} args - Arguments to update one ClassSubject.
+     * @example
+     * // Update one ClassSubject
+     * const classSubject = await prisma.classSubject.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    update<T extends ClassSubjectUpdateArgs>(args: Prisma.SelectSubset<T, ClassSubjectUpdateArgs<ExtArgs>>): Prisma.Prisma__ClassSubjectClient<runtime.Types.Result.GetResult<Prisma.$ClassSubjectPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Delete zero or more ClassSubjects.
+     * @param {ClassSubjectDeleteManyArgs} args - Arguments to filter ClassSubjects to delete.
+     * @example
+     * // Delete a few ClassSubjects
+     * const { count } = await prisma.classSubject.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     *
+     */
+    deleteMany<T extends ClassSubjectDeleteManyArgs>(args?: Prisma.SelectSubset<T, ClassSubjectDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>;
+    /**
+     * Update zero or more ClassSubjects.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClassSubjectUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ClassSubjects
+     * const classSubject = await prisma.classSubject.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    updateMany<T extends ClassSubjectUpdateManyArgs>(args: Prisma.SelectSubset<T, ClassSubjectUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>;
+    /**
+     * Create or update one ClassSubject.
+     * @param {ClassSubjectUpsertArgs} args - Arguments to update or create a ClassSubject.
+     * @example
+     * // Update or create a ClassSubject
+     * const classSubject = await prisma.classSubject.upsert({
+     *   create: {
+     *     // ... data to create a ClassSubject
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ClassSubject we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ClassSubjectUpsertArgs>(args: Prisma.SelectSubset<T, ClassSubjectUpsertArgs<ExtArgs>>): Prisma.Prisma__ClassSubjectClient<runtime.Types.Result.GetResult<Prisma.$ClassSubjectPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Count the number of ClassSubjects.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClassSubjectCountArgs} args - Arguments to filter ClassSubjects to count.
+     * @example
+     * // Count the number of ClassSubjects
+     * const count = await prisma.classSubject.count({
+     *   where: {
+     *     // ... the filter for the ClassSubjects we want to count
+     *   }
+     * })
+    **/
+    count<T extends ClassSubjectCountArgs>(args?: Prisma.Subset<T, ClassSubjectCountArgs>): Prisma.PrismaPromise<T extends runtime.Types.Utils.Record<'select', any> ? T['select'] extends true ? number : Prisma.GetScalarType<T['select'], ClassSubjectCountAggregateOutputType> : number>;
+    /**
+     * Allows you to perform aggregations operations on a ClassSubject.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClassSubjectAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ClassSubjectAggregateArgs>(args: Prisma.Subset<T, ClassSubjectAggregateArgs>): Prisma.PrismaPromise<GetClassSubjectAggregateType<T>>;
+    /**
+     * Group by ClassSubject.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClassSubjectGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     *
+    **/
+    groupBy<T extends ClassSubjectGroupByArgs, HasSelectOrTake extends Prisma.Or<Prisma.Extends<'skip', Prisma.Keys<T>>, Prisma.Extends<'take', Prisma.Keys<T>>>, OrderByArg extends Prisma.True extends HasSelectOrTake ? {
+        orderBy: ClassSubjectGroupByArgs['orderBy'];
+    } : {
+        orderBy?: ClassSubjectGroupByArgs['orderBy'];
+    }, OrderFields extends Prisma.ExcludeUnderscoreKeys<Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>>, ByFields extends Prisma.MaybeTupleToUnion<T['by']>, ByValid extends Prisma.Has<ByFields, OrderFields>, HavingFields extends Prisma.GetHavingFields<T['having']>, HavingValid extends Prisma.Has<ByFields, HavingFields>, ByEmpty extends T['by'] extends never[] ? Prisma.True : Prisma.False, InputErrors extends ByEmpty extends Prisma.True ? `Error: "by" must not be empty.` : HavingValid extends Prisma.False ? {
+        [P in HavingFields]: P extends ByFields ? never : P extends string ? `Error: Field "${P}" used in "having" needs to be provided in "by".` : [
+            Error,
+            'Field ',
+            P,
+            ` in "having" needs to be provided in "by"`
+        ];
+    }[HavingFields] : 'take' extends Prisma.Keys<T> ? 'orderBy' extends Prisma.Keys<T> ? ByValid extends Prisma.True ? {} : {
+        [P in OrderFields]: P extends ByFields ? never : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+    }[OrderFields] : 'Error: If you provide "take", you also need to provide "orderBy"' : 'skip' extends Prisma.Keys<T> ? 'orderBy' extends Prisma.Keys<T> ? ByValid extends Prisma.True ? {} : {
+        [P in OrderFields]: P extends ByFields ? never : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+    }[OrderFields] : 'Error: If you provide "skip", you also need to provide "orderBy"' : ByValid extends Prisma.True ? {} : {
+        [P in OrderFields]: P extends ByFields ? never : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+    }[OrderFields]>(args: Prisma.SubsetIntersection<T, ClassSubjectGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetClassSubjectGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>;
+    /**
+     * Fields of the ClassSubject model
+     */
+    readonly fields: ClassSubjectFieldRefs;
+}
+/**
+ * The delegate class that acts as a "Promise-like" for ClassSubject.
+ * Why is this prefixed with `Prisma__`?
+ * Because we want to prevent naming conflicts as mentioned in
+ * https://github.com/prisma/prisma-client-js/issues/707
+ */
+export interface Prisma__ClassSubjectClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise";
+    class<T extends Prisma.ClassDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClassDefaultArgs<ExtArgs>>): Prisma.Prisma__ClassClient<runtime.Types.Result.GetResult<Prisma.$ClassPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
+    subject<T extends Prisma.SubjectDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SubjectDefaultArgs<ExtArgs>>): Prisma.Prisma__SubjectClient<runtime.Types.Result.GetResult<Prisma.$SubjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): runtime.Types.Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): runtime.Types.Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): runtime.Types.Utils.JsPromise<T>;
+}
+/**
+ * Fields of the ClassSubject model
+ */
+export interface ClassSubjectFieldRefs {
+    readonly class_id: Prisma.FieldRef<"ClassSubject", 'Int'>;
+    readonly subject_id: Prisma.FieldRef<"ClassSubject", 'Int'>;
+}
+/**
+ * ClassSubject findUnique
+ */
+export type ClassSubjectFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClassSubject
+     */
+    select?: Prisma.ClassSubjectSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the ClassSubject
+     */
+    omit?: Prisma.ClassSubjectOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.ClassSubjectInclude<ExtArgs> | null;
+    /**
+     * Filter, which ClassSubject to fetch.
+     */
+    where: Prisma.ClassSubjectWhereUniqueInput;
+};
+/**
+ * ClassSubject findUniqueOrThrow
+ */
+export type ClassSubjectFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClassSubject
+     */
+    select?: Prisma.ClassSubjectSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the ClassSubject
+     */
+    omit?: Prisma.ClassSubjectOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.ClassSubjectInclude<ExtArgs> | null;
+    /**
+     * Filter, which ClassSubject to fetch.
+     */
+    where: Prisma.ClassSubjectWhereUniqueInput;
+};
+/**
+ * ClassSubject findFirst
+ */
+export type ClassSubjectFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClassSubject
+     */
+    select?: Prisma.ClassSubjectSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the ClassSubject
+     */
+    omit?: Prisma.ClassSubjectOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.ClassSubjectInclude<ExtArgs> | null;
+    /**
+     * Filter, which ClassSubject to fetch.
+     */
+    where?: Prisma.ClassSubjectWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of ClassSubjects to fetch.
+     */
+    orderBy?: Prisma.ClassSubjectOrderByWithRelationInput | Prisma.ClassSubjectOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for ClassSubjects.
+     */
+    cursor?: Prisma.ClassSubjectWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` ClassSubjects from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` ClassSubjects.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of ClassSubjects.
+     */
+    distinct?: Prisma.ClassSubjectScalarFieldEnum | Prisma.ClassSubjectScalarFieldEnum[];
+};
+/**
+ * ClassSubject findFirstOrThrow
+ */
+export type ClassSubjectFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClassSubject
+     */
+    select?: Prisma.ClassSubjectSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the ClassSubject
+     */
+    omit?: Prisma.ClassSubjectOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.ClassSubjectInclude<ExtArgs> | null;
+    /**
+     * Filter, which ClassSubject to fetch.
+     */
+    where?: Prisma.ClassSubjectWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of ClassSubjects to fetch.
+     */
+    orderBy?: Prisma.ClassSubjectOrderByWithRelationInput | Prisma.ClassSubjectOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for ClassSubjects.
+     */
+    cursor?: Prisma.ClassSubjectWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` ClassSubjects from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` ClassSubjects.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of ClassSubjects.
+     */
+    distinct?: Prisma.ClassSubjectScalarFieldEnum | Prisma.ClassSubjectScalarFieldEnum[];
+};
+/**
+ * ClassSubject findMany
+ */
+export type ClassSubjectFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClassSubject
+     */
+    select?: Prisma.ClassSubjectSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the ClassSubject
+     */
+    omit?: Prisma.ClassSubjectOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.ClassSubjectInclude<ExtArgs> | null;
+    /**
+     * Filter, which ClassSubjects to fetch.
+     */
+    where?: Prisma.ClassSubjectWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of ClassSubjects to fetch.
+     */
+    orderBy?: Prisma.ClassSubjectOrderByWithRelationInput | Prisma.ClassSubjectOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for listing ClassSubjects.
+     */
+    cursor?: Prisma.ClassSubjectWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` ClassSubjects from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` ClassSubjects.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of ClassSubjects.
+     */
+    distinct?: Prisma.ClassSubjectScalarFieldEnum | Prisma.ClassSubjectScalarFieldEnum[];
+};
+/**
+ * ClassSubject create
+ */
+export type ClassSubjectCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClassSubject
+     */
+    select?: Prisma.ClassSubjectSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the ClassSubject
+     */
+    omit?: Prisma.ClassSubjectOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.ClassSubjectInclude<ExtArgs> | null;
+    /**
+     * The data needed to create a ClassSubject.
+     */
+    data: Prisma.XOR<Prisma.ClassSubjectCreateInput, Prisma.ClassSubjectUncheckedCreateInput>;
+};
+/**
+ * ClassSubject createMany
+ */
+export type ClassSubjectCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ClassSubjects.
+     */
+    data: Prisma.ClassSubjectCreateManyInput | Prisma.ClassSubjectCreateManyInput[];
+    skipDuplicates?: boolean;
+};
+/**
+ * ClassSubject update
+ */
+export type ClassSubjectUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClassSubject
+     */
+    select?: Prisma.ClassSubjectSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the ClassSubject
+     */
+    omit?: Prisma.ClassSubjectOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.ClassSubjectInclude<ExtArgs> | null;
+    /**
+     * The data needed to update a ClassSubject.
+     */
+    data: Prisma.XOR<Prisma.ClassSubjectUpdateInput, Prisma.ClassSubjectUncheckedUpdateInput>;
+    /**
+     * Choose, which ClassSubject to update.
+     */
+    where: Prisma.ClassSubjectWhereUniqueInput;
+};
+/**
+ * ClassSubject updateMany
+ */
+export type ClassSubjectUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ClassSubjects.
+     */
+    data: Prisma.XOR<Prisma.ClassSubjectUpdateManyMutationInput, Prisma.ClassSubjectUncheckedUpdateManyInput>;
+    /**
+     * Filter which ClassSubjects to update
+     */
+    where?: Prisma.ClassSubjectWhereInput;
+    /**
+     * Limit how many ClassSubjects to update.
+     */
+    limit?: number;
+};
+/**
+ * ClassSubject upsert
+ */
+export type ClassSubjectUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClassSubject
+     */
+    select?: Prisma.ClassSubjectSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the ClassSubject
+     */
+    omit?: Prisma.ClassSubjectOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.ClassSubjectInclude<ExtArgs> | null;
+    /**
+     * The filter to search for the ClassSubject to update in case it exists.
+     */
+    where: Prisma.ClassSubjectWhereUniqueInput;
+    /**
+     * In case the ClassSubject found by the `where` argument doesn't exist, create a new ClassSubject with this data.
+     */
+    create: Prisma.XOR<Prisma.ClassSubjectCreateInput, Prisma.ClassSubjectUncheckedCreateInput>;
+    /**
+     * In case the ClassSubject was found with the provided `where` argument, update it with this data.
+     */
+    update: Prisma.XOR<Prisma.ClassSubjectUpdateInput, Prisma.ClassSubjectUncheckedUpdateInput>;
+};
+/**
+ * ClassSubject delete
+ */
+export type ClassSubjectDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClassSubject
+     */
+    select?: Prisma.ClassSubjectSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the ClassSubject
+     */
+    omit?: Prisma.ClassSubjectOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.ClassSubjectInclude<ExtArgs> | null;
+    /**
+     * Filter which ClassSubject to delete.
+     */
+    where: Prisma.ClassSubjectWhereUniqueInput;
+};
+/**
+ * ClassSubject deleteMany
+ */
+export type ClassSubjectDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Filter which ClassSubjects to delete
+     */
+    where?: Prisma.ClassSubjectWhereInput;
+    /**
+     * Limit how many ClassSubjects to delete.
+     */
+    limit?: number;
+};
+/**
+ * ClassSubject without action
+ */
+export type ClassSubjectDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClassSubject
+     */
+    select?: Prisma.ClassSubjectSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the ClassSubject
+     */
+    omit?: Prisma.ClassSubjectOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.ClassSubjectInclude<ExtArgs> | null;
+};

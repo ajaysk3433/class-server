@@ -1,8 +1,6 @@
-
-
 ```mermaid
 
- erDiagram
+erDiagram
     SCHOOLS {
         int id PK
         varchar school_name
@@ -37,10 +35,13 @@
         int stream_id FK
     }
 
-    ADMIN_ROLES {
+    CHAPTERS {
         int id PK
-        varchar role_name
+        varchar name
+        int subject_id FK
     }
+
+   
 
     USERS {
         int id PK
@@ -54,7 +55,7 @@
         int id PK
         int school_id FK
         int class_id FK
-        int stream_id FK 
+        int stream_id FK
         int section_id FK "NULLABLE"
         varchar slug UK
     }
@@ -77,10 +78,11 @@
     SECTIONS ||--o{ CLASS_STREAM_SECTIONS : "divides"
 
     STREAMS ||--o{ SUBJECTS : "contains"
-    
+    SUBJECTS ||--o{ CHAPTERS : "contains"
+
     CLASSES ||--o{ CLASS_SUBJECTS : "links"
     SUBJECTS ||--o{ CLASS_SUBJECTS : "assigned"
 
-    ADMIN_ROLES ||--o{ USERS : "grants permissions to"
+   
     USERS ||--o{ USER_CLASSES : "enrolled in"
     CLASS_STREAM_SECTIONS ||--o{ USER_CLASSES : "contains rosters for"

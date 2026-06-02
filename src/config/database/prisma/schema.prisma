@@ -65,8 +65,18 @@ model Subject {
 
   class_subjects ClassSubject[]
   // user_classes   UserClass[]
+  chapters       Chapter[]
 
   @@map("subjects")
+}
+
+model Chapter {
+  id         Int    @id @default(autoincrement())
+  name       String
+  subject_id Int
+
+  subject Subject @relation(fields: [subject_id], references: [id])
+  @@map("chapters")
 }
 
 // =========================================================================
@@ -123,14 +133,14 @@ model UserClass {
 // change as per DB schema
 
 model User {
-  id        Int    @id @default(autoincrement()) //@map("user_id")
+  id        Int    @id @default(autoincrement()) @map("user_id")
   full_name String @db.VarChar(255)
   email     String @unique @db.VarChar(255)
-  role_id   Int 
+  role_id   Int
   status    String @db.VarChar(50)
 
   // Relations
-  role         Role        @relation(fields: [role_id], references: [id])
+
   user_classes UserClass[]
 
   @@map("users")
@@ -148,12 +158,4 @@ model School {
   // custom_subjects       Subject[]
 
   @@map("schools")
-}
-
-model Role {
-  id        Int    @id @default(autoincrement())
-  role_name String
-  users     User[]
-
-  @@map("admin_roles")
 }

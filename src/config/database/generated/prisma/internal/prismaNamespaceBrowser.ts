@@ -55,12 +55,12 @@ export const ModelName = {
   Class: 'Class',
   Section: 'Section',
   Subject: 'Subject',
+  Chapter: 'Chapter',
   ClassStreamSection: 'ClassStreamSection',
   ClassSubject: 'ClassSubject',
   UserClass: 'UserClass',
   User: 'User',
-  School: 'School',
-  Role: 'Role'
+  School: 'School'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -118,6 +118,15 @@ export const SubjectScalarFieldEnum = {
 export type SubjectScalarFieldEnum = (typeof SubjectScalarFieldEnum)[keyof typeof SubjectScalarFieldEnum]
 
 
+export const ChapterScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  subject_id: 'subject_id'
+} as const
+
+export type ChapterScalarFieldEnum = (typeof ChapterScalarFieldEnum)[keyof typeof ChapterScalarFieldEnum]
+
+
 export const ClassStreamSectionScalarFieldEnum = {
   id: 'id',
   school_id: 'school_id',
@@ -167,14 +176,6 @@ export const SchoolScalarFieldEnum = {
 export type SchoolScalarFieldEnum = (typeof SchoolScalarFieldEnum)[keyof typeof SchoolScalarFieldEnum]
 
 
-export const RoleScalarFieldEnum = {
-  id: 'id',
-  role_name: 'role_name'
-} as const
-
-export type RoleScalarFieldEnum = (typeof RoleScalarFieldEnum)[keyof typeof RoleScalarFieldEnum]
-
-
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -217,6 +218,13 @@ export const SubjectOrderByRelevanceFieldEnum = {
 export type SubjectOrderByRelevanceFieldEnum = (typeof SubjectOrderByRelevanceFieldEnum)[keyof typeof SubjectOrderByRelevanceFieldEnum]
 
 
+export const ChapterOrderByRelevanceFieldEnum = {
+  name: 'name'
+} as const
+
+export type ChapterOrderByRelevanceFieldEnum = (typeof ChapterOrderByRelevanceFieldEnum)[keyof typeof ChapterOrderByRelevanceFieldEnum]
+
+
 export const NullsOrder = {
   first: 'first',
   last: 'last'
@@ -248,11 +256,4 @@ export const SchoolOrderByRelevanceFieldEnum = {
 } as const
 
 export type SchoolOrderByRelevanceFieldEnum = (typeof SchoolOrderByRelevanceFieldEnum)[keyof typeof SchoolOrderByRelevanceFieldEnum]
-
-
-export const RoleOrderByRelevanceFieldEnum = {
-  role_name: 'role_name'
-} as const
-
-export type RoleOrderByRelevanceFieldEnum = (typeof RoleOrderByRelevanceFieldEnum)[keyof typeof RoleOrderByRelevanceFieldEnum]
 

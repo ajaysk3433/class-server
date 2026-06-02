@@ -62,6 +62,11 @@ export type Section = Prisma.SectionModel
  */
 export type Subject = Prisma.SubjectModel
 /**
+ * Model Chapter
+ * 
+ */
+export type Chapter = Prisma.ChapterModel
+/**
  * Model ClassStreamSection
  * 
  */
@@ -86,8 +91,3 @@ export type User = Prisma.UserModel
  * 
  */
 export type School = Prisma.SchoolModel
-/**
- * Model Role
- * 
- */
-export type Role = Prisma.RoleModel
