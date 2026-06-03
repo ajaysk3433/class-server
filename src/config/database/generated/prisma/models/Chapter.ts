@@ -40,18 +40,21 @@ export type ChapterMinAggregateOutputType = {
   id: number | null
   name: string | null
   subject_id: number | null
+  language: string | null
 }
 
 export type ChapterMaxAggregateOutputType = {
   id: number | null
   name: string | null
   subject_id: number | null
+  language: string | null
 }
 
 export type ChapterCountAggregateOutputType = {
   id: number
   name: number
   subject_id: number
+  language: number
   _all: number
 }
 
@@ -70,18 +73,21 @@ export type ChapterMinAggregateInputType = {
   id?: true
   name?: true
   subject_id?: true
+  language?: true
 }
 
 export type ChapterMaxAggregateInputType = {
   id?: true
   name?: true
   subject_id?: true
+  language?: true
 }
 
 export type ChapterCountAggregateInputType = {
   id?: true
   name?: true
   subject_id?: true
+  language?: true
   _all?: true
 }
 
@@ -175,6 +181,7 @@ export type ChapterGroupByOutputType = {
   id: number
   name: string
   subject_id: number
+  language: string
   _count: ChapterCountAggregateOutputType | null
   _avg: ChapterAvgAggregateOutputType | null
   _sum: ChapterSumAggregateOutputType | null
@@ -204,6 +211,7 @@ export type ChapterWhereInput = {
   id?: Prisma.IntFilter<"Chapter"> | number
   name?: Prisma.StringFilter<"Chapter"> | string
   subject_id?: Prisma.IntFilter<"Chapter"> | number
+  language?: Prisma.StringFilter<"Chapter"> | string
   subject?: Prisma.XOR<Prisma.SubjectScalarRelationFilter, Prisma.SubjectWhereInput>
 }
 
@@ -211,6 +219,7 @@ export type ChapterOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   subject_id?: Prisma.SortOrder
+  language?: Prisma.SortOrder
   subject?: Prisma.SubjectOrderByWithRelationInput
   _relevance?: Prisma.ChapterOrderByRelevanceInput
 }
@@ -222,6 +231,7 @@ export type ChapterWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.ChapterWhereInput | Prisma.ChapterWhereInput[]
   name?: Prisma.StringFilter<"Chapter"> | string
   subject_id?: Prisma.IntFilter<"Chapter"> | number
+  language?: Prisma.StringFilter<"Chapter"> | string
   subject?: Prisma.XOR<Prisma.SubjectScalarRelationFilter, Prisma.SubjectWhereInput>
 }, "id">
 
@@ -229,6 +239,7 @@ export type ChapterOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   subject_id?: Prisma.SortOrder
+  language?: Prisma.SortOrder
   _count?: Prisma.ChapterCountOrderByAggregateInput
   _avg?: Prisma.ChapterAvgOrderByAggregateInput
   _max?: Prisma.ChapterMaxOrderByAggregateInput
@@ -243,10 +254,12 @@ export type ChapterScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"Chapter"> | number
   name?: Prisma.StringWithAggregatesFilter<"Chapter"> | string
   subject_id?: Prisma.IntWithAggregatesFilter<"Chapter"> | number
+  language?: Prisma.StringWithAggregatesFilter<"Chapter"> | string
 }
 
 export type ChapterCreateInput = {
   name: string
+  language: string
   subject: Prisma.SubjectCreateNestedOneWithoutChaptersInput
 }
 
@@ -254,10 +267,12 @@ export type ChapterUncheckedCreateInput = {
   id?: number
   name: string
   subject_id: number
+  language: string
 }
 
 export type ChapterUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  language?: Prisma.StringFieldUpdateOperationsInput | string
   subject?: Prisma.SubjectUpdateOneRequiredWithoutChaptersNestedInput
 }
 
@@ -265,22 +280,26 @@ export type ChapterUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  language?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ChapterCreateManyInput = {
   id?: number
   name: string
   subject_id: number
+  language: string
 }
 
 export type ChapterUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  language?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ChapterUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  language?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ChapterListRelationFilter = {
@@ -303,6 +322,7 @@ export type ChapterCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   subject_id?: Prisma.SortOrder
+  language?: Prisma.SortOrder
 }
 
 export type ChapterAvgOrderByAggregateInput = {
@@ -314,12 +334,14 @@ export type ChapterMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   subject_id?: Prisma.SortOrder
+  language?: Prisma.SortOrder
 }
 
 export type ChapterMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   subject_id?: Prisma.SortOrder
+  language?: Prisma.SortOrder
 }
 
 export type ChapterSumOrderByAggregateInput = {
@@ -371,11 +393,13 @@ export type ChapterUncheckedUpdateManyWithoutSubjectNestedInput = {
 
 export type ChapterCreateWithoutSubjectInput = {
   name: string
+  language: string
 }
 
 export type ChapterUncheckedCreateWithoutSubjectInput = {
   id?: number
   name: string
+  language: string
 }
 
 export type ChapterCreateOrConnectWithoutSubjectInput = {
@@ -411,25 +435,30 @@ export type ChapterScalarWhereInput = {
   id?: Prisma.IntFilter<"Chapter"> | number
   name?: Prisma.StringFilter<"Chapter"> | string
   subject_id?: Prisma.IntFilter<"Chapter"> | number
+  language?: Prisma.StringFilter<"Chapter"> | string
 }
 
 export type ChapterCreateManySubjectInput = {
   id?: number
   name: string
+  language: string
 }
 
 export type ChapterUpdateWithoutSubjectInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  language?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ChapterUncheckedUpdateWithoutSubjectInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  language?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ChapterUncheckedUpdateManyWithoutSubjectInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  language?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -438,6 +467,7 @@ export type ChapterSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   id?: boolean
   name?: boolean
   subject_id?: boolean
+  language?: boolean
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["chapter"]>
 
@@ -447,9 +477,10 @@ export type ChapterSelectScalar = {
   id?: boolean
   name?: boolean
   subject_id?: boolean
+  language?: boolean
 }
 
-export type ChapterOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "subject_id", ExtArgs["result"]["chapter"]>
+export type ChapterOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "subject_id" | "language", ExtArgs["result"]["chapter"]>
 export type ChapterInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
 }
@@ -463,6 +494,7 @@ export type $ChapterPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     id: number
     name: string
     subject_id: number
+    language: string
   }, ExtArgs["result"]["chapter"]>
   composites: {}
 }
@@ -836,6 +868,7 @@ export interface ChapterFieldRefs {
   readonly id: Prisma.FieldRef<"Chapter", 'Int'>
   readonly name: Prisma.FieldRef<"Chapter", 'String'>
   readonly subject_id: Prisma.FieldRef<"Chapter", 'Int'>
+  readonly language: Prisma.FieldRef<"Chapter", 'String'>
 }
     
 

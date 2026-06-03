@@ -1144,7 +1144,6 @@ export const SubjectScalarFieldEnum = {
   subject_name: 'subject_name',
   slug: 'slug',
   board: 'board',
-  language: 'language',
   stream_id: 'stream_id'
 } as const
 
@@ -1154,7 +1153,8 @@ export type SubjectScalarFieldEnum = (typeof SubjectScalarFieldEnum)[keyof typeo
 export const ChapterScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  subject_id: 'subject_id'
+  subject_id: 'subject_id',
+  language: 'language'
 } as const
 
 export type ChapterScalarFieldEnum = (typeof ChapterScalarFieldEnum)[keyof typeof ChapterScalarFieldEnum]
@@ -1244,15 +1244,15 @@ export type SectionOrderByRelevanceFieldEnum = (typeof SectionOrderByRelevanceFi
 export const SubjectOrderByRelevanceFieldEnum = {
   subject_name: 'subject_name',
   slug: 'slug',
-  board: 'board',
-  language: 'language'
+  board: 'board'
 } as const
 
 export type SubjectOrderByRelevanceFieldEnum = (typeof SubjectOrderByRelevanceFieldEnum)[keyof typeof SubjectOrderByRelevanceFieldEnum]
 
 
 export const ChapterOrderByRelevanceFieldEnum = {
-  name: 'name'
+  name: 'name',
+  language: 'language'
 } as const
 
 export type ChapterOrderByRelevanceFieldEnum = (typeof ChapterOrderByRelevanceFieldEnum)[keyof typeof ChapterOrderByRelevanceFieldEnum]

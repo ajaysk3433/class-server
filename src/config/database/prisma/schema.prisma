@@ -57,7 +57,7 @@ model Subject {
   subject_name String @db.VarChar(255)
   slug         String @db.VarChar(255)
   board        String @db.VarChar(255)
-  language     String @db.VarChar(255)
+  
   stream_id    Int
 
   // Relations
@@ -74,6 +74,7 @@ model Chapter {
   id         Int    @id @default(autoincrement())
   name       String
   subject_id Int
+  language     String @db.VarChar(255)
 
   subject Subject @relation(fields: [subject_id], references: [id])
   @@map("chapters")
