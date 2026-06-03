@@ -13,7 +13,7 @@ app.use(express.json());
    HELPERS
 ========================================================== */
 
-async function getUserClassroom(userId: number, schoolId: number , classId : number) {
+async function getUserClassroom(userId: number, schoolId: number , classId? : number) {
   const assignment = await prisma.userClass.findFirst({
     where: {
       user_id: userId,
