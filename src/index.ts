@@ -667,7 +667,7 @@ app.post("/api/v1/subject", async (req, res) => {
       board,
       streamId,
       classIds,
-    } = req.body;
+    } = req.body ;
 
     if (
       !subjectName ||
@@ -680,12 +680,12 @@ app.post("/api/v1/subject", async (req, res) => {
           "subjectName, board and streamId are required",
       });
     }
-
+    const boardUpperCase = board.toUpperCase();
     const subject = await prisma.subject.create({
       data: {
         subject_name: subjectName,
         slug: `${generateSlug(subjectName)}-${Date.now()}`,
-        board,
+        board: boardUpperCase,
         stream_id: Number(streamId),
       },
     });
