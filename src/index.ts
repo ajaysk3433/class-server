@@ -13,6 +13,15 @@ app.use(express.json());
    HELPERS
 ========================================================== */
 
+function generateSlug(value: string) {
+  return value
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
+}
+
 async function getUserClassroom(userId: number, schoolId: number , classId? : number) {
   const assignment = await prisma.userClass.findFirst({
     where: {
@@ -530,6 +539,236 @@ app.get(
     }
   }
 );
+
+
+
+
+
+
+/**
+ * POST /api/v1/users/assign-class
+ * Asign class to user
+ */
+
+app.post(
+  "/api/v1/users/assign-class",
+  async (req, res) => {
+    try {
+      const {
+        userId,
+        schoolId,
+        classId,
+        streamId,
+        sectionId,
+      } = req.body;
+
+      if (!userId || !schoolId || !classId || !sectionId || !streamId) {
+        return res.status(400).json({
+          success: false,
+          message:
+            "userId, schoolId, classId, streamId and sectionId are required",
+        });
+      }
+
+      let classroom =
+        await prisma.classStreamSection.findFirst({
+          where: {
+            school_id: Number(schoolId),
+            class_id: Number(classId),
+          
+              stream_id: Number(streamId),
+           
+            section_id: Number(sectionId),
+          },
+          include: {
+            class: true,
+            stream: true,
+            section: true,
+            school: true,
+          },
+        });
+
+      // Create classroom if it doesn't exist
+      if (!classroom) {
+        classroom =
+          await prisma.classStreamSection.create({
+            data: {
+              school_id: Number(schoolId),
+              class_id: Number(classId),
+              stream_id: Number(streamId),
+              section_id: Number(sectionId),
+              slug: `school-${schoolId}-class-${classId}-stream-${
+                streamId
+              }-section-${sectionId}`,
+            },
+            include: {
+              class: true,
+              stream: true,
+              section: true,
+              school: true,
+            },
+          });
+      }
+
+      const existingAssignment =
+        await prisma.userClass.findFirst({
+          where: {
+            user_id: Number(userId),
+            class_stream_section_id: classroom.id,
+          },
+        });
+
+      if (existingAssignment) {
+        return res.status(409).json({
+          success: false,
+          message: "User already assigned",
+        });
+      }
+
+      const assignment =
+        await prisma.userClass.create({
+          data: {
+            user_id: Number(userId),
+            class_stream_section_id: classroom.id,
+          },
+        });
+
+      return res.status(201).json({
+        success: true,
+        message: "Class assigned successfully",
+        data: {
+          assignment,
+          classroom,
+        },
+      });
+    } catch (error) {
+      console.error(error);
+
+      return res.status(500).json({
+        success: false,
+        message: "Internal Server Error",
+        error:
+          error instanceof Error
+            ? error.message
+            : "Unknown Error",
+      });
+    }
+  }
+);
+
+/**
+ * POST /api/v1/subject
+ * Create subject
+ */
+app.post("/api/v1/subject", async (req, res) => {
+  try {
+    const {
+      subjectName,
+      board,
+      streamId,
+      classIds,
+    } = req.body;
+
+    if (
+      !subjectName ||
+      !board ||
+      !streamId
+    ) {
+      return res.status(400).json({
+        success: false,
+        message:
+          "subjectName, board and streamId are required",
+      });
+    }
+
+    const subject = await prisma.subject.create({
+      data: {
+        subject_name: subjectName,
+        slug: `${generateSlug(subjectName)}-${Date.now()}`,
+        board,
+        stream_id: Number(streamId),
+      },
+    });
+
+    if (Array.isArray(classIds) && classIds.length) {
+      await prisma.classSubject.createMany({
+        data: classIds.map((classId: number) => ({
+          class_id: classId,
+          subject_id: subject.id,
+        })),
+      });
+    }
+
+    return res.status(201).json({
+      success: true,
+      data: subject,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+});
+
+
+/**
+ * POST /api/v1/chapter
+ * Create chapter
+ */
+
+app.post("/api/v1/chapter", async (req, res) => {
+  try {
+    const {
+      name,
+      subjectId,
+      language,
+    } = req.body;
+
+    if (!name || !subjectId || !language) {
+      return res.status(400).json({
+        success: false,
+        message:
+          "name, subjectId and language are required",
+      });
+    }
+
+    const subject = await prisma.subject.findUnique({
+      where: {
+        id: Number(subjectId),
+      },
+    });
+
+    if (!subject) {
+      return res.status(404).json({
+        success: false,
+        message: "Subject not found",
+      });
+    }
+
+    const chapter = await prisma.chapter.create({
+      data: {
+        name,
+        subject_id: Number(subjectId),
+        language,
+      },
+    });
+
+    return res.status(201).json({
+      success: true,
+      message: "Chapter created successfully",
+      data: chapter,
+    });
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+});
 
 /* ==========================================================
    SERVER
