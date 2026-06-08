@@ -60,7 +60,9 @@ export const ModelName = {
   ClassSubject: 'ClassSubject',
   UserClass: 'UserClass',
   User: 'User',
-  School: 'School'
+  School: 'School',
+  Board: 'Board',
+  Language: 'Language'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -111,6 +113,7 @@ export const SubjectScalarFieldEnum = {
   subject_name: 'subject_name',
   slug: 'slug',
   board: 'board',
+  language: 'language',
   stream_id: 'stream_id'
 } as const
 
@@ -176,6 +179,24 @@ export const SchoolScalarFieldEnum = {
 export type SchoolScalarFieldEnum = (typeof SchoolScalarFieldEnum)[keyof typeof SchoolScalarFieldEnum]
 
 
+export const BoardScalarFieldEnum = {
+  id: 'id',
+  board: 'board',
+  slug: 'slug'
+} as const
+
+export type BoardScalarFieldEnum = (typeof BoardScalarFieldEnum)[keyof typeof BoardScalarFieldEnum]
+
+
+export const LanguageScalarFieldEnum = {
+  id: 'id',
+  language: 'language',
+  code: 'code'
+} as const
+
+export type LanguageScalarFieldEnum = (typeof LanguageScalarFieldEnum)[keyof typeof LanguageScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -211,7 +232,8 @@ export type SectionOrderByRelevanceFieldEnum = (typeof SectionOrderByRelevanceFi
 export const SubjectOrderByRelevanceFieldEnum = {
   subject_name: 'subject_name',
   slug: 'slug',
-  board: 'board'
+  board: 'board',
+  language: 'language'
 } as const
 
 export type SubjectOrderByRelevanceFieldEnum = (typeof SubjectOrderByRelevanceFieldEnum)[keyof typeof SubjectOrderByRelevanceFieldEnum]
@@ -256,4 +278,20 @@ export const SchoolOrderByRelevanceFieldEnum = {
 } as const
 
 export type SchoolOrderByRelevanceFieldEnum = (typeof SchoolOrderByRelevanceFieldEnum)[keyof typeof SchoolOrderByRelevanceFieldEnum]
+
+
+export const BoardOrderByRelevanceFieldEnum = {
+  board: 'board',
+  slug: 'slug'
+} as const
+
+export type BoardOrderByRelevanceFieldEnum = (typeof BoardOrderByRelevanceFieldEnum)[keyof typeof BoardOrderByRelevanceFieldEnum]
+
+
+export const LanguageOrderByRelevanceFieldEnum = {
+  language: 'language',
+  code: 'code'
+} as const
+
+export type LanguageOrderByRelevanceFieldEnum = (typeof LanguageOrderByRelevanceFieldEnum)[keyof typeof LanguageOrderByRelevanceFieldEnum]
 

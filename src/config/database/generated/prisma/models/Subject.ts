@@ -41,6 +41,7 @@ export type SubjectMinAggregateOutputType = {
   subject_name: string | null
   slug: string | null
   board: string | null
+  language: string | null
   stream_id: number | null
 }
 
@@ -49,6 +50,7 @@ export type SubjectMaxAggregateOutputType = {
   subject_name: string | null
   slug: string | null
   board: string | null
+  language: string | null
   stream_id: number | null
 }
 
@@ -57,6 +59,7 @@ export type SubjectCountAggregateOutputType = {
   subject_name: number
   slug: number
   board: number
+  language: number
   stream_id: number
   _all: number
 }
@@ -77,6 +80,7 @@ export type SubjectMinAggregateInputType = {
   subject_name?: true
   slug?: true
   board?: true
+  language?: true
   stream_id?: true
 }
 
@@ -85,6 +89,7 @@ export type SubjectMaxAggregateInputType = {
   subject_name?: true
   slug?: true
   board?: true
+  language?: true
   stream_id?: true
 }
 
@@ -93,6 +98,7 @@ export type SubjectCountAggregateInputType = {
   subject_name?: true
   slug?: true
   board?: true
+  language?: true
   stream_id?: true
   _all?: true
 }
@@ -188,6 +194,7 @@ export type SubjectGroupByOutputType = {
   subject_name: string
   slug: string
   board: string
+  language: string
   stream_id: number
   _count: SubjectCountAggregateOutputType | null
   _avg: SubjectAvgAggregateOutputType | null
@@ -219,6 +226,7 @@ export type SubjectWhereInput = {
   subject_name?: Prisma.StringFilter<"Subject"> | string
   slug?: Prisma.StringFilter<"Subject"> | string
   board?: Prisma.StringFilter<"Subject"> | string
+  language?: Prisma.StringFilter<"Subject"> | string
   stream_id?: Prisma.IntFilter<"Subject"> | number
   stream?: Prisma.XOR<Prisma.StreamScalarRelationFilter, Prisma.StreamWhereInput>
   class_subjects?: Prisma.ClassSubjectListRelationFilter
@@ -230,6 +238,7 @@ export type SubjectOrderByWithRelationInput = {
   subject_name?: Prisma.SortOrder
   slug?: Prisma.SortOrder
   board?: Prisma.SortOrder
+  language?: Prisma.SortOrder
   stream_id?: Prisma.SortOrder
   stream?: Prisma.StreamOrderByWithRelationInput
   class_subjects?: Prisma.ClassSubjectOrderByRelationAggregateInput
@@ -245,6 +254,7 @@ export type SubjectWhereUniqueInput = Prisma.AtLeast<{
   subject_name?: Prisma.StringFilter<"Subject"> | string
   slug?: Prisma.StringFilter<"Subject"> | string
   board?: Prisma.StringFilter<"Subject"> | string
+  language?: Prisma.StringFilter<"Subject"> | string
   stream_id?: Prisma.IntFilter<"Subject"> | number
   stream?: Prisma.XOR<Prisma.StreamScalarRelationFilter, Prisma.StreamWhereInput>
   class_subjects?: Prisma.ClassSubjectListRelationFilter
@@ -256,6 +266,7 @@ export type SubjectOrderByWithAggregationInput = {
   subject_name?: Prisma.SortOrder
   slug?: Prisma.SortOrder
   board?: Prisma.SortOrder
+  language?: Prisma.SortOrder
   stream_id?: Prisma.SortOrder
   _count?: Prisma.SubjectCountOrderByAggregateInput
   _avg?: Prisma.SubjectAvgOrderByAggregateInput
@@ -272,6 +283,7 @@ export type SubjectScalarWhereWithAggregatesInput = {
   subject_name?: Prisma.StringWithAggregatesFilter<"Subject"> | string
   slug?: Prisma.StringWithAggregatesFilter<"Subject"> | string
   board?: Prisma.StringWithAggregatesFilter<"Subject"> | string
+  language?: Prisma.StringWithAggregatesFilter<"Subject"> | string
   stream_id?: Prisma.IntWithAggregatesFilter<"Subject"> | number
 }
 
@@ -279,6 +291,7 @@ export type SubjectCreateInput = {
   subject_name: string
   slug: string
   board: string
+  language: string
   stream: Prisma.StreamCreateNestedOneWithoutSubjectsInput
   class_subjects?: Prisma.ClassSubjectCreateNestedManyWithoutSubjectInput
   chapters?: Prisma.ChapterCreateNestedManyWithoutSubjectInput
@@ -289,6 +302,7 @@ export type SubjectUncheckedCreateInput = {
   subject_name: string
   slug: string
   board: string
+  language: string
   stream_id: number
   class_subjects?: Prisma.ClassSubjectUncheckedCreateNestedManyWithoutSubjectInput
   chapters?: Prisma.ChapterUncheckedCreateNestedManyWithoutSubjectInput
@@ -298,6 +312,7 @@ export type SubjectUpdateInput = {
   subject_name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   board?: Prisma.StringFieldUpdateOperationsInput | string
+  language?: Prisma.StringFieldUpdateOperationsInput | string
   stream?: Prisma.StreamUpdateOneRequiredWithoutSubjectsNestedInput
   class_subjects?: Prisma.ClassSubjectUpdateManyWithoutSubjectNestedInput
   chapters?: Prisma.ChapterUpdateManyWithoutSubjectNestedInput
@@ -308,6 +323,7 @@ export type SubjectUncheckedUpdateInput = {
   subject_name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   board?: Prisma.StringFieldUpdateOperationsInput | string
+  language?: Prisma.StringFieldUpdateOperationsInput | string
   stream_id?: Prisma.IntFieldUpdateOperationsInput | number
   class_subjects?: Prisma.ClassSubjectUncheckedUpdateManyWithoutSubjectNestedInput
   chapters?: Prisma.ChapterUncheckedUpdateManyWithoutSubjectNestedInput
@@ -318,6 +334,7 @@ export type SubjectCreateManyInput = {
   subject_name: string
   slug: string
   board: string
+  language: string
   stream_id: number
 }
 
@@ -325,6 +342,7 @@ export type SubjectUpdateManyMutationInput = {
   subject_name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   board?: Prisma.StringFieldUpdateOperationsInput | string
+  language?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type SubjectUncheckedUpdateManyInput = {
@@ -332,6 +350,7 @@ export type SubjectUncheckedUpdateManyInput = {
   subject_name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   board?: Prisma.StringFieldUpdateOperationsInput | string
+  language?: Prisma.StringFieldUpdateOperationsInput | string
   stream_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -356,6 +375,7 @@ export type SubjectCountOrderByAggregateInput = {
   subject_name?: Prisma.SortOrder
   slug?: Prisma.SortOrder
   board?: Prisma.SortOrder
+  language?: Prisma.SortOrder
   stream_id?: Prisma.SortOrder
 }
 
@@ -369,6 +389,7 @@ export type SubjectMaxOrderByAggregateInput = {
   subject_name?: Prisma.SortOrder
   slug?: Prisma.SortOrder
   board?: Prisma.SortOrder
+  language?: Prisma.SortOrder
   stream_id?: Prisma.SortOrder
 }
 
@@ -377,6 +398,7 @@ export type SubjectMinOrderByAggregateInput = {
   subject_name?: Prisma.SortOrder
   slug?: Prisma.SortOrder
   board?: Prisma.SortOrder
+  language?: Prisma.SortOrder
   stream_id?: Prisma.SortOrder
 }
 
@@ -464,6 +486,7 @@ export type SubjectCreateWithoutStreamInput = {
   subject_name: string
   slug: string
   board: string
+  language: string
   class_subjects?: Prisma.ClassSubjectCreateNestedManyWithoutSubjectInput
   chapters?: Prisma.ChapterCreateNestedManyWithoutSubjectInput
 }
@@ -473,6 +496,7 @@ export type SubjectUncheckedCreateWithoutStreamInput = {
   subject_name: string
   slug: string
   board: string
+  language: string
   class_subjects?: Prisma.ClassSubjectUncheckedCreateNestedManyWithoutSubjectInput
   chapters?: Prisma.ChapterUncheckedCreateNestedManyWithoutSubjectInput
 }
@@ -511,6 +535,7 @@ export type SubjectScalarWhereInput = {
   subject_name?: Prisma.StringFilter<"Subject"> | string
   slug?: Prisma.StringFilter<"Subject"> | string
   board?: Prisma.StringFilter<"Subject"> | string
+  language?: Prisma.StringFilter<"Subject"> | string
   stream_id?: Prisma.IntFilter<"Subject"> | number
 }
 
@@ -518,6 +543,7 @@ export type SubjectCreateWithoutChaptersInput = {
   subject_name: string
   slug: string
   board: string
+  language: string
   stream: Prisma.StreamCreateNestedOneWithoutSubjectsInput
   class_subjects?: Prisma.ClassSubjectCreateNestedManyWithoutSubjectInput
 }
@@ -527,6 +553,7 @@ export type SubjectUncheckedCreateWithoutChaptersInput = {
   subject_name: string
   slug: string
   board: string
+  language: string
   stream_id: number
   class_subjects?: Prisma.ClassSubjectUncheckedCreateNestedManyWithoutSubjectInput
 }
@@ -551,6 +578,7 @@ export type SubjectUpdateWithoutChaptersInput = {
   subject_name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   board?: Prisma.StringFieldUpdateOperationsInput | string
+  language?: Prisma.StringFieldUpdateOperationsInput | string
   stream?: Prisma.StreamUpdateOneRequiredWithoutSubjectsNestedInput
   class_subjects?: Prisma.ClassSubjectUpdateManyWithoutSubjectNestedInput
 }
@@ -560,6 +588,7 @@ export type SubjectUncheckedUpdateWithoutChaptersInput = {
   subject_name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   board?: Prisma.StringFieldUpdateOperationsInput | string
+  language?: Prisma.StringFieldUpdateOperationsInput | string
   stream_id?: Prisma.IntFieldUpdateOperationsInput | number
   class_subjects?: Prisma.ClassSubjectUncheckedUpdateManyWithoutSubjectNestedInput
 }
@@ -568,6 +597,7 @@ export type SubjectCreateWithoutClass_subjectsInput = {
   subject_name: string
   slug: string
   board: string
+  language: string
   stream: Prisma.StreamCreateNestedOneWithoutSubjectsInput
   chapters?: Prisma.ChapterCreateNestedManyWithoutSubjectInput
 }
@@ -577,6 +607,7 @@ export type SubjectUncheckedCreateWithoutClass_subjectsInput = {
   subject_name: string
   slug: string
   board: string
+  language: string
   stream_id: number
   chapters?: Prisma.ChapterUncheckedCreateNestedManyWithoutSubjectInput
 }
@@ -601,6 +632,7 @@ export type SubjectUpdateWithoutClass_subjectsInput = {
   subject_name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   board?: Prisma.StringFieldUpdateOperationsInput | string
+  language?: Prisma.StringFieldUpdateOperationsInput | string
   stream?: Prisma.StreamUpdateOneRequiredWithoutSubjectsNestedInput
   chapters?: Prisma.ChapterUpdateManyWithoutSubjectNestedInput
 }
@@ -610,6 +642,7 @@ export type SubjectUncheckedUpdateWithoutClass_subjectsInput = {
   subject_name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   board?: Prisma.StringFieldUpdateOperationsInput | string
+  language?: Prisma.StringFieldUpdateOperationsInput | string
   stream_id?: Prisma.IntFieldUpdateOperationsInput | number
   chapters?: Prisma.ChapterUncheckedUpdateManyWithoutSubjectNestedInput
 }
@@ -619,12 +652,14 @@ export type SubjectCreateManyStreamInput = {
   subject_name: string
   slug: string
   board: string
+  language: string
 }
 
 export type SubjectUpdateWithoutStreamInput = {
   subject_name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   board?: Prisma.StringFieldUpdateOperationsInput | string
+  language?: Prisma.StringFieldUpdateOperationsInput | string
   class_subjects?: Prisma.ClassSubjectUpdateManyWithoutSubjectNestedInput
   chapters?: Prisma.ChapterUpdateManyWithoutSubjectNestedInput
 }
@@ -634,6 +669,7 @@ export type SubjectUncheckedUpdateWithoutStreamInput = {
   subject_name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   board?: Prisma.StringFieldUpdateOperationsInput | string
+  language?: Prisma.StringFieldUpdateOperationsInput | string
   class_subjects?: Prisma.ClassSubjectUncheckedUpdateManyWithoutSubjectNestedInput
   chapters?: Prisma.ChapterUncheckedUpdateManyWithoutSubjectNestedInput
 }
@@ -643,6 +679,7 @@ export type SubjectUncheckedUpdateManyWithoutStreamInput = {
   subject_name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   board?: Prisma.StringFieldUpdateOperationsInput | string
+  language?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -690,6 +727,7 @@ export type SubjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   subject_name?: boolean
   slug?: boolean
   board?: boolean
+  language?: boolean
   stream_id?: boolean
   stream?: boolean | Prisma.StreamDefaultArgs<ExtArgs>
   class_subjects?: boolean | Prisma.Subject$class_subjectsArgs<ExtArgs>
@@ -704,10 +742,11 @@ export type SubjectSelectScalar = {
   subject_name?: boolean
   slug?: boolean
   board?: boolean
+  language?: boolean
   stream_id?: boolean
 }
 
-export type SubjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "subject_name" | "slug" | "board" | "stream_id", ExtArgs["result"]["subject"]>
+export type SubjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "subject_name" | "slug" | "board" | "language" | "stream_id", ExtArgs["result"]["subject"]>
 export type SubjectInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   stream?: boolean | Prisma.StreamDefaultArgs<ExtArgs>
   class_subjects?: boolean | Prisma.Subject$class_subjectsArgs<ExtArgs>
@@ -727,6 +766,7 @@ export type $SubjectPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     subject_name: string
     slug: string
     board: string
+    language: string
     stream_id: number
   }, ExtArgs["result"]["subject"]>
   composites: {}
@@ -1104,6 +1144,7 @@ export interface SubjectFieldRefs {
   readonly subject_name: Prisma.FieldRef<"Subject", 'String'>
   readonly slug: Prisma.FieldRef<"Subject", 'String'>
   readonly board: Prisma.FieldRef<"Subject", 'String'>
+  readonly language: Prisma.FieldRef<"Subject", 'String'>
   readonly stream_id: Prisma.FieldRef<"Subject", 'Int'>
 }
     

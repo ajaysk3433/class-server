@@ -57,7 +57,7 @@ model Subject {
   subject_name String @db.VarChar(255)
   slug         String @db.VarChar(255)
   board        String @db.VarChar(255)
-  
+  language String
   stream_id    Int
 
   // Relations
@@ -106,6 +106,7 @@ model ClassStreamSection {
 model ClassSubject {
   class_id   Int
   subject_id Int
+  
 
   // Relations
   class   Class   @relation(fields: [class_id], references: [id])
@@ -159,4 +160,24 @@ model School {
   // custom_subjects       Subject[]
 
   @@map("schools")
+}
+
+model Board {
+  id         Int    @id @default(autoincrement())
+  board String @db.VarChar(255)
+  slug       String @unique @db.VarChar(255)
+
+
+
+  @@map("boards")
+}
+
+
+model Language {
+  id            Int    @id @default(autoincrement())
+  language String @db.VarChar(255)
+  code          String @unique @db.VarChar(10) // e.g., "en", "hi", "es"
+
+
+  @@map("languages")
 }

@@ -621,7 +621,7 @@ app.post(
       if (existingAssignment) {
         return res.status(409).json({
           success: false,
-          message: "User already assigned",
+          message: "class already assigned",
         });
       }
 
@@ -657,47 +657,91 @@ app.post(
 );
 
 /**
- * POST /api/v1/subject
- * Create subject
+ * DELETE /api/v1/users/remove-class
+ * Remove asign class
  */
-app.post("/api/v1/subject", async (req, res) => {
+app.delete("/api/v1/users/remove-class", async (req, res) => {
   try {
-    const {
-      subjectName,
-      board,
-      streamId,
-      classIds,
-    } = req.body ;
+    const { userId } = req.body;
 
-    if (
-      !subjectName ||
-      !board ||
-      !streamId
-    ) {
+    if (!userId) {
       return res.status(400).json({
         success: false,
-        message:
-          "subjectName, board and streamId are required",
+        message: "userId is required",
       });
     }
-    const boardUpperCase = board.toUpperCase();
-    const subject = await prisma.subject.create({
-      data: {
-        subject_name: subjectName,
-        slug: `${generateSlug(subjectName)}-${Date.now()}`,
-        board: boardUpperCase,
-        stream_id: Number(streamId),
+
+    const deleted = await prisma.userClass.deleteMany({
+      where: {
+        user_id: Number(userId),
       },
     });
 
-    if (Array.isArray(classIds) && classIds.length) {
-      await prisma.classSubject.createMany({
-        data: classIds.map((classId: number) => ({
-          class_id: classId,
-          subject_id: subject.id,
-        })),
+    if (deleted.count === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "No class assignment found",
       });
     }
+
+    return res.status(200).json({
+      success: true,
+      message: "Class assignment removed successfully",
+    });
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+});
+
+  /**
+   * POST /api/v1/subject
+   * Create subject
+   */
+  app.post("/api/v1/subject", async (req, res) => {
+    try {
+      const {
+        subjectName,
+        board,
+        streamId,
+        classIds,
+        lang
+      } = req.body ;
+
+      if (
+        !subjectName ||
+        !board ||
+        !streamId
+      ) {
+        return res.status(400).json({
+          success: false,
+          message:
+            "subjectName, board and streamId are required",
+        });
+      }
+      const boardUpperCase = board.toUpperCase();
+      const subject = await prisma.subject.create({
+        data: {
+          subject_name: subjectName,
+          slug: `${generateSlug(subjectName)}-${Date.now()}`,
+          board: boardUpperCase,
+          stream_id: Number(streamId),
+          language : lang
+        },
+      });
+
+      if (Array.isArray(classIds) && classIds.length) {
+        await prisma.classSubject.createMany({
+          data: classIds.map((classId: number) => ({
+            class_id: classId,
+            subject_id: subject.id,
+          })),
+        });
+      }
 
     return res.status(201).json({
       success: true,
@@ -712,7 +756,68 @@ app.post("/api/v1/subject", async (req, res) => {
   }
 });
 
+/**
+ * DELETE /api/v1/subject/5
+ * Delete subject
+ */
 
+app.delete("/api/v1/subject/:subjectId", async (req, res) => {
+  try {
+    const subjectId = Number(req.params.subjectId);
+
+    if (!subjectId) {
+      return res.status(400).json({
+        success: false,
+        message: "subjectId is required",
+      });
+    }
+
+    const subject = await prisma.subject.findUnique({
+      where: {
+        id: subjectId,
+      },
+    });
+
+    if (!subject) {
+      return res.status(404).json({
+        success: false,
+        message: "Subject not found",
+      });
+    }
+
+    await prisma.$transaction([
+      prisma.classSubject.deleteMany({
+        where: {
+          subject_id: subjectId,
+        },
+      }),
+
+      prisma.chapter.deleteMany({
+        where: {
+          subject_id: subjectId,
+        },
+      }),
+
+      prisma.subject.delete({
+        where: {
+          id: subjectId,
+        },
+      }),
+    ]);
+
+    return res.status(200).json({
+      success: true,
+      message: "Subject deleted successfully",
+    });
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+});
 /**
  * POST /api/v1/chapter
  * Create chapter
@@ -770,6 +875,125 @@ app.post("/api/v1/chapter", async (req, res) => {
   }
 });
 
+/**
+ * DELETE /api/v1/chapter/12
+ * Delete chapter
+ */
+
+app.delete("/api/v1/chapter/:chapterId", async (req, res) => {
+  try {
+    const chapterId = Number(req.params.chapterId);
+
+    if (!chapterId) {
+      return res.status(400).json({
+        success: false,
+        message: "chapterId is required",
+      });
+    }
+
+    const chapter = await prisma.chapter.findUnique({
+      where: {
+        id: chapterId,
+      },
+    });
+
+    if (!chapter) {
+      return res.status(404).json({
+        success: false,
+        message: "Chapter not found",
+      });
+    }
+
+    await prisma.chapter.delete({
+      where: {
+        id: chapterId,
+      },
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: "Chapter deleted successfully",
+    });
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+});
+
+/**
+ * GET /api/v1/section
+ * Get all sections
+ */
+
+app.get("/api/v1/section", async (req, res) => {
+  try {
+    const sections = await prisma.section.findMany({
+      orderBy: {
+        section_name: "asc",
+      },
+    });
+
+    return res.status(200).json({
+      success: true,
+      data: sections,
+    });
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+});
+
+// Get all educational boards
+app.get("/api/v1/board", async (req, res) => {
+  try {
+    const boards = await prisma.board.findMany({
+      orderBy: {
+        board: "asc", // Alphabetical order
+      },
+    });
+
+    return res.status(200).json({
+      success: true,
+      data: boards,
+    });
+  } catch (error) {
+    console.error("Error fetching boards:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error occurred while fetching boards.",
+    });
+  }
+});
+
+// Get all available languages
+app.get("/api/v1/lang", async (req, res) => {
+  try {
+    const languages = await prisma.language.findMany({
+      orderBy: {
+        language: "asc",
+      },
+    });
+
+    return res.status(200).json({
+      success: true,
+      data: languages,
+    });
+  } catch (error) {
+    console.error("Error fetching languages:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error occurred while fetching languages.",
+    });
+  }
+});
 /* ==========================================================
    SERVER
 ========================================================== */

@@ -91,3 +91,13 @@ export type User = Prisma.UserModel
  * 
  */
 export type School = Prisma.SchoolModel
+/**
+ * Model Board
+ * 
+ */
+export type Board = Prisma.BoardModel
+/**
+ * Model Language
+ * 
+ */
+export type Language = Prisma.LanguageModel
