@@ -57,7 +57,7 @@ model Subject {
   subject_name String @db.VarChar(255)
   slug         String @db.VarChar(255)
   board        String @db.VarChar(255)
-  language String
+  
   stream_id    Int
 
   // Relations

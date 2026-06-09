@@ -113,7 +113,6 @@ export const SubjectScalarFieldEnum = {
   subject_name: 'subject_name',
   slug: 'slug',
   board: 'board',
-  language: 'language',
   stream_id: 'stream_id'
 } as const
 
@@ -232,8 +231,7 @@ export type SectionOrderByRelevanceFieldEnum = (typeof SectionOrderByRelevanceFi
 export const SubjectOrderByRelevanceFieldEnum = {
   subject_name: 'subject_name',
   slug: 'slug',
-  board: 'board',
-  language: 'language'
+  board: 'board'
 } as const
 
 export type SubjectOrderByRelevanceFieldEnum = (typeof SubjectOrderByRelevanceFieldEnum)[keyof typeof SubjectOrderByRelevanceFieldEnum]

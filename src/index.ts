@@ -709,7 +709,7 @@ app.delete("/api/v1/users/remove-class", async (req, res) => {
         board,
         streamId,
         classIds,
-        lang
+ 
       } = req.body ;
 
       if (
@@ -730,7 +730,7 @@ app.delete("/api/v1/users/remove-class", async (req, res) => {
           slug: `${generateSlug(subjectName)}-${Date.now()}`,
           board: boardUpperCase,
           stream_id: Number(streamId),
-          language : lang
+    
         },
       });
 
