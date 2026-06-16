@@ -56,7 +56,7 @@ erDiagram
         int school_id FK
         int class_id FK
         int stream_id FK
-        int section_id FK "NULLABLE"
+        int section_id FK 
         varchar slug UK
     }
 

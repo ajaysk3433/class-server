@@ -9,11 +9,11 @@
 	// "features": {},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [3000],
+	
 	"runArgs": ["--network",
 "dev-net",
 "--name",
-"curriculum"]
+"curriculum", "-p","3000:3000"]
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "yarn install",

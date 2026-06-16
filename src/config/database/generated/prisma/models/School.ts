@@ -37,21 +37,18 @@ export type SchoolSumAggregateOutputType = {
 export type SchoolMinAggregateOutputType = {
   id: number | null
   school_name: string | null
-  slug: string | null
   status: string | null
 }
 
 export type SchoolMaxAggregateOutputType = {
   id: number | null
   school_name: string | null
-  slug: string | null
   status: string | null
 }
 
 export type SchoolCountAggregateOutputType = {
   id: number
   school_name: number
-  slug: number
   status: number
   _all: number
 }
@@ -68,21 +65,18 @@ export type SchoolSumAggregateInputType = {
 export type SchoolMinAggregateInputType = {
   id?: true
   school_name?: true
-  slug?: true
   status?: true
 }
 
 export type SchoolMaxAggregateInputType = {
   id?: true
   school_name?: true
-  slug?: true
   status?: true
 }
 
 export type SchoolCountAggregateInputType = {
   id?: true
   school_name?: true
-  slug?: true
   status?: true
   _all?: true
 }
@@ -176,7 +170,6 @@ export type SchoolGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 export type SchoolGroupByOutputType = {
   id: number
   school_name: string
-  slug: string
   status: string
   _count: SchoolCountAggregateOutputType | null
   _avg: SchoolAvgAggregateOutputType | null
@@ -206,7 +199,6 @@ export type SchoolWhereInput = {
   NOT?: Prisma.SchoolWhereInput | Prisma.SchoolWhereInput[]
   id?: Prisma.IntFilter<"School"> | number
   school_name?: Prisma.StringFilter<"School"> | string
-  slug?: Prisma.StringFilter<"School"> | string
   status?: Prisma.StringFilter<"School"> | string
   class_stream_sections?: Prisma.ClassStreamSectionListRelationFilter
 }
@@ -214,7 +206,6 @@ export type SchoolWhereInput = {
 export type SchoolOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   school_name?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   status?: Prisma.SortOrder
   class_stream_sections?: Prisma.ClassStreamSectionOrderByRelationAggregateInput
   _relevance?: Prisma.SchoolOrderByRelevanceInput
@@ -222,19 +213,17 @@ export type SchoolOrderByWithRelationInput = {
 
 export type SchoolWhereUniqueInput = Prisma.AtLeast<{
   id?: number
-  slug?: string
   AND?: Prisma.SchoolWhereInput | Prisma.SchoolWhereInput[]
   OR?: Prisma.SchoolWhereInput[]
   NOT?: Prisma.SchoolWhereInput | Prisma.SchoolWhereInput[]
   school_name?: Prisma.StringFilter<"School"> | string
   status?: Prisma.StringFilter<"School"> | string
   class_stream_sections?: Prisma.ClassStreamSectionListRelationFilter
-}, "id" | "slug">
+}, "id">
 
 export type SchoolOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   school_name?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   status?: Prisma.SortOrder
   _count?: Prisma.SchoolCountOrderByAggregateInput
   _avg?: Prisma.SchoolAvgOrderByAggregateInput
@@ -249,13 +238,11 @@ export type SchoolScalarWhereWithAggregatesInput = {
   NOT?: Prisma.SchoolScalarWhereWithAggregatesInput | Prisma.SchoolScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"School"> | number
   school_name?: Prisma.StringWithAggregatesFilter<"School"> | string
-  slug?: Prisma.StringWithAggregatesFilter<"School"> | string
   status?: Prisma.StringWithAggregatesFilter<"School"> | string
 }
 
 export type SchoolCreateInput = {
   school_name: string
-  slug: string
   status: string
   class_stream_sections?: Prisma.ClassStreamSectionCreateNestedManyWithoutSchoolInput
 }
@@ -263,14 +250,12 @@ export type SchoolCreateInput = {
 export type SchoolUncheckedCreateInput = {
   id?: number
   school_name: string
-  slug: string
   status: string
   class_stream_sections?: Prisma.ClassStreamSectionUncheckedCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolUpdateInput = {
   school_name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   class_stream_sections?: Prisma.ClassStreamSectionUpdateManyWithoutSchoolNestedInput
 }
@@ -278,7 +263,6 @@ export type SchoolUpdateInput = {
 export type SchoolUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   school_name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   class_stream_sections?: Prisma.ClassStreamSectionUncheckedUpdateManyWithoutSchoolNestedInput
 }
@@ -286,20 +270,17 @@ export type SchoolUncheckedUpdateInput = {
 export type SchoolCreateManyInput = {
   id?: number
   school_name: string
-  slug: string
   status: string
 }
 
 export type SchoolUpdateManyMutationInput = {
   school_name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type SchoolUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   school_name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -317,7 +298,6 @@ export type SchoolOrderByRelevanceInput = {
 export type SchoolCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   school_name?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   status?: Prisma.SortOrder
 }
 
@@ -328,14 +308,12 @@ export type SchoolAvgOrderByAggregateInput = {
 export type SchoolMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   school_name?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   status?: Prisma.SortOrder
 }
 
 export type SchoolMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   school_name?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   status?: Prisma.SortOrder
 }
 
@@ -359,14 +337,12 @@ export type SchoolUpdateOneRequiredWithoutClass_stream_sectionsNestedInput = {
 
 export type SchoolCreateWithoutClass_stream_sectionsInput = {
   school_name: string
-  slug: string
   status: string
 }
 
 export type SchoolUncheckedCreateWithoutClass_stream_sectionsInput = {
   id?: number
   school_name: string
-  slug: string
   status: string
 }
 
@@ -388,14 +364,12 @@ export type SchoolUpdateToOneWithWhereWithoutClass_stream_sectionsInput = {
 
 export type SchoolUpdateWithoutClass_stream_sectionsInput = {
   school_name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type SchoolUncheckedUpdateWithoutClass_stream_sectionsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   school_name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -433,7 +407,6 @@ export type SchoolCountOutputTypeCountClass_stream_sectionsArgs<ExtArgs extends 
 export type SchoolSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   school_name?: boolean
-  slug?: boolean
   status?: boolean
   class_stream_sections?: boolean | Prisma.School$class_stream_sectionsArgs<ExtArgs>
   _count?: boolean | Prisma.SchoolCountOutputTypeDefaultArgs<ExtArgs>
@@ -444,11 +417,10 @@ export type SchoolSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
 export type SchoolSelectScalar = {
   id?: boolean
   school_name?: boolean
-  slug?: boolean
   status?: boolean
 }
 
-export type SchoolOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "school_name" | "slug" | "status", ExtArgs["result"]["school"]>
+export type SchoolOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "school_name" | "status", ExtArgs["result"]["school"]>
 export type SchoolInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   class_stream_sections?: boolean | Prisma.School$class_stream_sectionsArgs<ExtArgs>
   _count?: boolean | Prisma.SchoolCountOutputTypeDefaultArgs<ExtArgs>
@@ -462,7 +434,6 @@ export type $SchoolPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     school_name: string
-    slug: string
     status: string
   }, ExtArgs["result"]["school"]>
   composites: {}
@@ -836,7 +807,6 @@ export interface Prisma__SchoolClient<T, Null = never, ExtArgs extends runtime.T
 export interface SchoolFieldRefs {
   readonly id: Prisma.FieldRef<"School", 'Int'>
   readonly school_name: Prisma.FieldRef<"School", 'String'>
-  readonly slug: Prisma.FieldRef<"School", 'String'>
   readonly status: Prisma.FieldRef<"School", 'String'>
 }
     

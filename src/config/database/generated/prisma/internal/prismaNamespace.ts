@@ -1336,7 +1336,6 @@ export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof User
 export const SchoolScalarFieldEnum = {
   id: 'id',
   school_name: 'school_name',
-  slug: 'slug',
   status: 'status'
 } as const
 
@@ -1436,7 +1435,6 @@ export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnu
 
 export const SchoolOrderByRelevanceFieldEnum = {
   school_name: 'school_name',
-  slug: 'slug',
   status: 'status'
 } as const
 
